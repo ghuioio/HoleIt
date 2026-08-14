@@ -1182,5 +1182,1213 @@
     "time": 1786633051007.3938,
     "uuid": "2e268e56-079a-438a-b1ea-bf36e8d650b2",
     "missing": false
+  },
+  "D:\\HoleIt\\assets\\data": {
+    "time": 1786679733975.2656,
+    "uuid": "95c9c149-ddfe-467c-a926-44ac303910f4",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets": {
+    "time": 1786679734377.3635,
+    "uuid": "311a9f91-ffa1-4b42-ba57-9ef6d3520f7a",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\materials": {
+    "time": 1786694162999.9548,
+    "uuid": "968e68d9-ba7e-46db-9232-ab8962639ac7",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs": {
+    "time": 1786699060828.445,
+    "uuid": "12327d52-69bb-4f30-9ee5-2db7a8eef296",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scenes": {
+    "time": 1786679735274.6267,
+    "uuid": "bc947160-e47c-4dd9-95f5-98b699bef9a3",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts": {
+    "time": 1786679735792.372,
+    "uuid": "b552c817-f49c-42c7-a13a-27b26239e7f5",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\data\\H_T_2.compact.json": {
+    "time": 1786611813000,
+    "uuid": "8bee38d9-4558-44c0-a564-39ce43bdfa31",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Font": {
+    "time": 1786679734049.5713,
+    "uuid": "b5160e22-ee8f-4328-be3d-69bae5b89dec",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\LevelData": {
+    "time": 1786679734071.2913,
+    "uuid": "362f675c-289c-424b-9cef-f3239de89c6a",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model": {
+    "time": 1786679734218.8398,
+    "uuid": "30648570-16d0-4005-90c5-33ded72941db",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Scripts": {
+    "time": 1786679734235.5752,
+    "uuid": "c9d58f9b-405d-4f9e-977d-dbe5017d69c5",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds": {
+    "time": 1786679734311.4028,
+    "uuid": "eed22de4-61af-4b81-a96d-cab83dd70d66",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture": {
+    "time": 1786679734369.2783,
+    "uuid": "ba0f636b-8b81-4c56-a022-a1e0f0afcd13",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI": {
+    "time": 1786679735023.3635,
+    "uuid": "812dd61f-d837-4282-9b0f-50db68174897",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\materials\\M_Ground.mtl": {
+    "time": 1786693701108.1587,
+    "uuid": "e1144313-5a1c-4b3a-8050-909fbae51540",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_10.prefab": {
+    "time": 1786696422903.9539,
+    "uuid": "7a09359d-92ca-4df5-95c5-9d701332c9aa",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_107.prefab": {
+    "time": 1786696431044.5154,
+    "uuid": "485930cc-da95-46df-9925-6c8770be7bdc",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_110.prefab": {
+    "time": 1786696432011.4978,
+    "uuid": "a8c0e4e3-3792-4bec-9f67-b1b092bd5426",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_23.prefab": {
+    "time": 1786696423925.6013,
+    "uuid": "d1400bf3-9acc-4805-9fbd-4b2ed3e5457d",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_25.prefab": {
+    "time": 1786696424974.495,
+    "uuid": "a8808c7b-0040-49d7-a8a1-24dc24868a2e",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_26.prefab": {
+    "time": 1786696425913.3113,
+    "uuid": "9b815a83-39b9-4165-b2ab-1b8eebb73253",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_41.prefab": {
+    "time": 1786696301242.5122,
+    "uuid": "09d22b59-7e62-4037-909f-89c22d9eccf0",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_45.prefab": {
+    "time": 1786696427173.6035,
+    "uuid": "a6249972-5744-4e57-958d-e17459e38a17",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_488.prefab": {
+    "time": 1786696433296.084,
+    "uuid": "0c3a495f-b65a-4a12-bec8-298cbc5f0672",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_525.prefab": {
+    "time": 1786696434280.8223,
+    "uuid": "2e268e56-079a-438a-b1ea-bf36e8d650b2",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_77.prefab": {
+    "time": 1786696428201.8052,
+    "uuid": "9d037b58-e1ac-4f76-abc2-0a525c627748",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_78.prefab": {
+    "time": 1786696429899.8428,
+    "uuid": "71e1a581-307a-4aec-befc-a662a1b29f96",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_9.prefab": {
+    "time": 1786696421366.3108,
+    "uuid": "088087da-10b6-4be3-96c8-4244ae7a4278",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scenes\\Game.scene": {
+    "time": 1786702852571.6323,
+    "uuid": "87e521dd-f7ec-41fe-b386-20da973d55bf",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\audio": {
+    "time": 1786679735395.0874,
+    "uuid": "6330ee83-7837-4e6d-8868-02ad7f9bcade",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\camera": {
+    "time": 1786679735414.3784,
+    "uuid": "d5968fa1-8fe9-4248-b202-e8c2adcf3a6a",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\catalog": {
+    "time": 1786679735431.5225,
+    "uuid": "09692035-4d55-487c-aaac-bf5095f9a4c0",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\core": {
+    "time": 1786679735467.9133,
+    "uuid": "875095a7-7d03-457b-b5ee-36e6274b642d",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\data": {
+    "time": 1786679735520.2234,
+    "uuid": "c418b27d-e44b-46e1-8332-d67268f64fb9",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\gameplay": {
+    "time": 1786679735548.9143,
+    "uuid": "6884cb07-f5c0-4756-bacd-5c40bbc1baa1",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\input": {
+    "time": 1786679735574.801,
+    "uuid": "ac264224-5cd3-4303-bfb1-18aca0cf1d64",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\items": {
+    "time": 1786679735608.0718,
+    "uuid": "0074dda9-bd0d-4b6b-ad0c-a7dc191291b7",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\physics": {
+    "time": 1786679735635.0369,
+    "uuid": "b6e43101-afc7-4090-aa3a-5e4f4016bc09",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\player": {
+    "time": 1786679735677.455,
+    "uuid": "f130a6f3-ea1d-4606-9002-d8d1d65d1b08",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\spatial": {
+    "time": 1786679735693.437,
+    "uuid": "b371b810-fc03-4a2c-a4a6-27594d01a575",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui": {
+    "time": 1786679735784.5408,
+    "uuid": "cdf8dfde-b16f-43e5-8931-dccfea503373",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\vfx": {
+    "time": 1786679735801.2231,
+    "uuid": "f2955eda-373d-42ae-a619-1de105167f53",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Font\\UrbaneRounded-Bold.ttf": {
+    "time": 1772649904000,
+    "uuid": "270c5e39-9a87-4d45-9899-90bc67ae8616",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\LevelData\\H_T_2.txt": {
+    "time": 1776347310000,
+    "uuid": "4870d013-f1d8-48bb-a12f-5b8dd3e2a4be",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_10.fbx": {
+    "time": 1776869158000,
+    "uuid": "4ea82091-66c3-476f-a02a-3b9d2abfb4ff",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_107.fbx": {
+    "time": 1776868512000,
+    "uuid": "fb7b16b7-f306-4ff4-8913-b7f530e8d236",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_110.fbx": {
+    "time": 1776868468000,
+    "uuid": "c8a7e245-5c13-4c5f-b3c5-45f7ed016e4a",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_23.fbx": {
+    "time": 1776868402000,
+    "uuid": "c0e4ca7b-012f-4997-a051-755b5f138510",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_25.fbx": {
+    "time": 1776868308000,
+    "uuid": "efcf2d7c-664a-4223-ad61-38238a18acf6",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_26.fbx": {
+    "time": 1776868368000,
+    "uuid": "67ec8d7e-3be6-4a36-bc06-05f175d68063",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_41.fbx": {
+    "time": 1776868218000,
+    "uuid": "a1ab8ad3-ed23-4e51-bdac-4c1267985c2d",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_45.fbx": {
+    "time": 1776868544000,
+    "uuid": "f7ac33d7-019a-4285-836a-40a478e5038d",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_488.fbx": {
+    "time": 1776867998000,
+    "uuid": "35487d6e-5771-4b05-bdd0-763ab28ff0e6",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_525.fbx": {
+    "time": 1776869204000,
+    "uuid": "06ce46e6-2bf2-40b9-8e74-7d4d2143beb5",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_77.fbx": {
+    "time": 1776868602000,
+    "uuid": "7653b94d-c0df-46cc-b1e4-fa6aad71e691",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_78.fbx": {
+    "time": 1776868684000,
+    "uuid": "c5656fe1-90f1-4759-8f98-2a634dec2c26",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_9.fbx": {
+    "time": 1776868716000,
+    "uuid": "f048a9ce-2152-4231-ba33-1bc9d4649ffc",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Scripts\\decryptContent.ts": {
+    "time": 1776867788000,
+    "uuid": "afdb8bd4-6ef0-4096-8b60-5e7fae72e2c5",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\BgSound.mp3": {
+    "time": 1769968880000,
+    "uuid": "0199d735-7ee7-4bbd-9867-37d955d714e7",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\Confetti win.mp3": {
+    "time": 1768739328000,
+    "uuid": "9a9b0a5c-2049-4b5d-b296-1b5ec8756042",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\fh_level_up.mp3": {
+    "time": 1755624776000,
+    "uuid": "01144775-ab61-44e5-913e-67045d38f02a",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\fh_lose_time.mp3": {
+    "time": 1755624776000,
+    "uuid": "83dd9c3c-77a8-4448-b87c-bb0fd17b6af5",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\Objective consume.mp3": {
+    "time": 1750789036000,
+    "uuid": "14e03bb6-0c0e-4bcd-9bba-b52a04b2c8db",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\One objective complete.mp3": {
+    "time": 1750789036000,
+    "uuid": "d30754f4-f144-4907-a49a-ab8ae1140796",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\Sound collect.mp3": {
+    "time": 1768739328000,
+    "uuid": "87a4eff0-2351-475d-b55e-ab34cbbbc5bf",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture\\ground.png": {
+    "time": 1776865648000,
+    "uuid": "be3feb97-74e6-4cf3-be5c-f122127609af",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture\\obj_41_25_26_23_110_78.png": {
+    "time": 1776868668000,
+    "uuid": "0b20d0d2-2800-4bfe-9abd-781f69c35e9a",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture\\obj_488.png": {
+    "time": 1776869012000,
+    "uuid": "4208dd4e-00c9-4f82-9a01-bddec99ec453",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture\\obj_77.png": {
+    "time": 1776869064000,
+    "uuid": "6463fa27-158c-488e-9706-c80c7c735c13",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture\\obj_9_10_525.png": {
+    "time": 1776869212000,
+    "uuid": "1d1294a5-4748-4581-8991-f78404d5de5f",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\EndCard": {
+    "time": 1786679734460.372,
+    "uuid": "69320a98-7644-4ceb-b70b-5fc775d68465",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF": {
+    "time": 1786679734479.7764,
+    "uuid": "8feb7507-9080-474d-a31b-08781d6e17c7",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Hole": {
+    "time": 1786679734930.2278,
+    "uuid": "d235b0ce-7a6c-4b66-b90a-a727938b3371",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Item": {
+    "time": 1786679734965.2783,
+    "uuid": "87904228-fab9-4ecc-9c72-45ca8f78ef37",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Time": {
+    "time": 1786679735010.5857,
+    "uuid": "f07757f8-ed72-493b-a4f1-1fce52daff54",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Tutorial": {
+    "time": 1786679735058.122,
+    "uuid": "6117f115-3dda-474d-b008-5f845aaed236",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\audio\\GameAudioController.ts": {
+    "time": 1786611474000,
+    "uuid": "c0f7aee3-2b93-4b84-b183-b4266ce79281",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\camera\\CameraFollow.ts": {
+    "time": 1786611448000,
+    "uuid": "12ca3ed9-c9ee-41a4-9af1-9e3267a1b62d",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\catalog\\ItemCatalog.ts": {
+    "time": 1786611296000,
+    "uuid": "48eb4527-c6b5-4c31-b21f-17229d367555",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\core\\GameEvents.ts": {
+    "time": 1786611252000,
+    "uuid": "cb0a069e-0273-487f-a2a6-fff7a6f9d986",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\core\\GameFlowController.ts": {
+    "time": 1786611880000,
+    "uuid": "f10c125c-ef52-4cf9-8245-aeeb0435ca60",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\core\\GameState.ts": {
+    "time": 1786611252000,
+    "uuid": "d5b85ca9-4bbf-410d-8a0f-2401a547476b",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\data\\LevelDataLoader.ts": {
+    "time": 1786611281000,
+    "uuid": "915dfb3b-be1f-4a9e-b4bb-d71701473053",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\data\\LevelDataTypes.ts": {
+    "time": 1786611281000,
+    "uuid": "10721d3d-d896-4317-883f-dbbd5cc7bb85",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\data\\SimpleDecrypt.ts": {
+    "time": 1786611281000,
+    "uuid": "a594bdda-8e9d-4e43-96fd-420a6e062157",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\data\\UnityTransformConverter.ts": {
+    "time": 1786611281000,
+    "uuid": "79dc8fbf-169d-4e53-899c-7410666f695d",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\gameplay\\ObjectiveManager.ts": {
+    "time": 1786611448000,
+    "uuid": "038bec63-2022-456f-a38c-48eb69dad0e9",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\gameplay\\TimerController.ts": {
+    "time": 1786611448000,
+    "uuid": "5faea144-cab4-4432-841a-5e85e083f934",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\input\\JoystickInput.ts": {
+    "time": 1786611387000,
+    "uuid": "d6aa9e64-40f1-440f-aff8-50656200ae36",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\input\\JoystickVisual.ts": {
+    "time": 1786611387000,
+    "uuid": "80d55bae-c91b-4ffc-b845-3d8de3e534ba",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\items\\ItemRegistry.ts": {
+    "time": 1786611543000,
+    "uuid": "d9d98dbb-8705-4899-b3cc-6f51d827943e",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\items\\ItemRuntime.ts": {
+    "time": 1786611325000,
+    "uuid": "28eb2006-7eb4-4fc6-8bbc-dafdefa68677",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\items\\ItemSpawner.ts": {
+    "time": 1786611543000,
+    "uuid": "9999757f-4b21-4707-8282-bcd8bf305521",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\physics\\PhysicsActivationSystem.ts": {
+    "time": 1786611358000,
+    "uuid": "8ece3e73-85a5-4a43-af20-ceab533175e2",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\physics\\PhysicsGroups.ts": {
+    "time": 1786611325000,
+    "uuid": "d3ded606-18b5-47ca-9084-47410f6df759",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\player\\HoleConsumeSystem.ts": {
+    "time": 1786611421000,
+    "uuid": "cf084503-eb52-42ca-bf36-3db18657785f",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\player\\HoleMovement.ts": {
+    "time": 1786611387000,
+    "uuid": "cf33f839-b835-440f-810b-ecfbe284c865",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\player\\HoleSizeController.ts": {
+    "time": 1786611421000,
+    "uuid": "94e82c8d-adc4-43e7-a327-e694eadc73de",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\player\\HoleVisual.ts": {
+    "time": 1786611421000,
+    "uuid": "111ffc55-65f0-49c3-98a0-a1275b3e8333",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\spatial\\SpatialHashGrid.ts": {
+    "time": 1786611296000,
+    "uuid": "4fe3a2ea-875d-432d-914b-544d4a4a4d11",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\CTAButton.ts": {
+    "time": 1786611543000,
+    "uuid": "92b435a8-1727-4677-937d-b2e6bc308d87",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\DebugHUD.ts": {
+    "time": 1786611502000,
+    "uuid": "6f2f3be2-47dd-4642-ba64-5791466e097d",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\EndCardController.ts": {
+    "time": 1786611502000,
+    "uuid": "2735df8b-3b67-4d3a-b41f-4fa180ed098f",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\HoleLevelUI.ts": {
+    "time": 1786611502000,
+    "uuid": "0fa21a79-9f8b-4d16-a8fc-762ea256f33f",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\ObjectiveUI.ts": {
+    "time": 1786611502000,
+    "uuid": "f7c7cefc-f4b6-41eb-9658-9c2cf960c09c",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\SpawnProgressUI.ts": {
+    "time": 1786611502000,
+    "uuid": "aac6569a-3eb7-40fa-9409-8ff3bb401098",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\TimerUI.ts": {
+    "time": 1786611502000,
+    "uuid": "aff0def1-1585-429f-b22c-55eb6160bab6",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\TutorialPointerAnimator.ts": {
+    "time": 1786611502000,
+    "uuid": "947b58ba-8477-4a91-bd34-c40d03e3aafb",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\TutorialUI.ts": {
+    "time": 1786611502000,
+    "uuid": "370e2729-9172-403b-bf50-4f3fa1c140ce",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\scripts\\vfx\\SizeUpVFX.ts": {
+    "time": 1786611474000,
+    "uuid": "7a34d9b7-f39c-4329-a9b7-c3d5b13b909d",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\EndCard\\icon.png": {
+    "time": 1772649890000,
+    "uuid": "34f3a9ba-824b-42cf-9610-0abf51e43da8",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\EndCard\\play_now_yellow.png": {
+    "time": 1776347310000,
+    "uuid": "94172ab3-b976-46e4-b65e-a19b512fe157",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\EndCard\\time.png": {
+    "time": 1772649892000,
+    "uuid": "fe34cf47-5a63-49e8-9cd1-94d29577a130",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\EndCard\\time_s up.png": {
+    "time": 1772649892000,
+    "uuid": "3ad6f461-4718-4c8a-b164-4c5c1b4d294c",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp": {
+    "time": 1786679734885.9248,
+    "uuid": "0e985d00-292b-419c-942b-9d97f651febf",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Hole\\level.png": {
+    "time": 1750789034000,
+    "uuid": "b5067eb3-3322-493f-a284-cd84853f7bce",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Hole\\level_fill.png": {
+    "time": 1750789034000,
+    "uuid": "5b938c74-d5ba-487c-8b6d-77611524c064",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Item\\goal.png": {
+    "time": 1750789034000,
+    "uuid": "9503de85-8554-4c4e-81f1-b45108a78b4e",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Item\\Icon_Tick V.png": {
+    "time": 1750789034000,
+    "uuid": "7f23b542-d0f7-42e4-b7c3-23d6f6f388f2",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Time\\timePanel.png": {
+    "time": 1750789034000,
+    "uuid": "2a9c8d21-8e28-4712-a360-f69bf92b17b2",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Time\\time_fill.png": {
+    "time": 1750789034000,
+    "uuid": "539e1a1b-2e11-4432-a79c-697e26f9508e",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Time\\time_text.png": {
+    "time": 1750789034000,
+    "uuid": "179facc3-967e-4014-a490-d472491c37e7",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Tutorial\\icon_pointer.png": {
+    "time": 1768739326000,
+    "uuid": "e9b24572-bc72-4cf1-869d-41bf8c408ead",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Tutorial\\infinity.png": {
+    "time": 1768739326000,
+    "uuid": "546daf36-86a7-49da-a496-d62f1579e4d6",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Tutorial\\text_moveYourHole.png": {
+    "time": 1768739326000,
+    "uuid": "87cc3d42-1ecb-48db-8e82-0a57a0f1ff20",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00000.png": {
+    "time": 1768739326000,
+    "uuid": "b1f80e1c-d0ca-4c4b-9140-91a5d425871d",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00001.png": {
+    "time": 1768739326000,
+    "uuid": "eb3cc61c-d407-4d31-884e-2f13bfd70c96",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00002.png": {
+    "time": 1768739326000,
+    "uuid": "31ba403b-c53c-434a-96bd-3b9beef8fc5c",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00003.png": {
+    "time": 1768739326000,
+    "uuid": "1d862ec1-b402-401d-9ff5-14550f204164",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00004.png": {
+    "time": 1768918048000,
+    "uuid": "72da199f-cae6-466b-a272-f63541ea28a3",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00005.png": {
+    "time": 1768918048000,
+    "uuid": "e241f70c-b6ff-49d4-ab43-a2337934b155",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00006.png": {
+    "time": 1768918048000,
+    "uuid": "344515ef-ab83-4fc2-ac8d-219cee455b3b",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00007.png": {
+    "time": 1768918048000,
+    "uuid": "4c09a07d-1f9a-44af-80d2-9eb1dc87be75",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00008.png": {
+    "time": 1768918048000,
+    "uuid": "90fc76d3-717d-4e06-88bd-06224919d539",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00009.png": {
+    "time": 1768918048000,
+    "uuid": "be713e8a-8af3-44ec-b094-705db86f1082",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00010.png": {
+    "time": 1768918048000,
+    "uuid": "c451007d-d3e8-4354-bab2-29313750c6ee",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00011.png": {
+    "time": 1768918048000,
+    "uuid": "701363f5-59e6-40f1-b7e8-d4145daa3bd6",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00012.png": {
+    "time": 1768918048000,
+    "uuid": "b4113214-038b-4110-829b-415559540819",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00013.png": {
+    "time": 1768918048000,
+    "uuid": "c43545ff-1bc2-4e0d-8177-5ce03a38107f",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00014.png": {
+    "time": 1768918048000,
+    "uuid": "ffd33a04-3e3e-487e-a9c3-ca2da8c33a86",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00015.png": {
+    "time": 1768918048000,
+    "uuid": "1d9c1894-76d9-416f-9a89-0162af9d5459",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00016.png": {
+    "time": 1768918048000,
+    "uuid": "b4402ab5-036f-45d6-8f0a-1275c49b7360",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00017.png": {
+    "time": 1768918048000,
+    "uuid": "7289dcd7-2049-4298-83bb-00ef01bfce23",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00018.png": {
+    "time": 1768918048000,
+    "uuid": "3c1e0915-4e3b-49cf-8197-158f0ac99ede",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00019.png": {
+    "time": 1768918048000,
+    "uuid": "ab28083d-7f50-46dc-a07c-bf04e723e874",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00020.png": {
+    "time": 1768739326000,
+    "uuid": "3ed0cb4b-1d0f-406d-bf8b-47869def0cf0",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00021.png": {
+    "time": 1768739326000,
+    "uuid": "6b0602f7-aa20-430a-b441-a1ec3d33775e",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00022.png": {
+    "time": 1768739326000,
+    "uuid": "1e6dd73a-91a6-46c0-8c85-2c71cb6e0811",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\data.meta": {
+    "time": 1786626979457.1682
+  },
+  "D:\\HoleIt\\assets\\HMAssets.meta": {
+    "time": 1786626979484.167
+  },
+  "D:\\HoleIt\\assets\\materials.meta": {
+    "time": 1786544082713.99
+  },
+  "D:\\HoleIt\\assets\\prefabs.meta": {
+    "time": 1786544094299.2993
+  },
+  "D:\\HoleIt\\assets\\scenes.meta": {
+    "time": 1786545507005.545
+  },
+  "D:\\HoleIt\\assets\\scripts.meta": {
+    "time": 1786544509890.6409
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Font.meta": {
+    "time": 1786626979576.6863
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\LevelData.meta": {
+    "time": 1786626979606.6833
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model.meta": {
+    "time": 1786626979646.6875
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Scripts.meta": {
+    "time": 1786626979690.6858
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds.meta": {
+    "time": 1786626979734.6833
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture.meta": {
+    "time": 1786626979774.6863
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI.meta": {
+    "time": 1786626979813.6873
+  },
+  "D:\\HoleIt\\assets\\materials\\M_Ground.mtl.meta": {
+    "time": 1786548123258.1414
+  },
+  "D:\\HoleIt\\assets\\data\\H_T_2.compact.json.meta": {
+    "time": 1786626980558.6843
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_10.prefab.meta": {
+    "time": 1786633050354.4963
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_107.prefab.meta": {
+    "time": 1786633050894.3906
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_110.prefab.meta": {
+    "time": 1786633049019.629
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_23.prefab.meta": {
+    "time": 1786633050526.5066
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_25.prefab.meta": {
+    "time": 1786633050715.8093
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_26.prefab.meta": {
+    "time": 1786633049431.698
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_45.prefab.meta": {
+    "time": 1786633050182.533
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_41.prefab.meta": {
+    "time": 1786633050005.6958
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_488.prefab.meta": {
+    "time": 1786633049226.6277
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_525.prefab.meta": {
+    "time": 1786633051062.3923
+  },
+  "D:\\HoleIt\\assets\\scripts\\audio.meta": {
+    "time": 1786626979857.6853
+  },
+  "D:\\HoleIt\\assets\\scripts\\camera.meta": {
+    "time": 1786626979902.6855
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_77.prefab.meta": {
+    "time": 1786633049671.6958
+  },
+  "D:\\HoleIt\\assets\\scripts\\catalog.meta": {
+    "time": 1786626979946.6863
+  },
+  "D:\\HoleIt\\assets\\scripts\\core.meta": {
+    "time": 1786626979990.686
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_9.prefab.meta": {
+    "time": 1786633048817.6277
+  },
+  "D:\\HoleIt\\assets\\prefabs\\obj_78.prefab.meta": {
+    "time": 1786633049826.6946
+  },
+  "D:\\HoleIt\\assets\\scripts\\data.meta": {
+    "time": 1786626980047.6836
+  },
+  "D:\\HoleIt\\assets\\scripts\\gameplay.meta": {
+    "time": 1786626980094.6858
+  },
+  "D:\\HoleIt\\assets\\scripts\\input.meta": {
+    "time": 1786626980136.6858
+  },
+  "D:\\HoleIt\\assets\\scripts\\items.meta": {
+    "time": 1786626980180.6863
+  },
+  "D:\\HoleIt\\assets\\scripts\\physics.meta": {
+    "time": 1786626980224.6853
+  },
+  "D:\\HoleIt\\assets\\scripts\\player.meta": {
+    "time": 1786626980263.6882
+  },
+  "D:\\HoleIt\\assets\\scripts\\spatial.meta": {
+    "time": 1786626980318.686
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui.meta": {
+    "time": 1786626980370.6875
+  },
+  "D:\\HoleIt\\assets\\scripts\\vfx.meta": {
+    "time": 1786626980401.6875
+  },
+  "D:\\HoleIt\\assets\\scenes\\Game.scene.meta": {
+    "time": 1786545516120.3225
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\LevelData\\H_T_2.txt.meta": {
+    "time": 1786626980627.6892
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Font\\UrbaneRounded-Bold.ttf.meta": {
+    "time": 1786626980693.6853
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_10.fbx.meta": {
+    "time": 1786626982622.2415
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_110.fbx.meta": {
+    "time": 1786626981944.2432
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_107.fbx.meta": {
+    "time": 1786626981959.2415
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_23.fbx.meta": {
+    "time": 1786626981952.2395
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_25.fbx.meta": {
+    "time": 1786626981997.2407
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_26.fbx.meta": {
+    "time": 1786626983499.2974
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_45.fbx.meta": {
+    "time": 1786626983503.2986
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_41.fbx.meta": {
+    "time": 1786626983296.296
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_488.fbx.meta": {
+    "time": 1786626984544.699
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Scripts\\decryptContent.ts.meta": {
+    "time": 1786626984019.1824
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_525.fbx.meta": {
+    "time": 1786626984014.1821
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\Confetti win.mp3.meta": {
+    "time": 1786626984719.6987
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\BgSound.mp3.meta": {
+    "time": 1786626984421.181
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_77.fbx.meta": {
+    "time": 1786626984796.7012
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\fh_level_up.mp3.meta": {
+    "time": 1786626984987.6985
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\Objective consume.mp3.meta": {
+    "time": 1786626985187.6985
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\fh_lose_time.mp3.meta": {
+    "time": 1786626985110.701
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_9.fbx.meta": {
+    "time": 1786626986113.6868
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Model\\obj_78.fbx.meta": {
+    "time": 1786626985158.6992
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\One objective complete.mp3.meta": {
+    "time": 1786626985462.0012
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Sounds\\Sound collect.mp3.meta": {
+    "time": 1786626985719.79
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture\\ground.png.meta": {
+    "time": 1786626985668.7888
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\EndCard.meta": {
+    "time": 1786626986045.6863
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF.meta": {
+    "time": 1786626986157.6875
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Hole.meta": {
+    "time": 1786626986207.6877
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Item.meta": {
+    "time": 1786626986239.6873
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Time.meta": {
+    "time": 1786626986273.688
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Tutorial.meta": {
+    "time": 1786626986313.687
+  },
+  "D:\\HoleIt\\assets\\scripts\\audio\\GameAudioController.ts.meta": {
+    "time": 1786626986358.6868
+  },
+  "D:\\HoleIt\\assets\\scripts\\camera\\CameraFollow.ts.meta": {
+    "time": 1786626986445.6848
+  },
+  "D:\\HoleIt\\assets\\scripts\\catalog\\ItemCatalog.ts.meta": {
+    "time": 1786626986488.6873
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture\\obj_41_25_26_23_110_78.png.meta": {
+    "time": 1786626986007.6848
+  },
+  "D:\\HoleIt\\assets\\scripts\\core\\GameEvents.ts.meta": {
+    "time": 1786626986518.6865
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture\\obj_488.png.meta": {
+    "time": 1786626986484.6853
+  },
+  "D:\\HoleIt\\assets\\scripts\\core\\GameFlowController.ts.meta": {
+    "time": 1786626986557.6895
+  },
+  "D:\\HoleIt\\assets\\scripts\\core\\GameState.ts.meta": {
+    "time": 1786626986602.6873
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture\\obj_77.png.meta": {
+    "time": 1786626986795.6875
+  },
+  "D:\\HoleIt\\assets\\scripts\\data\\LevelDataLoader.ts.meta": {
+    "time": 1786626986646.6887
+  },
+  "D:\\HoleIt\\assets\\scripts\\data\\LevelDataTypes.ts.meta": {
+    "time": 1786626986691.6868
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\Texture\\obj_9_10_525.png.meta": {
+    "time": 1786626986791.688
+  },
+  "D:\\HoleIt\\assets\\scripts\\data\\SimpleDecrypt.ts.meta": {
+    "time": 1786626986761.687
+  },
+  "D:\\HoleIt\\assets\\scripts\\data\\UnityTransformConverter.ts.meta": {
+    "time": 1786626986798.6865
+  },
+  "D:\\HoleIt\\assets\\scripts\\gameplay\\ObjectiveManager.ts.meta": {
+    "time": 1786626986840.6863
+  },
+  "D:\\HoleIt\\assets\\scripts\\gameplay\\TimerController.ts.meta": {
+    "time": 1786626986873.6836
+  },
+  "D:\\HoleIt\\assets\\scripts\\input\\JoystickInput.ts.meta": {
+    "time": 1786626986914.6853
+  },
+  "D:\\HoleIt\\assets\\scripts\\input\\JoystickVisual.ts.meta": {
+    "time": 1786626986958.6887
+  },
+  "D:\\HoleIt\\assets\\scripts\\items\\ItemRegistry.ts.meta": {
+    "time": 1786626987004.05
+  },
+  "D:\\HoleIt\\assets\\scripts\\items\\ItemRuntime.ts.meta": {
+    "time": 1786626987047.0457
+  },
+  "D:\\HoleIt\\assets\\scripts\\items\\ItemSpawner.ts.meta": {
+    "time": 1786626987091.895
+  },
+  "D:\\HoleIt\\assets\\scripts\\physics\\PhysicsActivationSystem.ts.meta": {
+    "time": 1786626987136.8748
+  },
+  "D:\\HoleIt\\assets\\scripts\\physics\\PhysicsGroups.ts.meta": {
+    "time": 1786626987179.8748
+  },
+  "D:\\HoleIt\\assets\\scripts\\player\\HoleConsumeSystem.ts.meta": {
+    "time": 1786626987225.8767
+  },
+  "D:\\HoleIt\\assets\\scripts\\player\\HoleMovement.ts.meta": {
+    "time": 1786626987270.8745
+  },
+  "D:\\HoleIt\\assets\\scripts\\player\\HoleSizeController.ts.meta": {
+    "time": 1786626987306.8723
+  },
+  "D:\\HoleIt\\assets\\scripts\\player\\HoleVisual.ts.meta": {
+    "time": 1786626987346.871
+  },
+  "D:\\HoleIt\\assets\\scripts\\spatial\\SpatialHashGrid.ts.meta": {
+    "time": 1786626987391.8728
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\CTAButton.ts.meta": {
+    "time": 1786626987436.877
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\DebugHUD.ts.meta": {
+    "time": 1786626987480.8767
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\EndCardController.ts.meta": {
+    "time": 1786626987525.874
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\HoleLevelUI.ts.meta": {
+    "time": 1786626987590.8723
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\ObjectiveUI.ts.meta": {
+    "time": 1786626987636.8748
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\SpawnProgressUI.ts.meta": {
+    "time": 1786626987681.8743
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\TimerUI.ts.meta": {
+    "time": 1786626987713.875
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\TutorialPointerAnimator.ts.meta": {
+    "time": 1786626987785.8748
+  },
+  "D:\\HoleIt\\assets\\scripts\\ui\\TutorialUI.ts.meta": {
+    "time": 1786626987850.873
+  },
+  "D:\\HoleIt\\assets\\scripts\\vfx\\SizeUpVFX.ts.meta": {
+    "time": 1786626987891.8733
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp.meta": {
+    "time": 1786626987936.878
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Hole\\level.png.meta": {
+    "time": 1786626988490.4722
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\EndCard\\play_now_yellow.png.meta": {
+    "time": 1786626988329.472
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\EndCard\\time.png.meta": {
+    "time": 1786626988421.4724
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\EndCard\\time_s up.png.meta": {
+    "time": 1786626988486.4736
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\EndCard\\icon.png.meta": {
+    "time": 1786626988366.4778
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Time\\timePanel.png.meta": {
+    "time": 1786626988819.9849
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Item\\goal.png.meta": {
+    "time": 1786626988640.4717
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Hole\\level_fill.png.meta": {
+    "time": 1786626988717.4724
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Item\\Icon_Tick V.png.meta": {
+    "time": 1786626988863.9854
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Time\\time_fill.png.meta": {
+    "time": 1786626988919.9873
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Tutorial\\text_moveYourHole.png.meta": {
+    "time": 1786626989352.986
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Tutorial\\icon_pointer.png.meta": {
+    "time": 1786626989107.9836
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Time\\time_text.png.meta": {
+    "time": 1786626988985.9849
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\Tutorial\\infinity.png.meta": {
+    "time": 1786626989295.986
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00000.png.meta": {
+    "time": 1786626989586.9863
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00001.png.meta": {
+    "time": 1786626989653.9849
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00002.png.meta": {
+    "time": 1786626989853.9856
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00004.png.meta": {
+    "time": 1786626990064.9841
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00003.png.meta": {
+    "time": 1786626989911.9856
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00005.png.meta": {
+    "time": 1786626990208.0393
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00006.png.meta": {
+    "time": 1786626990144.5078
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00008.png.meta": {
+    "time": 1786626990418.9944
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00007.png.meta": {
+    "time": 1786626990421.9907
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00009.png.meta": {
+    "time": 1786626990607.9897
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00010.png.meta": {
+    "time": 1786626990719.9902
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00011.png.meta": {
+    "time": 1786626990829.9905
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00012.png.meta": {
+    "time": 1786626991083.995
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00013.png.meta": {
+    "time": 1786626991185.9895
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00014.png.meta": {
+    "time": 1786626991364.99
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00015.png.meta": {
+    "time": 1786626991295.9927
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00017.png.meta": {
+    "time": 1786626991678.5637
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00016.png.meta": {
+    "time": 1786626991594.0442
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00018.png.meta": {
+    "time": 1786626991986.5637
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00019.png.meta": {
+    "time": 1786626991886.5662
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00020.png.meta": {
+    "time": 1786626991889.563
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00021.png.meta": {
+    "time": 1786626992224.5632
+  },
+  "D:\\HoleIt\\assets\\HMAssets\\UI\\FBF\\SizeUp\\vfx_sizeup_00022.png.meta": {
+    "time": 1786626992287.5647
+  },
+  "D:\\HoleIt\\assets\\materials\\Rim.mtl.meta": {
+    "time": 1786694110539.4646
+  },
+  "D:\\HoleIt\\assets\\materials\\Rim.mtl": {
+    "time": 1786694132361.1929,
+    "uuid": "634adc31-68cf-4808-aa58-1c57b029a223",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\materials\\BlackBottom.mtl.meta": {
+    "time": 1786694143222.8875
+  },
+  "D:\\HoleIt\\assets\\materials\\BlackBottom.mtl": {
+    "time": 1786694175910.416,
+    "uuid": "48143073-02bf-4e57-a42b-58f67f1f6b79",
+    "missing": false
+  },
+  "D:\\HoleIt\\assets\\prefabs\\FallbackItem.prefab.meta": {
+    "time": 1786699060886.364
+  },
+  "D:\\HoleIt\\assets\\prefabs\\FallbackItem.prefab": {
+    "time": 1786699060878.2922,
+    "uuid": "17164c74-b395-4da4-8190-e21f769028cf",
+    "missing": false
   }
 }

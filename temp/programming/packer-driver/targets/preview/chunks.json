@@ -57,96 +57,52 @@
     "physicalLocation": "fs/0/assets/scripts/ui/GameHUD.js",
     "mTimestamp": 1786544531200
   },
-  "quick-pack:/cce/internal/x/prerequisite-imports.js": {
-    "imports": {
-      "__unresolved_0": "assets/HMAssets/Scripts/decryptContent.js",
-      "__unresolved_1": "assets/scripts/audio/GameAudioController.js",
-      "__unresolved_2": "assets/scripts/camera/CameraFollow.js",
-      "__unresolved_3": "assets/scripts/catalog/ItemCatalog.js",
-      "__unresolved_4": "assets/scripts/core/GameEvents.js",
-      "__unresolved_6": "assets/scripts/core/GameState.js",
-      "__unresolved_5": "assets/scripts/core/GameFlowController.js",
-      "__unresolved_8": "assets/scripts/data/LevelDataTypes.js",
-      "__unresolved_7": "assets/scripts/data/LevelDataLoader.js",
-      "__unresolved_10": "assets/scripts/data/UnityTransformConverter.js",
-      "__unresolved_11": "assets/scripts/gameplay/ObjectiveManager.js",
-      "__unresolved_9": "assets/scripts/data/SimpleDecrypt.js",
-      "__unresolved_12": "assets/scripts/gameplay/TimerController.js",
-      "__unresolved_13": "assets/scripts/input/JoystickInput.js",
-      "__unresolved_14": "assets/scripts/input/JoystickVisual.js",
-      "__unresolved_15": "assets/scripts/items/ItemRegistry.js",
-      "__unresolved_16": "assets/scripts/items/ItemRuntime.js",
-      "__unresolved_17": "assets/scripts/items/ItemSpawner.js",
-      "__unresolved_18": "assets/scripts/physics/PhysicsActivationSystem.js",
-      "__unresolved_19": "assets/scripts/physics/PhysicsGroups.js",
-      "__unresolved_20": "assets/scripts/player/HoleConsumeSystem.js",
-      "__unresolved_21": "assets/scripts/player/HoleMovement.js",
-      "__unresolved_22": "assets/scripts/player/HoleSizeController.js",
-      "__unresolved_23": "assets/scripts/player/HoleVisual.js",
-      "__unresolved_24": "assets/scripts/spatial/SpatialHashGrid.js",
-      "__unresolved_25": "assets/scripts/ui/CTAButton.js",
-      "__unresolved_27": "assets/scripts/ui/EndCardController.js",
-      "__unresolved_26": "assets/scripts/ui/DebugHUD.js",
-      "__unresolved_28": "assets/scripts/ui/HoleLevelUI.js",
-      "__unresolved_29": "assets/scripts/ui/ObjectiveUI.js",
-      "__unresolved_31": "assets/scripts/ui/TimerUI.js",
-      "__unresolved_30": "assets/scripts/ui/SpawnProgressUI.js",
-      "__unresolved_32": "assets/scripts/ui/TutorialPointerAnimator.js",
-      "__unresolved_33": "assets/scripts/ui/TutorialUI.js",
-      "__unresolved_34": "assets/scripts/vfx/SizeUpVFX.js"
-    },
-    "physicalLocation": "cce/internal/x/prerequisite-imports.js",
-    "mTimestamp": 1786626995243,
-    "isEntry": true,
-    "exposeAs": "cce:/internal/x/prerequisite-imports"
-  },
   "assets/HMAssets/Scripts/decryptContent.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/HMAssets/Scripts/decryptContent.js",
-    "mTimestamp": 1786626995312
+    "mTimestamp": 1786680022339
   },
   "assets/scripts/camera/CameraFollow.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/camera/CameraFollow.js",
-    "mTimestamp": 1786626995364
+    "mTimestamp": 1786680022590
   },
   "assets/scripts/audio/GameAudioController.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
-      "__unresolved_1": "assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/audio/GameAudioController.js",
-    "mTimestamp": 1786626995446
+    "mTimestamp": 1786680022536
   },
   "assets/scripts/catalog/ItemCatalog.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/catalog/ItemCatalog.js",
-    "mTimestamp": 1786626995488
+    "mTimestamp": 1786680022683
   },
   "assets/scripts/core/GameEvents.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/core/GameEvents.js",
-    "mTimestamp": 1786626995504
+    "mTimestamp": 1786680022771
   },
   "assets/scripts/core/GameState.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/core/GameState.js",
-    "mTimestamp": 1786626995515
+    "mTimestamp": 1786680023169
   },
   "assets/scripts/core/GameFlowController.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
       "__unresolved_1": "assets/scripts/core/GameEvents.js",
       "__unresolved_2": "assets/scripts/core/GameState.js",
@@ -154,257 +110,253 @@
       "__unresolved_7": "assets/scripts/input/JoystickInput.js",
       "__unresolved_3": "assets/scripts/player/HoleMovement.js",
       "__unresolved_6": "assets/scripts/ui/EndCardController.js",
-      "__unresolved_5": "assets/scripts/ui/TutorialUI.js"
+      "__unresolved_5": "assets/scripts/ui/TutorialUI.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/core/GameFlowController.js",
-    "mTimestamp": 1786626995595
+    "mTimestamp": 1786680023010
   },
   "assets/scripts/data/LevelDataLoader.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
       "__unresolved_1": "assets/scripts/core/GameEvents.js",
-      "__unresolved_2": "assets/scripts/data/SimpleDecrypt.js"
+      "__unresolved_2": "assets/scripts/data/SimpleDecrypt.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/data/LevelDataLoader.js",
-    "mTimestamp": 1786626995661
+    "mTimestamp": 1786680023129
   },
   "assets/scripts/data/LevelDataTypes.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/data/LevelDataTypes.js",
-    "mTimestamp": 1786626995674
+    "mTimestamp": 1786680022726
   },
   "assets/scripts/data/SimpleDecrypt.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/data/SimpleDecrypt.js",
-    "mTimestamp": 1786626995688
+    "mTimestamp": 1786680024695
   },
   "assets/scripts/data/UnityTransformConverter.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
-      "cc": "quick-pack:/cce/internal/x/cc.js"
+      "cc": "quick-pack:/cce/internal/x/cc.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/data/UnityTransformConverter.js",
-    "mTimestamp": 1786626995730
+    "mTimestamp": 1786680023302
   },
   "assets/scripts/gameplay/TimerController.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_1": "assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/gameplay/TimerController.js",
-    "mTimestamp": 1786626995761
+    "mTimestamp": 1786680023233
   },
   "assets/scripts/gameplay/ObjectiveManager.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_1": "assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/gameplay/ObjectiveManager.js",
-    "mTimestamp": 1786626995812
+    "mTimestamp": 1786680023850
   },
   "assets/scripts/input/JoystickInput.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_1": "assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/input/JoystickInput.js",
-    "mTimestamp": 1786626995877
+    "mTimestamp": 1786680023387
   },
   "assets/scripts/items/ItemRuntime.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_1": "assets/scripts/physics/PhysicsGroups.js"
+      "__unresolved_1": "assets/scripts/physics/PhysicsGroups.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/items/ItemRuntime.js",
-    "mTimestamp": 1786626995946
+    "mTimestamp": 1786680023526
   },
   "assets/scripts/input/JoystickVisual.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/input/JoystickVisual.js",
-    "mTimestamp": 1786626995980
+    "mTimestamp": 1786680023436
   },
   "assets/scripts/player/HoleConsumeSystem.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
       "__unresolved_1": "assets/scripts/core/GameEvents.js",
       "__unresolved_2": "assets/scripts/items/ItemRegistry.js",
-      "__unresolved_3": "assets/scripts/player/HoleSizeController.js"
+      "__unresolved_3": "assets/scripts/player/HoleSizeController.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/player/HoleConsumeSystem.js",
-    "mTimestamp": 1786626996046
+    "mTimestamp": 1786680024429
   },
   "assets/scripts/player/HoleMovement.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_1": "assets/scripts/input/JoystickInput.js"
+      "__unresolved_1": "assets/scripts/input/JoystickInput.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/player/HoleMovement.js",
-    "mTimestamp": 1786626996089
+    "mTimestamp": 1786680023754
   },
   "assets/scripts/items/ItemRegistry.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
       "__unresolved_1": "assets/scripts/core/GameEvents.js",
-      "__unresolved_2": "assets/scripts/spatial/SpatialHashGrid.js"
+      "__unresolved_2": "assets/scripts/spatial/SpatialHashGrid.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/items/ItemRegistry.js",
-    "mTimestamp": 1786626996132
+    "mTimestamp": 1786680023586
   },
   "assets/scripts/physics/PhysicsActivationSystem.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_1": "assets/scripts/items/ItemRegistry.js"
+      "__unresolved_1": "assets/scripts/items/ItemRegistry.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/physics/PhysicsActivationSystem.js",
-    "mTimestamp": 1786626996182
+    "mTimestamp": 1786680023661
   },
   "assets/scripts/items/ItemSpawner.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
       "__unresolved_1": "assets/scripts/core/GameEvents.js",
       "__unresolved_2": "assets/scripts/catalog/ItemCatalog.js",
       "__unresolved_3": "assets/scripts/data/LevelDataLoader.js",
       "__unresolved_4": "assets/scripts/data/UnityTransformConverter.js",
       "__unresolved_5": "assets/scripts/items/ItemRegistry.js",
-      "__unresolved_6": "assets/scripts/items/ItemRuntime.js"
+      "__unresolved_6": "assets/scripts/items/ItemRuntime.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/items/ItemSpawner.js",
-    "mTimestamp": 1786626996257
+    "mTimestamp": 1786680024121
   },
   "assets/scripts/physics/PhysicsGroups.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/physics/PhysicsGroups.js",
-    "mTimestamp": 1786626996270
+    "mTimestamp": 1786680023684
   },
   "assets/scripts/ui/DebugHUD.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_1": "assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/ui/DebugHUD.js",
-    "mTimestamp": 1786626996306
+    "mTimestamp": 1786680024172
   },
   "assets/scripts/player/HoleVisual.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/player/HoleVisual.js",
-    "mTimestamp": 1786626996331
+    "mTimestamp": 1786680023887
   },
   "assets/scripts/player/HoleSizeController.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
       "__unresolved_1": "assets/scripts/core/GameEvents.js",
-      "__unresolved_2": "assets/scripts/player/HoleVisual.js"
+      "__unresolved_2": "assets/scripts/player/HoleVisual.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/player/HoleSizeController.js",
-    "mTimestamp": 1786626996376
+    "mTimestamp": 1786680023986
   },
   "assets/scripts/ui/EndCardController.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/ui/EndCardController.js",
-    "mTimestamp": 1786626996396
+    "mTimestamp": 1786680024677
   },
   "assets/scripts/spatial/SpatialHashGrid.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/spatial/SpatialHashGrid.js",
-    "mTimestamp": 1786626996434
+    "mTimestamp": 1786680024025
   },
   "assets/scripts/ui/ObjectiveUI.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
       "__unresolved_1": "assets/scripts/core/GameEvents.js",
-      "__unresolved_2": "assets/scripts/gameplay/ObjectiveManager.js"
+      "__unresolved_2": "assets/scripts/gameplay/ObjectiveManager.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/ui/ObjectiveUI.js",
-    "mTimestamp": 1786626996477
+    "mTimestamp": 1786680024335
   },
   "assets/scripts/ui/TimerUI.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_1": "assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/ui/TimerUI.js",
-    "mTimestamp": 1786626996511
+    "mTimestamp": 1786680024471
   },
   "assets/scripts/ui/HoleLevelUI.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_1": "assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/ui/HoleLevelUI.js",
-    "mTimestamp": 1786626996552
+    "mTimestamp": 1786680024238
   },
   "assets/scripts/ui/SpawnProgressUI.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_1": "assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/ui/SpawnProgressUI.js",
-    "mTimestamp": 1786626996594
+    "mTimestamp": 1786680024525
   },
   "assets/scripts/ui/TutorialUI.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/ui/TutorialUI.js",
-    "mTimestamp": 1786626996618
+    "mTimestamp": 1786680024643
   },
   "assets/scripts/ui/CTAButton.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/ui/CTAButton.js",
-    "mTimestamp": 1786626996646
+    "mTimestamp": 1786680023922
   },
   "assets/scripts/vfx/SizeUpVFX.js": {
     "imports": {
-      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js",
       "cc": "quick-pack:/cce/internal/x/cc.js",
-      "__unresolved_1": "assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "quick-pack:/cce/internal/code-quality/cr.js"
     },
     "physicalLocation": "fs/0/assets/scripts/vfx/SizeUpVFX.js",
-    "mTimestamp": 1786626996684
+    "mTimestamp": 1786680024612
   },
   "assets/scripts/ui/TutorialPointerAnimator.js": {
     "imports": {
       "cc": "quick-pack:/cce/internal/x/cc.js"
     },
     "physicalLocation": "fs/0/assets/scripts/ui/TutorialPointerAnimator.js",
-    "mTimestamp": 1786626996710
-  },
-  "quick-pack:/cce/internal/code-quality/cr.js": {
-    "imports": {},
-    "physicalLocation": "cce/internal/code-quality/cr.js",
-    "mTimestamp": 1786626996865
+    "mTimestamp": 1786680024564
   },
   "quick-pack:/cce/internal/x/cc.js": {
     "imports": {
@@ -462,8 +414,56 @@
       }
     },
     "physicalLocation": "cce/internal/x/cc.js",
-    "mTimestamp": 1786627520079,
+    "mTimestamp": 1786698528741,
     "isEntry": true,
     "exposeAs": "cce:/internal/x/cc"
+  },
+  "quick-pack:/cce/internal/x/prerequisite-imports.js": {
+    "imports": {
+      "__unresolved_0": "assets/HMAssets/Scripts/decryptContent.js",
+      "__unresolved_1": "assets/scripts/audio/GameAudioController.js",
+      "__unresolved_2": "assets/scripts/camera/CameraFollow.js",
+      "__unresolved_4": "assets/scripts/core/GameEvents.js",
+      "__unresolved_3": "assets/scripts/catalog/ItemCatalog.js",
+      "__unresolved_5": "assets/scripts/core/GameFlowController.js",
+      "__unresolved_6": "assets/scripts/core/GameState.js",
+      "__unresolved_7": "assets/scripts/data/LevelDataLoader.js",
+      "__unresolved_8": "assets/scripts/data/LevelDataTypes.js",
+      "__unresolved_9": "assets/scripts/data/SimpleDecrypt.js",
+      "__unresolved_10": "assets/scripts/data/UnityTransformConverter.js",
+      "__unresolved_11": "assets/scripts/gameplay/ObjectiveManager.js",
+      "__unresolved_12": "assets/scripts/gameplay/TimerController.js",
+      "__unresolved_13": "assets/scripts/input/JoystickInput.js",
+      "__unresolved_14": "assets/scripts/input/JoystickVisual.js",
+      "__unresolved_15": "assets/scripts/items/ItemRegistry.js",
+      "__unresolved_17": "assets/scripts/items/ItemSpawner.js",
+      "__unresolved_16": "assets/scripts/items/ItemRuntime.js",
+      "__unresolved_18": "assets/scripts/physics/PhysicsActivationSystem.js",
+      "__unresolved_19": "assets/scripts/physics/PhysicsGroups.js",
+      "__unresolved_20": "assets/scripts/player/HoleConsumeSystem.js",
+      "__unresolved_21": "assets/scripts/player/HoleMovement.js",
+      "__unresolved_22": "assets/scripts/player/HoleSizeController.js",
+      "__unresolved_23": "assets/scripts/player/HoleVisual.js",
+      "__unresolved_24": "assets/scripts/spatial/SpatialHashGrid.js",
+      "__unresolved_25": "assets/scripts/ui/CTAButton.js",
+      "__unresolved_26": "assets/scripts/ui/DebugHUD.js",
+      "__unresolved_27": "assets/scripts/ui/EndCardController.js",
+      "__unresolved_28": "assets/scripts/ui/HoleLevelUI.js",
+      "__unresolved_29": "assets/scripts/ui/ObjectiveUI.js",
+      "__unresolved_31": "assets/scripts/ui/TimerUI.js",
+      "__unresolved_30": "assets/scripts/ui/SpawnProgressUI.js",
+      "__unresolved_32": "assets/scripts/ui/TutorialPointerAnimator.js",
+      "__unresolved_33": "assets/scripts/ui/TutorialUI.js",
+      "__unresolved_34": "assets/scripts/vfx/SizeUpVFX.js"
+    },
+    "physicalLocation": "cce/internal/x/prerequisite-imports.js",
+    "mTimestamp": 1786698528791,
+    "isEntry": true,
+    "exposeAs": "cce:/internal/x/prerequisite-imports"
+  },
+  "quick-pack:/cce/internal/code-quality/cr.js": {
+    "imports": {},
+    "physicalLocation": "cce/internal/code-quality/cr.js",
+    "mTimestamp": 1786698528835
   }
 }
