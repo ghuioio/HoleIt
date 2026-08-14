@@ -1,0 +1,36 @@
+{
+  "__type__": "cc.Material",
+  "_name": "Cakes",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "1baf0fc9-befa-459c-8bdd-af1a450a0319",
+    "__expectedType__": "cc.EffectAsset"
+  },
+  "_techIdx": 0,
+  "_defines": [
+    {
+      "USE_ALBEDO_MAP": true
+    }
+  ],
+  "_states": [
+    {
+      "rasterizerState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      },
+      "depthStencilState": {}
+    }
+  ],
+  "_props": [
+    {
+      "mainTexture": {
+        "__uuid__": "a1ab8ad3-ed23-4e51-bdac-4c1267985c2d@7d6ab",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "metallic": 0.4000000059604645
+    }
+  ]
+}

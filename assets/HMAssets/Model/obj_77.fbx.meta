@@ -1,0 +1,76 @@
+{
+  "ver": "2.1.10",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "7653b94d-c0df-46cc-b1e4-fa6aad71e691",
+  "files": [],
+  "subMetas": {
+    "002de": {
+      "importer": "gltf-mesh",
+      "uuid": "7653b94d-c0df-46cc-b1e4-fa6aad71e691@002de",
+      "displayName": "",
+      "id": "002de",
+      "name": "Wedding_03_Whole.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "495d4": {
+      "importer": "gltf-material",
+      "uuid": "7653b94d-c0df-46cc-b1e4-fa6aad71e691@495d4",
+      "displayName": "",
+      "id": "495d4",
+      "name": "cake_mtl.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "8e170": {
+      "importer": "gltf-scene",
+      "uuid": "7653b94d-c0df-46cc-b1e4-fa6aad71e691@8e170",
+      "displayName": "",
+      "id": "8e170",
+      "name": "obj_77.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "legacyFbxImporter": false,
+    "redirect": "7653b94d-c0df-46cc-b1e4-fa6aad71e691@8e170",
+    "assetFinder": {
+      "meshes": [
+        "7653b94d-c0df-46cc-b1e4-fa6aad71e691@002de"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [
+        "7653b94d-c0df-46cc-b1e4-fa6aad71e691@495d4"
+      ],
+      "scenes": [
+        "7653b94d-c0df-46cc-b1e4-fa6aad71e691@8e170"
+      ]
+    }
+  }
+}

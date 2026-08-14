@@ -8,50 +8,54 @@ export class HoleMovement extends Component {
     @property({ type: JoystickInput })
     public joystick: JoystickInput | null = null;
 
-    @property({ tooltip: 'Toc do toi da cua Hole, world units/second.' })
-    public moveSpeed = 7;
+    @property({ tooltip: 'Maximum Hole speed in world units/second.' })
+    public moveSpeed = 6.5;
 
-    @property({ tooltip: 'Gia toc khi nguoi choi day joystick.' })
-    public acceleration = 22;
+    @property({ tooltip: 'Acceleration while the joystick is held.' })
+    public acceleration = 24;
 
-    @property({ tooltip: 'Do giam toc khi tha joystick.' })
-    public deceleration = 28;
+    @property({ tooltip: 'Deceleration after releasing the joystick.' })
+    public deceleration = 30;
 
-    @property({ tooltip: 'Bat neu day joystick len tren ma Hole di xuong man hinh.' })
+    @property({ tooltip: 'Enable when joystick-up visually moves the Hole down-screen.' })
     public invertZ = true;
 
     @property
-    public minX = -13;
+    public minX = -8;
 
     @property
-    public maxX = 13;
+    public maxX = 8;
 
     @property
-    public minZ = -10;
+    public minZ = -8;
 
     @property
     public maxZ = 10;
+
+    public inputEnabled = true;
 
     private readonly _input = new Vec2();
     private readonly _velocity = new Vec3();
     private readonly _position = new Vec3();
 
-    protected update(deltaTime: number): void {
-        if (!this.joystick) {
-            return;
-        }
+    public stopImmediately(): void {
+        this._velocity.set(0, 0, 0);
+    }
 
-        // Tranh Hole nhay xa neu tab/browser bi tre trong mot khoang dai.
+    protected update(deltaTime: number): void {
         const dt = Math.min(deltaTime, 0.05);
-        this.joystick.getDirection(this._input);
+
+        if (!this.joystick || !this.inputEnabled) {
+            this._input.set(0, 0);
+        } else {
+            this.joystick.getDirection(this._input);
+        }
 
         const targetVX = this._input.x * this.moveSpeed;
         const zSign = this.invertZ ? -1 : 1;
         const targetVZ = this._input.y * this.moveSpeed * zSign;
-
-        const hasInput = Math.abs(this._input.x) > 0.001 || Math.abs(this._input.y) > 0.001;
-        const changeSpeed = hasInput ? this.acceleration : this.deceleration;
-        const maxDelta = changeSpeed * dt;
+        const hasInput = this._input.lengthSqr() > 0.000001;
+        const maxDelta = (hasInput ? this.acceleration : this.deceleration) * dt;
 
         this._velocity.x = this.moveTowards(this._velocity.x, targetVX, maxDelta);
         this._velocity.z = this.moveTowards(this._velocity.z, targetVZ, maxDelta);
@@ -59,7 +63,6 @@ export class HoleMovement extends Component {
         this._position.set(this.node.position);
         this._position.x += this._velocity.x * dt;
         this._position.z += this._velocity.z * dt;
-
         this._position.x = this.clamp(this._position.x, this.minX, this.maxX);
         this._position.z = this.clamp(this._position.z, this.minZ, this.maxZ);
         this.node.setPosition(this._position);

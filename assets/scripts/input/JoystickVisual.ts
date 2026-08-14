@@ -4,28 +4,24 @@ const { ccclass, property } = _decorator;
 
 @ccclass('JoystickVisual')
 export class JoystickVisual extends Component {
-    @property({ type: Graphics, tooltip: 'Graphics tren node JoystickRoot.' })
-    public backgroundGraphics: Graphics | null = null;
+    @property({ type: Graphics })
+    public background: Graphics | null = null;
 
-    @property({ type: Graphics, tooltip: 'Graphics tren node Handle.' })
+    @property({ type: Graphics })
     public handleGraphics: Graphics | null = null;
 
     @property
-    public backgroundRadius = 100;
+    public backgroundRadius = 90;
 
     @property
-    public handleRadius = 42;
+    public handleRadius = 38;
 
     protected start(): void {
-        this.redraw();
-    }
-
-    public redraw(): void {
-        if (this.backgroundGraphics) {
-            this.backgroundGraphics.clear();
-            this.backgroundGraphics.fillColor = new Color(20, 20, 20, 75);
-            this.backgroundGraphics.circle(0, 0, this.backgroundRadius);
-            this.backgroundGraphics.fill();
+        if (this.background) {
+            this.background.clear();
+            this.background.fillColor = new Color(255, 255, 255, 55);
+            this.background.circle(0, 0, this.backgroundRadius);
+            this.background.fill();
         }
 
         if (this.handleGraphics) {

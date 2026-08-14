@@ -7,14 +7,14 @@ export class CameraFollow extends Component {
     @property({ type: Node })
     public target: Node | null = null;
 
-    @property({ type: Vec3, tooltip: 'Offset camera so voi Hole.' })
-    public offset = new Vec3(0, 13, 10);
+    @property({ type: Vec3, tooltip: 'Camera offset from Hole.' })
+    public offset = new Vec3(0, 12, 8.5);
 
-    @property({ tooltip: 'Do muot khi camera follow. 0 = dung yen.' })
-    public followSharpness = 8;
+    @property({ tooltip: 'Higher = snappier follow.' })
+    public followSharpness = 7;
 
-    @property({ tooltip: 'Camera nhin cao hon Hole mot chut.' })
-    public lookHeight = 0.2;
+    @property({ tooltip: 'Look slightly above/below Hole center.' })
+    public lookHeight = 0.25;
 
     private readonly _targetPos = new Vec3();
     private readonly _desiredPos = new Vec3();
@@ -37,7 +37,11 @@ export class CameraFollow extends Component {
         Vec3.lerp(this._cameraPos, this._cameraPos, this._desiredPos, t);
         this.node.setWorldPosition(this._cameraPos);
 
-        this._lookPos.set(this._targetPos.x, this._targetPos.y + this.lookHeight, this._targetPos.z);
+        this._lookPos.set(
+            this._targetPos.x,
+            this._targetPos.y + this.lookHeight,
+            this._targetPos.z,
+        );
         this.node.lookAt(this._lookPos);
     }
 }

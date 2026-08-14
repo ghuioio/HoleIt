@@ -1,16 +1,17 @@
 import { _decorator, Component, EventTouch, Node, UITransform, Vec2, Vec3 } from 'cc';
+import { GameEvent, gameEvents } from '../core/GameEvents';
 
 const { ccclass, property } = _decorator;
 
 @ccclass('JoystickInput')
 export class JoystickInput extends Component {
-    @property({ type: Node, tooltip: 'Node handle nam ben trong joystick.' })
+    @property({ type: Node, tooltip: 'Joystick handle child node.' })
     public handle: Node | null = null;
 
-    @property({ tooltip: 'Ban kinh toi da cua handle trong UI pixel.' })
+    @property({ tooltip: 'Maximum handle radius in UI pixels.' })
     public radius = 85;
 
-    @property({ tooltip: 'Bo qua input rat nho de Hole khong bi rung.' })
+    @property({ tooltip: 'Ignore tiny movement around the center.' })
     public deadZone = 0.08;
 
     private readonly _direction = new Vec2();
@@ -18,6 +19,7 @@ export class JoystickInput extends Component {
     private readonly _uiWorld = new Vec3();
     private readonly _localPos = new Vec3();
     private _touchId = -1;
+    private _sentFirstInput = false;
 
     public getDirection(out: Vec2): Vec2 {
         out.set(this._direction.x, this._direction.y);
@@ -47,6 +49,7 @@ export class JoystickInput extends Component {
         const id = event.getID();
         this._touchId = id === null ? 0 : id;
         this.updateFromTouch(event);
+        this.trySendFirstInput();
         event.propagationStopped = true;
     }
 
@@ -58,6 +61,7 @@ export class JoystickInput extends Component {
         }
 
         this.updateFromTouch(event);
+        this.trySendFirstInput();
         event.propagationStopped = true;
     }
 
@@ -108,6 +112,17 @@ export class JoystickInput extends Component {
 
         const invLength = normalizedLength > 1 ? 1 / normalizedLength : 1;
         this._direction.set(normalizedX * invLength, normalizedY * invLength);
+    }
+
+    private trySendFirstInput(): void {
+        if (this._sentFirstInput) {
+            return;
+        }
+        if (this._direction.lengthSqr() <= this.deadZone * this.deadZone) {
+            return;
+        }
+        this._sentFirstInput = true;
+        gameEvents.emit(GameEvent.FIRST_PLAYER_INPUT);
     }
 
     private resetJoystick(): void {

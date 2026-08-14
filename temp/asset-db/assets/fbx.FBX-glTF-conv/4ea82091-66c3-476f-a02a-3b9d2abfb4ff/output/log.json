@@ -1,0 +1,22 @@
+[
+  {
+    "level": 0,
+    "message": "Frame rate: 24"
+  },
+  {
+    "level": 2,
+    "message": {
+      "code": "unsupported_inherit_type",
+      "node": "fries_001",
+      "type": "RrSs"
+    }
+  },
+  {
+    "level": 0,
+    "message": "The material mapping mode is not AllSame, even if it should be since we splited it previously."
+  },
+  {
+    "level": 2,
+    "message": "Texture Diffuse Texture specified an unrecognized uv set DiffuseUV"
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "general": {
+    "designResolution": {
+      "width": 720,
+      "height": 1280
+    }
+  },
+  "layer": [],
+  "physics": {
+    "collisionGroups": [
+      {
+        "index": 1,
+        "name": "GROUND"
+      },
+      {
+        "index": 2,
+        "name": "ITEM"
+      },
+      {
+        "index": 3,
+        "name": "FALLING_ITEM"
+      },
+      {
+        "index": 4,
+        "name": "HOLE"
+      }
+    ]
+  }
+}

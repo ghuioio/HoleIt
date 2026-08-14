@@ -1,0 +1,135 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 15945,
+      "max": [
+        0.0481046661734581,
+        0.05591810122132301,
+        0.04999479651451111
+      ],
+      "min": [
+        -0.04850608855485916,
+        -0.0004141749523114413,
+        -0.04999479651451111
+      ],
+      "name": "Burger_Wrapped_W_Blue_Changed/POSITION",
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 12,
+      "componentType": 5126,
+      "count": 15945,
+      "name": "Burger_Wrapped_W_Blue_Changed/NORMAL",
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 24,
+      "componentType": 5126,
+      "count": 15945,
+      "name": "Burger_Wrapped_W_Blue_Changed/TEXCOORD_0",
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5125,
+      "count": 56430,
+      "name": "Burger_Wrapped_W_Blue_Changed/INDICES",
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "copyright": "Copyright (c) 2018-2020 Chukong Technologies Inc.",
+    "generator": "FBX-glTF-conv",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 510240,
+      "byteStride": 32,
+      "name": "Burger_Wrapped_W_Blue_Changed",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 225720,
+      "byteOffset": 510240
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 735960,
+      "uri": "out.bin"
+    }
+  ],
+  "extras": {
+    "FBX-glTF-conv": {
+      "animationFrameRate": 24.0
+    }
+  },
+  "images": [
+    {
+      "extras": {
+        "FBX-glTF-conv": {
+          "fileName": "F:\\Code\\Fork\\HoleIt\\temp\\asset-db\\assets\\fbx.FBX-glTF-conv\\35487d6e-5771-4b05-bdd0-763ab28ff0e6\\output\\.fbm\\399714AF\\obj_488.fbm/Burgers&Cream.png",
+          "relativeFileName": "..\\..\\..\\temp\\asset-db\\assets\\fbx.FBX-glTF-conv\\35487d6e-5771-4b05-bdd0-763ab28ff0e6\\output\\.fbm\\399714AF\\obj_488.fbm\\Burgers&Cream.png"
+        }
+      },
+      "name": "file10",
+      "uri": "Burgers&Cream.png"
+    }
+  ],
+  "materials": [
+    {
+      "name": "Burgers_Cream",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Burger_Wrapped_W_Blue_Changed",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "Burger_Wrapped_W_Blue_Changed"
+    }
+  ],
+  "samplers": [
+    {}
+  ],
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "name": "file10",
+      "sampler": 0,
+      "source": 0
+    }
+  ]
+}
