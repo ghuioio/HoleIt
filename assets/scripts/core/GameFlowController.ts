@@ -86,7 +86,7 @@ export class GameFlowController extends Component {
     }
 
     private onFirstPlayerInput(): void {
-        if (this._state !== GameState.Tutorial) {
+        if (this._state !== GameState.Tutorial && this._state !== GameState.Boot) {
             return;
         }
 
