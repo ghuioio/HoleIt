@@ -59,6 +59,10 @@ export class ItemRuntime extends Component {
     private _spawnIndex = -1;
     private _poolKey = '';
     private _rimScale = 1;
+    private _groundIgnored = false;
+    private _groundRecoveryApplied = false;
+    private _stackConstrained = false;
+    private _vortexMaterial: PhysicsMaterial | null = null;
     private _swallowElapsed = 0;
     private _swallowDuration = 0.15;
     private _baseScaleCaptured = false;
@@ -67,6 +71,7 @@ export class ItemRuntime extends Component {
     private readonly _workingScale = new Vec3();
     private readonly _velocity = new Vec3();
     private readonly _force = new Vec3();
+    private readonly _worldPosition = new Vec3();
 
     public get state(): ItemRuntimeState {
         return this._state;
@@ -109,6 +114,10 @@ export class ItemRuntime extends Component {
         return this._state === ItemRuntimeState.Consumed;
     }
 
+    public get isStackConstrained(): boolean {
+        return this._stackConstrained;
+    }
+
     protected onLoad(): void {
         this.cacheComponents();
         this.captureBaseScale();
@@ -123,6 +132,10 @@ export class ItemRuntime extends Component {
         this._poolKey = poolKey || spawnId;
         this._state = ItemRuntimeState.Dormant;
         this._rimScale = 1;
+        this._groundIgnored = false;
+        this._groundRecoveryApplied = false;
+        this._stackConstrained = false;
+        this._vortexMaterial = null;
         this._swallowElapsed = 0;
         this.node.active = true;
         this.node.setScale(this._baseScale);
@@ -165,11 +178,13 @@ export class ItemRuntime extends Component {
         this._body.allowSleep = true;
         this._body.linearDamping = this.linearDamping;
         this._body.angularDamping = this.angularDamping;
+        this._body.sleepThreshold = 0.1;
         this._body.linearFactor = FULL_LINEAR_FACTOR;
         this._body.angularFactor = FULL_LINEAR_FACTOR;
         this._body.setGroup(PhysicsGroup.ITEM);
         this._body.wakeUp();
         this._state = ItemRuntimeState.Dynamic;
+        this._groundRecoveryApplied = false;
         return true;
     }
 
@@ -188,12 +203,13 @@ export class ItemRuntime extends Component {
         this._body.angularFactor = LOCKED_ANGULAR_FACTOR;
         this._body.setLinearVelocity(ZERO_VELOCITY);
         this._body.wakeUp();
+        this._stackConstrained = true;
         return true;
     }
 
     /**
-     * Commit the item to the outer vortex. FALLING_ITEM collides with neither
-     * Ground nor other items, preventing rim bridges and tower traffic jams.
+     * Enter the outer vortex. Ground collision remains active until
+     * HoleConsumeSystem confirms this piece is horizontally over the Hole.
      */
     public beginVortex(rimScale: number, zeroFrictionMaterial: PhysicsMaterial): boolean {
         if (this._state === ItemRuntimeState.Consumed
@@ -215,19 +231,110 @@ export class ItemRuntime extends Component {
         this._body.useGravity = true;
         this._body.linearDamping = Math.max(this.linearDamping, 0.35);
         this._body.angularDamping = Math.max(this.angularDamping, 0.8);
-        // Tower constraints end at vortex entry so the item can center itself.
+        this._vortexMaterial = zeroFrictionMaterial;
+        this._groundIgnored = false;
+        this._groundRecoveryApplied = false;
+        this._stackConstrained = false;
+        // Tower constraints end at vortex entry so the item can center/tumble.
         this._body.linearFactor = FULL_LINEAR_FACTOR;
         this._body.angularFactor = FULL_LINEAR_FACTOR;
-        this._body.setGroup(PhysicsGroup.FALLING_ITEM);
+        this._body.setGroup(PhysicsGroup.ITEM);
 
         for (let i = 0; i < this._colliders.length; i++) {
             const collider = this._colliders[i];
             collider.enabled = true;
-            collider.setGroup(PhysicsGroup.FALLING_ITEM);
-            collider.sharedMaterial = zeroFrictionMaterial;
+            collider.setGroup(PhysicsGroup.ITEM);
         }
+        this.restoreColliderMaterials();
         this._body.wakeUp();
         return true;
+    }
+
+    /**
+     * Cocos collision-group equivalent of per-piece Physics.IgnoreCollision.
+     * Only a piece currently over the Hole is moved to FALLING_ITEM.
+     */
+    public setGroundCollisionIgnored(ignore: boolean): void {
+        if (this._state !== ItemRuntimeState.Vortex || !this._body
+            || this._groundIgnored === ignore) {
+            return;
+        }
+
+        this._groundIgnored = ignore;
+        const group = ignore ? PhysicsGroup.FALLING_ITEM : PhysicsGroup.ITEM;
+        this._body.setGroup(group);
+        this._body.linearFactor = FULL_LINEAR_FACTOR;
+        this._body.angularFactor = FULL_LINEAR_FACTOR;
+
+        for (let i = 0; i < this._colliders.length; i++) {
+            const collider = this._colliders[i];
+            collider.setGroup(group);
+            collider.sharedMaterial = ignore && this._vortexMaterial
+                ? this._vortexMaterial
+                : this._originalMaterials[i] || null;
+        }
+        this._body.wakeUp();
+    }
+
+    /** Restore normal ground physics when the moving Hole leaves this piece. */
+    public exitVortexToGround(minimumCenterY: number): void {
+        if (this._state !== ItemRuntimeState.Vortex || !this._body) {
+            return;
+        }
+
+        this.setGroundCollisionIgnored(false);
+        this._state = ItemRuntimeState.Dynamic;
+        this._rimScale = 1;
+        this._vortexMaterial = null;
+        this._stackConstrained = false;
+        this.node.setScale(this._baseScale);
+        this._body.linearDamping = this.linearDamping;
+        this._body.angularDamping = this.angularDamping;
+        this._body.linearFactor = FULL_LINEAR_FACTOR;
+        this._body.angularFactor = FULL_LINEAR_FACTOR;
+        this.ensureAboveGround(minimumCenterY);
+        this._body.wakeUp();
+    }
+
+    /** Unlock a collapsed piece so it can scatter and roll on solid ground. */
+    public releaseStackConstraints(): void {
+        if (this._state !== ItemRuntimeState.Dynamic || !this._body
+            || !this._stackConstrained) {
+            return;
+        }
+
+        this._stackConstrained = false;
+        this._body.linearFactor = FULL_LINEAR_FACTOR;
+        this._body.angularFactor = FULL_LINEAR_FACTOR;
+        this._body.wakeUp();
+    }
+
+    /** Last-resort recovery for a body that crossed the ground before regrouping. */
+    public ensureAboveGround(minimumCenterY: number): void {
+        if (this._state !== ItemRuntimeState.Dynamic || !this._body) {
+            return;
+        }
+
+        this.node.getWorldPosition(this._worldPosition);
+        if (this._worldPosition.y > minimumCenterY || this._groundRecoveryApplied) {
+            return;
+        }
+
+        this._groundRecoveryApplied = true;
+        this._worldPosition.y = minimumCenterY;
+        this.node.setWorldPosition(this._worldPosition);
+        this._body.getLinearVelocity(this._velocity);
+        if (this._velocity.y < 0) {
+            this._velocity.y = 0;
+            this._body.setLinearVelocity(this._velocity);
+        }
+        this._body.setGroup(PhysicsGroup.ITEM);
+        for (let i = 0; i < this._colliders.length; i++) {
+            this._colliders[i].enabled = true;
+            this._colliders[i].setGroup(PhysicsGroup.ITEM);
+        }
+        this.restoreColliderMaterials();
+        this._body.wakeUp();
     }
 
     /** ForceMode.Acceleration equivalent: F = mass * desired acceleration. */
@@ -283,6 +390,7 @@ export class ItemRuntime extends Component {
         }
 
         this._state = ItemRuntimeState.Swallowing;
+        this._groundIgnored = true;
         this._swallowElapsed = 0;
         this._swallowDuration = Math.max(0.01, duration);
         this.node.getScale(this._swallowStartScale);
@@ -346,6 +454,9 @@ export class ItemRuntime extends Component {
             return;
         }
         this._state = ItemRuntimeState.Consumed;
+        this._groundIgnored = false;
+        this._groundRecoveryApplied = false;
+        this._stackConstrained = false;
 
         if (this._body) {
             this._body.clearVelocity();
@@ -402,6 +513,9 @@ export class ItemRuntime extends Component {
             this._body.angularFactor = FULL_LINEAR_FACTOR;
             this._body.enabled = false;
         }
+        this._groundIgnored = false;
+        this._groundRecoveryApplied = false;
+        this._stackConstrained = false;
         for (let i = 0; i < this._colliders.length; i++) {
             this._colliders[i].enabled = false;
         }

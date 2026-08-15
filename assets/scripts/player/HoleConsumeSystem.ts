@@ -37,6 +37,15 @@ export class HoleConsumeSystem extends Component {
     @property({ tooltip: 'Inner swallow zone starts this far below the visible surface.' })
     public innerDepth = 0.12;
 
+    @property({ tooltip: 'Top surface Y of the solid ground collider.' })
+    public groundY = 0.075;
+
+    @property({ tooltip: 'Minimum item-center clearance used when recovering outside the Hole.' })
+    public groundSafetyOffset = 0.01;
+
+    @property({ tooltip: 'Extra hysteresis before an item fully exits the outer vortex.' })
+    public vortexExitPadding = 0.12;
+
     @property({ tooltip: 'Objects scale toward this fraction while crossing the rim.' })
     public rimScale = 0.76;
 
@@ -106,8 +115,8 @@ export class HoleConsumeSystem extends Component {
             this.captureOuterVortexItems();
         }
 
-        this.applyVortexForces();
         this.updateVortexItems(dt);
+        this.applyVortexForces();
         this.updateSwallowingItems(dt);
     }
 
@@ -263,9 +272,26 @@ export class HoleConsumeSystem extends Component {
             );
             const dx = this._itemPos.x - this._holePos.x;
             const dz = this._itemPos.z - this._holePos.z;
-            const insideOpening = (dx * dx + dz * dz) <= innerRadius * innerRadius;
+            const distanceSq = dx * dx + dz * dz;
+            const insideHoleRadius = distanceSq <= holeRadius * holeRadius;
+            const insideOpening = distanceSq <= innerRadius * innerRadius;
+            const outerRadius = innerRadius + Math.max(0.05, this.outerPadding);
+            const exitedOuterVortex = distanceSq
+                > (outerRadius + this.vortexExitPadding) * (outerRadius + this.vortexExitPadding);
+            const minimumCenterY = this.groundY + this.groundSafetyOffset;
+
+            // Per-piece ground ignore: reversible every frame as the Hole moves.
+            item.setGroundCollisionIgnored(insideHoleRadius);
+            if (!insideHoleRadius
+                && (exitedOuterVortex || this._itemPos.y <= minimumCenterY)) {
+                item.exitVortexToGround(minimumCenterY);
+                this._vortex.splice(i, 1);
+                continue;
+            }
+
             const belowInnerZone = this._itemPos.y <= this.holePlaneY - this.innerDepth;
-            const belowEmergencyDepth = this._itemPos.y <= this.holePlaneY - this.killDepth;
+            const belowEmergencyDepth = insideHoleRadius
+                && this._itemPos.y <= this.holePlaneY - this.killDepth;
 
             if ((!insideOpening || !belowInnerZone) && !belowEmergencyDepth) {
                 continue;
