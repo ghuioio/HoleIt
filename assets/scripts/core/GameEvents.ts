@@ -18,6 +18,7 @@ export const GameEvent = {
     GAME_LOST: 'hm-game-lost',
 
     ITEM_CONSUME_STARTED: 'hm-item-consume-started',
+    ITEM_SWALLOW_ENTERED: 'hm-item-swallow-entered',
     ITEM_CONSUMED: 'hm-item-consumed',
     ITEM_COUNTS_CHANGED: 'hm-item-counts-changed',
 

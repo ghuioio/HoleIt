@@ -1,11 +1,13 @@
-import { _decorator, Component, instantiate, Node, Quat, Vec3 } from 'cc';
+import { _decorator, Component, Node, Quat, Vec3 } from 'cc';
 import { GameEvent, gameEvents } from '../core/GameEvents';
 import { ItemCatalog } from '../catalog/ItemCatalog';
 import { LevelDataLoader } from '../data/LevelDataLoader';
 import { LevelVec3Data, RuntimeSpawnRecord } from '../data/LevelDataTypes';
 import { UnityTransformConverter } from '../data/UnityTransformConverter';
 import { ItemRegistry } from './ItemRegistry';
+import { ItemPool } from './ItemPool';
 import { ItemRuntime } from './ItemRuntime';
+import { StackController } from './StackController';
 
 const { ccclass, property } = _decorator;
 
@@ -32,11 +34,27 @@ export class ItemSpawner extends Component {
     private _records: ReadonlyArray<RuntimeSpawnRecord> = [];
     private _spawnIndex = 0;
     private _spawning = false;
+    private _stackController: StackController | null = null;
+    private readonly _pool = new ItemPool();
     private readonly _missingIds = new Set<string>();
     private readonly _srcPos: LevelVec3Data = { x: 0, y: 0, z: 0 };
     private readonly _srcRot: LevelVec3Data = { x: 0, y: 0, z: 0 };
     private readonly _position = new Vec3();
     private readonly _rotation = new Quat();
+    private readonly _recycleHandler = (item: ItemRuntime): void => {
+        this._pool.release(item);
+    };
+
+    protected onLoad(): void {
+        this._stackController = this.getComponent(StackController);
+        if (!this._stackController) {
+            this._stackController = this.node.addComponent(StackController);
+        }
+        if (this.registry) {
+            this.registry.setRecycleHandler(this._recycleHandler);
+            this._stackController.configure(this.registry);
+        }
+    }
 
     protected onEnable(): void {
         gameEvents.on(GameEvent.LEVEL_DATA_READY, this.onLevelDataReady, this);
@@ -44,6 +62,12 @@ export class ItemSpawner extends Component {
 
     protected onDisable(): void {
         gameEvents.off(GameEvent.LEVEL_DATA_READY, this.onLevelDataReady, this);
+    }
+
+    protected onDestroy(): void {
+        if (this.registry) {
+            this.registry.setRecycleHandler(null);
+        }
     }
 
     protected update(): void {
@@ -65,6 +89,7 @@ export class ItemSpawner extends Component {
 
         if (this._spawnIndex >= this._records.length) {
             this._spawning = false;
+            this._stackController!.finalizeStacks();
             this.registry!.notifyCounts();
             gameEvents.emit(GameEvent.LEVEL_SPAWN_COMPLETE, this._records.length);
         }
@@ -80,6 +105,8 @@ export class ItemSpawner extends Component {
         }
 
         this.catalog.rebuild();
+        this._stackController!.configure(this.registry);
+        this._stackController!.resetStacks();
         this._records = loader.records;
         this._spawnIndex = 0;
         this._spawning = true;
@@ -100,7 +127,7 @@ export class ItemSpawner extends Component {
             console.warn(`[ItemSpawner] ${record.id} uses fallback/alias prefab.`);
         }
 
-        const node = instantiate(prefab);
+        const node = this._pool.acquire(record.id, prefab);
         node.parent = this.levelRoot!;
 
         this._srcPos.x = record.px;
@@ -122,7 +149,8 @@ export class ItemSpawner extends Component {
             return;
         }
 
-        runtime.initialize(record.id, spawnIndex);
+        runtime.initialize(record.id, spawnIndex, record.id);
         this.registry!.register(runtime);
+        this._stackController!.register(runtime);
     }
 }

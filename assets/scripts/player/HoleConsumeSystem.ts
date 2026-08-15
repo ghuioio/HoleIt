@@ -1,11 +1,19 @@
-import { _decorator, Component, Node, Vec3 } from 'cc';
+import { _decorator, Component, Node, PhysicsMaterial, Vec3 } from 'cc';
 import { GameEvent, gameEvents } from '../core/GameEvents';
 import { ItemRegistry } from '../items/ItemRegistry';
 import { ItemRuntime } from '../items/ItemRuntime';
+import { StackController } from '../items/StackController';
 import { HoleSizeController } from './HoleSizeController';
 
 const { ccclass, property } = _decorator;
 
+/**
+ * Two-stage Cocos equivalent of a Hole.io vacuum:
+ *  1. Outer vortex commits fitting objects, removes blocking collisions,
+ *     shrinks them slightly, and applies inward/downward acceleration.
+ *  2. Inner zone disables physics immediately, animates scale to zero, then
+ *     recycles the item through ItemRegistry/ItemPool.
+ */
 @ccclass('HoleConsumeSystem')
 export class HoleConsumeSystem extends Component {
     @property({ type: ItemRegistry })
@@ -20,33 +28,63 @@ export class HoleConsumeSystem extends Component {
     @property({ tooltip: 'Y coordinate of the visible hole surface.' })
     public holePlaneY = 0.03;
 
-    @property({ tooltip: 'Base vertical capture allowance. Item radius is added so grounded collider centers are not rejected.' })
-    public captureHeight = 0.45;
+    @property({ tooltip: 'Outer vortex extends this far beyond the valid inner opening.' })
+    public outerPadding = 0.42;
+
+    @property({ tooltip: 'Objects above this height are not captured by the vortex.' })
+    public outerCaptureHeight = 1.45;
+
+    @property({ tooltip: 'Inner swallow zone starts this far below the visible surface.' })
+    public innerDepth = 0.12;
+
+    @property({ tooltip: 'Objects scale toward this fraction while crossing the rim.' })
+    public rimScale = 0.76;
+
+    @property({ tooltip: 'How quickly objects interpolate toward rimScale.' })
+    public rimScaleSpeed = 11;
+
+    @property({ tooltip: 'Acceleration pulling objects horizontally toward the hole center.' })
+    public inwardAcceleration = 32;
+
+    @property({ tooltip: 'Extra downward acceleration inside the outer vortex.' })
+    public downwardAcceleration = 44;
+
+    @property({ tooltip: 'Maximum horizontal speed while being vacuumed.' })
+    public maxPullSpeed = 6.5;
+
+    @property({ tooltip: 'Maximum downward speed while being vacuumed.' })
+    public maxDownSpeed = 9;
+
+    @property({ tooltip: 'Time to scale an ingested item to zero before pooling.' })
+    public swallowDuration = 0.15;
 
     @property({ tooltip: 'Extra safety margin so large objects do not clip through the rim.' })
-    public rimPadding = 0.04;
+    public rimPadding = 0.035;
 
-    @property({ tooltip: 'Small horizontal allowance that makes valid captures responsive instead of requiring perfect centering.' })
+    @property({ tooltip: 'Small fit allowance that makes valid captures responsive.' })
     public captureForgiveness = 0.1;
 
-    @property({ tooltip: 'Horizontal pull speed while an item is falling through the Hole.' })
-    public pullSpeed = 3.5;
-
-    @property({ tooltip: 'Downward velocity while an item is in the Hole.' })
-    public downSpeed = 5.5;
-
-    @property({ tooltip: 'Disable an item after it reaches holePlaneY - killDepth.' })
+    @property({ tooltip: 'Emergency depth that recycles an item even if the moving hole outruns it.' })
     public killDepth = 1.8;
 
-    @property({ tooltip: 'How often dynamic items are tested for capture.' })
+    @property({ tooltip: 'How often dynamic items are tested for outer-vortex entry.' })
     public captureScanInterval = 0.025;
 
     private _captureTimer = 0;
+    private _stackController: StackController | null = null;
     private readonly _dynamic: ItemRuntime[] = [];
-    private readonly _falling: ItemRuntime[] = [];
+    private readonly _vortex: ItemRuntime[] = [];
+    private readonly _swallowing: ItemRuntime[] = [];
     private readonly _holePos = new Vec3();
     private readonly _itemPos = new Vec3();
-    private readonly _velocity = new Vec3();
+    private readonly _zeroFrictionMaterial = new PhysicsMaterial();
+
+    protected onLoad(): void {
+        this._zeroFrictionMaterial.friction = 0;
+        this._zeroFrictionMaterial.rollingFriction = 0;
+        this._zeroFrictionMaterial.spinningFriction = 0;
+        this._zeroFrictionMaterial.restitution = 0;
+    }
 
     protected update(dt: number): void {
         if (!this.registry || !this.hole || !this.holeSize) {
@@ -54,19 +92,26 @@ export class HoleConsumeSystem extends Component {
         }
 
         this.hole.getWorldPosition(this._holePos);
+        if (!this._stackController) {
+            this._stackController = this.registry.node.getComponent(StackController);
+        }
+
         this._captureTimer -= dt;
         if (this._captureTimer <= 0) {
             this._captureTimer = Math.max(0.01, this.captureScanInterval);
-            this.captureNearbyDynamicItems();
+            this.captureOuterVortexItems();
         }
 
-        this.updateFallingItems();
+        this.applyVortexForces();
+        this.updateVortexItems(dt);
+        this.updateSwallowingItems(dt);
     }
 
-    private captureNearbyDynamicItems(): void {
+    private captureOuterVortexItems(): void {
         this.registry!.copyDynamicTo(this._dynamic);
         const holeRadius = this.holeSize!.radius;
         const holeLevel = this.holeSize!.level;
+        const shrunkScale = Math.min(1, Math.max(0.5, this.rimScale));
 
         for (let i = 0; i < this._dynamic.length; i++) {
             const item = this._dynamic[i];
@@ -75,68 +120,128 @@ export class HoleConsumeSystem extends Component {
             }
 
             item.node.getWorldPosition(this._itemPos);
-            const verticalLimit = this.holePlaneY + this.captureHeight + item.consumeRadius;
-            if (this._itemPos.y > verticalLimit) {
+            if (this._itemPos.y > this.holePlaneY + this.outerCaptureHeight + item.consumeRadius) {
                 continue;
             }
 
-            const allowedRadius = holeRadius
-                - item.consumeRadius
+            // Fit is evaluated at the anti-jam rim scale, matching what is
+            // visually and physically entering the opening.
+            const effectiveRadius = item.consumeRadius * shrunkScale;
+            const innerRadius = holeRadius
+                - effectiveRadius
                 - this.rimPadding
                 + this.captureForgiveness;
-            if (allowedRadius <= 0) {
-                continue;
-            }
-            const dx = this._itemPos.x - this._holePos.x;
-            const dz = this._itemPos.z - this._holePos.z;
-            const captureRadius = Math.max(0.02, allowedRadius);
-            if ((dx * dx + dz * dz) > captureRadius * captureRadius) {
+            if (innerRadius <= 0) {
                 continue;
             }
 
-            this.buildPullVelocity(this._itemPos, this._velocity);
-            item.beginFalling(this._velocity);
-            if (item.isFalling) {
-                this._falling.push(item);
+            const dx = this._itemPos.x - this._holePos.x;
+            const dz = this._itemPos.z - this._holePos.z;
+            const outerRadius = innerRadius + Math.max(0.05, this.outerPadding);
+            if ((dx * dx + dz * dz) > outerRadius * outerRadius) {
+                continue;
+            }
+
+            if (item.beginVortex(shrunkScale, this._zeroFrictionMaterial)) {
+                this._vortex.push(item);
                 gameEvents.emit(GameEvent.ITEM_CONSUME_STARTED, item.id, item);
             }
         }
     }
 
-    private updateFallingItems(): void {
-        for (let i = this._falling.length - 1; i >= 0; i--) {
-            const item = this._falling[i];
-            if (!item.node.active || !item.isFalling) {
-                this._falling.splice(i, 1);
+    /** Hot physics loop: all bodies/components and temporary vectors are cached. */
+    private applyVortexForces(): void {
+        for (let i = this._vortex.length - 1; i >= 0; i--) {
+            const item = this._vortex[i];
+            if (!item.node.active || !item.isVortex) {
+                this._vortex.splice(i, 1);
                 continue;
             }
 
             item.node.getWorldPosition(this._itemPos);
-            if (this._itemPos.y <= this.holePlaneY - this.killDepth) {
-                const id = item.id;
-                const value = item.consumeValue;
-                this.registry!.markConsumed(item);
-                this.holeSize!.addXp(value);
-                gameEvents.emit(GameEvent.ITEM_CONSUMED, id, value, item);
-                this._falling.splice(i, 1);
-                continue;
+            let dx = this._holePos.x - this._itemPos.x;
+            let dz = this._holePos.z - this._itemPos.z;
+            const horizontalLength = Math.sqrt(dx * dx + dz * dz);
+            if (horizontalLength > 0.0001) {
+                dx /= horizontalLength;
+                dz /= horizontalLength;
+            } else {
+                dx = 0;
+                dz = 0;
             }
 
-            this.buildPullVelocity(this._itemPos, this._velocity);
-            item.setFallingVelocity(this._velocity);
+            // Equivalent to ProjectOnPlane(center - position, Vec3.UP), then
+            // ForceMode.Acceleration through ItemRuntime's F = mass * a.
+            item.applyVortexAcceleration(
+                dx,
+                dz,
+                this.inwardAcceleration,
+                this.downwardAcceleration,
+            );
+            item.limitVortexVelocity(this.maxPullSpeed, this.maxDownSpeed);
         }
     }
 
-    private buildPullVelocity(itemPosition: Vec3, out: Vec3): Vec3 {
-        let dx = this._holePos.x - itemPosition.x;
-        let dz = this._holePos.z - itemPosition.z;
-        const len = Math.sqrt(dx * dx + dz * dz);
-        if (len > 0.0001) {
-            dx /= len;
-            dz /= len;
-        }
+    private updateVortexItems(dt: number): void {
+        const holeRadius = this.holeSize!.radius;
+        const shrunkScale = Math.min(1, Math.max(0.5, this.rimScale));
 
-        out.set(dx * this.pullSpeed, -Math.abs(this.downSpeed), dz * this.pullSpeed);
-        return out;
+        for (let i = this._vortex.length - 1; i >= 0; i--) {
+            const item = this._vortex[i];
+            if (!item.node.active || !item.isVortex) {
+                this._vortex.splice(i, 1);
+                continue;
+            }
+
+            item.tickIngestionVisual(dt, this.rimScaleSpeed);
+            item.node.getWorldPosition(this._itemPos);
+
+            const effectiveRadius = item.consumeRadius * shrunkScale;
+            const innerRadius = Math.max(
+                0.04,
+                holeRadius - effectiveRadius - this.rimPadding + this.captureForgiveness,
+            );
+            const dx = this._itemPos.x - this._holePos.x;
+            const dz = this._itemPos.z - this._holePos.z;
+            const insideOpening = (dx * dx + dz * dz) <= innerRadius * innerRadius;
+            const belowInnerZone = this._itemPos.y <= this.holePlaneY - this.innerDepth;
+            const belowEmergencyDepth = this._itemPos.y <= this.holePlaneY - this.killDepth;
+
+            if ((!insideOpening || !belowInnerZone) && !belowEmergencyDepth) {
+                continue;
+            }
+
+            if (!item.beginSwallow(this.swallowDuration)) {
+                continue;
+            }
+
+            this._vortex.splice(i, 1);
+            this._swallowing.push(item);
+            if (this._stackController) {
+                this._stackController.onItemEnteredSwallow(item);
+            }
+            // Gameplay/VFX hook: the collider is already disabled at this point.
+            gameEvents.emit(GameEvent.ITEM_SWALLOW_ENTERED, item.id, item.consumeValue, item);
+        }
+    }
+
+    private updateSwallowingItems(dt: number): void {
+        for (let i = this._swallowing.length - 1; i >= 0; i--) {
+            const item = this._swallowing[i];
+            if (!item.node.active || item.isConsumed) {
+                this._swallowing.splice(i, 1);
+                continue;
+            }
+            if (!item.tickIngestionVisual(dt, this.rimScaleSpeed)) {
+                continue;
+            }
+
+            const id = item.id;
+            const value = item.consumeValue;
+            this.registry!.markConsumed(item);
+            this.holeSize!.addXp(value);
+            gameEvents.emit(GameEvent.ITEM_CONSUMED, id, value, item);
+            this._swallowing.splice(i, 1);
+        }
     }
 }

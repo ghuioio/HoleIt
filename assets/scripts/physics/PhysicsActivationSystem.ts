@@ -1,6 +1,8 @@
 import { _decorator, Collider, Component, Node, Vec3 } from 'cc';
 import { ItemRegistry } from '../items/ItemRegistry';
 import { ItemRuntime } from '../items/ItemRuntime';
+import { StackController } from '../items/StackController';
+import { HoleSizeController } from '../player/HoleSizeController';
 import { PhysicsGroup } from './PhysicsGroups';
 
 const { ccclass, property } = _decorator;
@@ -34,6 +36,9 @@ export class PhysicsActivationSystem extends Component {
     @property({ tooltip: 'Dynamic item must be slower than this before it can be frozen.' })
     public freezeSpeedThreshold = 0.12;
 
+    @property({ tooltip: 'Only unsupported stack pieces this close to the hole plane may activate directly.' })
+    public directStackActivationHeight = 0.28;
+
     private _timer = 0;
     private readonly _holePos = new Vec3();
     private readonly _itemPos = new Vec3();
@@ -41,6 +46,8 @@ export class PhysicsActivationSystem extends Component {
     private readonly _dynamic: ItemRuntime[] = [];
     private readonly _candidateDistance = new Map<ItemRuntime, number>();
     private readonly _candidateHeight = new Map<ItemRuntime, number>();
+    private _stackController: StackController | null = null;
+    private _holeSize: HoleSizeController | null = null;
 
     protected onLoad(): void {
         if (!this.groundCollider) {
@@ -66,6 +73,12 @@ export class PhysicsActivationSystem extends Component {
 
     private scan(): void {
         this.hole!.getWorldPosition(this._holePos);
+        if (!this._stackController) {
+            this._stackController = this.getComponent(StackController);
+        }
+        if (!this._holeSize) {
+            this._holeSize = this.hole!.getComponent(HoleSizeController);
+        }
 
         this.registry!.copyDynamicTo(this._dynamic);
         const freezeRadiusSq = this.freezeRadius * this.freezeRadius;
@@ -106,6 +119,16 @@ export class PhysicsActivationSystem extends Component {
 
             const item = this._nearby[i];
             if (!item.isDormant) {
+                continue;
+            }
+
+            if (this._stackController && !this._stackController.canActivate(
+                item,
+                this._holePos,
+                this._holeSize ? this._holeSize.radius : 0.75,
+                0.03,
+                this.directStackActivationHeight,
+            )) {
                 continue;
             }
 

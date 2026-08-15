@@ -14,6 +14,7 @@ export class ItemRegistry extends Component {
     private readonly _all = new Set<ItemRuntime>();
     private readonly _dynamic = new Set<ItemRuntime>();
     private _consumedCount = 0;
+    private _recycleHandler: ((item: ItemRuntime) => void) | null = null;
     private readonly _worldPos = new Vec3();
 
     public get totalCount(): number {
@@ -48,6 +49,10 @@ export class ItemRegistry extends Component {
         }
     }
 
+    public setRecycleHandler(handler: ((item: ItemRuntime) => void) | null): void {
+        this._recycleHandler = handler;
+    }
+
     public unregister(item: ItemRuntime): void {
         this._grid!.remove(item);
         this._dynamic.delete(item);
@@ -67,10 +72,16 @@ export class ItemRegistry extends Component {
     }
 
     public markConsumed(item: ItemRuntime): void {
+        if (item.isConsumed) {
+            return;
+        }
         this._grid!.remove(item);
         this._dynamic.delete(item);
         this._consumedCount++;
         item.markConsumed();
+        if (this._recycleHandler) {
+            this._recycleHandler(item);
+        }
         this.emitCounts();
     }
 
