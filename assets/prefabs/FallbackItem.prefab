@@ -195,7 +195,7 @@
     "itemId": "",
     "requiredHoleLevel": 1,
     "consumeValue": 1,
-    "consumeRadius": 0.18,
+    "consumeRadius": 0.5,
     "mass": 0.7,
     "linearDamping": 0.12,
     "angularDamping": 0.08,

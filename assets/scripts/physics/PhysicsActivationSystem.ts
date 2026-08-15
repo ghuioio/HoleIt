@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Vec3 } from 'cc';
+import { _decorator, Collider, Component, Node, Vec3 } from 'cc';
 import { ItemRegistry } from '../items/ItemRegistry';
 import { ItemRuntime } from '../items/ItemRuntime';
 
@@ -11,6 +11,9 @@ export class PhysicsActivationSystem extends Component {
 
     @property({ type: Node })
     public hole: Node | null = null;
+
+    @property({ type: Collider, tooltip: 'Static playfield collider. Assigned to the GROUND physics group at runtime.' })
+    public groundCollider: Collider | null = null;
 
     @property({ tooltip: 'Dormant items inside this radius become real dynamic physics bodies.' })
     public activationRadius = 5.5;
@@ -35,6 +38,15 @@ export class PhysicsActivationSystem extends Component {
     private readonly _itemPos = new Vec3();
     private readonly _nearby: ItemRuntime[] = [];
     private readonly _dynamic: ItemRuntime[] = [];
+
+    protected onLoad(): void {
+        if (!this.groundCollider) {
+            console.error('[PhysicsActivationSystem] Ground collider is not assigned. Dynamic items may fall through the map.');
+            return;
+        }
+
+        this.groundCollider.setGroup(PhysicsGroup.GROUND);
+    }
 
     protected update(dt: number): void {
         if (!this.registry || !this.hole) {

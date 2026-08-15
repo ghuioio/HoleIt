@@ -8,7 +8,7 @@ export class HoleVisual extends Component {
     public scaleRoot: Node | null = null;
 
     @property({ tooltip: 'Radius represented by scaleRoot scale = 1.' })
-    public baseRadius = 1.0;
+    public baseRadius = 0.5;
 
     private readonly _baseScale = new Vec3(1, 1, 1);
 

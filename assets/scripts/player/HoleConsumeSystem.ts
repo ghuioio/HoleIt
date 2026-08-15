@@ -20,11 +20,14 @@ export class HoleConsumeSystem extends Component {
     @property({ tooltip: 'Y coordinate of the visible hole surface.' })
     public holePlaneY = 0.03;
 
-    @property({ tooltip: 'Item center must fall below holePlaneY + this value before capture.' })
+    @property({ tooltip: 'Base vertical capture allowance. Item radius is added so grounded collider centers are not rejected.' })
     public captureHeight = 0.45;
 
     @property({ tooltip: 'Extra safety margin so large objects do not clip through the rim.' })
     public rimPadding = 0.04;
+
+    @property({ tooltip: 'Small horizontal allowance that makes valid captures responsive instead of requiring perfect centering.' })
+    public captureForgiveness = 0.1;
 
     @property({ tooltip: 'Horizontal pull speed while an item is falling through the Hole.' })
     public pullSpeed = 3.5;
@@ -72,17 +75,22 @@ export class HoleConsumeSystem extends Component {
             }
 
             item.node.getWorldPosition(this._itemPos);
-            if (this._itemPos.y > this.holePlaneY + this.captureHeight) {
+            const verticalLimit = this.holePlaneY + this.captureHeight + item.consumeRadius;
+            if (this._itemPos.y > verticalLimit) {
                 continue;
             }
 
-            const allowedRadius = Math.max(
-                0.02,
-                holeRadius - item.consumeRadius - this.rimPadding,
-            );
+            const allowedRadius = holeRadius
+                - item.consumeRadius
+                - this.rimPadding
+                + this.captureForgiveness;
+            if (allowedRadius <= 0) {
+                continue;
+            }
             const dx = this._itemPos.x - this._holePos.x;
             const dz = this._itemPos.z - this._holePos.z;
-            if ((dx * dx + dz * dz) > allowedRadius * allowedRadius) {
+            const captureRadius = Math.max(0.02, allowedRadius);
+            if ((dx * dx + dz * dz) > captureRadius * captureRadius) {
                 continue;
             }
 

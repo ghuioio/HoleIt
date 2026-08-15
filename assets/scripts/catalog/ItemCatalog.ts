@@ -4,7 +4,10 @@ const { ccclass, property } = _decorator;
 
 @ccclass('ItemCatalog')
 export class ItemCatalog extends Component {
-    @property({ type: [Prefab], tooltip: 'Drag all item prefabs here. Prefab asset name must match LevelData id, e.g. obj_9.' })
+    @property({ type: [CCString], tooltip: 'LevelData ID for each prefab at the same index in itemPrefabs.' })
+    public itemPrefabIds: string[] = [];
+
+    @property({ type: [Prefab], tooltip: 'Prefab for each ID at the same index in itemPrefabIds.' })
     public itemPrefabs: Prefab[] = [];
 
     @property({ type: Prefab, tooltip: 'Fallback visual used for IDs that have no supplied FBX.' })
@@ -30,7 +33,13 @@ export class ItemCatalog extends Component {
             if (!prefab) {
                 continue;
             }
-            this._map.set(prefab.name, prefab);
+
+            const id = this.itemPrefabIds[i] || prefab.name;
+            if (!id) {
+                console.warn(`[ItemCatalog] Prefab at index ${i} has no explicit LevelData ID.`);
+                continue;
+            }
+            this._map.set(id, prefab);
         }
 
         const count = Math.min(this.aliasIds.length, this.aliasPrefabs.length);
