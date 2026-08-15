@@ -10,6 +10,10 @@ import {
 import { PhysicsGroup } from '../physics/PhysicsGroups';
 
 const { ccclass, property } = _decorator;
+const FULL_LINEAR_FACTOR = new Vec3(1, 1, 1);
+const VERTICAL_LINEAR_FACTOR = new Vec3(0, 1, 0);
+const LOCKED_ANGULAR_FACTOR = new Vec3(0, 0, 0);
+const ZERO_VELOCITY = new Vec3(0, 0, 0);
 
 export enum ItemRuntimeState {
     Dormant = 0,
@@ -161,9 +165,28 @@ export class ItemRuntime extends Component {
         this._body.allowSleep = true;
         this._body.linearDamping = this.linearDamping;
         this._body.angularDamping = this.angularDamping;
+        this._body.linearFactor = FULL_LINEAR_FACTOR;
+        this._body.angularFactor = FULL_LINEAR_FACTOR;
         this._body.setGroup(PhysicsGroup.ITEM);
         this._body.wakeUp();
         this._state = ItemRuntimeState.Dynamic;
+        return true;
+    }
+
+    /**
+     * Releases a tower piece with Unity FreezePositionX/Z + FreezeRotation
+     * semantics. It remains in ITEM so it collides with and settles on GROUND.
+     */
+    public activateStackFall(): boolean {
+        if (!this.activateDynamic() || !this._body) {
+            return false;
+        }
+
+        this._body.useGravity = true;
+        this._body.linearFactor = VERTICAL_LINEAR_FACTOR;
+        this._body.angularFactor = LOCKED_ANGULAR_FACTOR;
+        this._body.setLinearVelocity(ZERO_VELOCITY);
+        this._body.wakeUp();
         return true;
     }
 
@@ -191,6 +214,9 @@ export class ItemRuntime extends Component {
         this._body.useGravity = true;
         this._body.linearDamping = Math.max(this.linearDamping, 0.35);
         this._body.angularDamping = Math.max(this.angularDamping, 0.8);
+        // Tower constraints end at vortex entry so the item can center itself.
+        this._body.linearFactor = FULL_LINEAR_FACTOR;
+        this._body.angularFactor = FULL_LINEAR_FACTOR;
         this._body.setGroup(PhysicsGroup.FALLING_ITEM);
 
         for (let i = 0; i < this._colliders.length; i++) {
@@ -371,6 +397,8 @@ export class ItemRuntime extends Component {
             this._body.type = ERigidBodyType.KINEMATIC;
             this._body.clearVelocity();
             this._body.clearForces();
+            this._body.linearFactor = FULL_LINEAR_FACTOR;
+            this._body.angularFactor = FULL_LINEAR_FACTOR;
             this._body.enabled = false;
         }
         for (let i = 0; i < this._colliders.length; i++) {

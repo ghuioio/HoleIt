@@ -11,10 +11,16 @@ interface StackEntry {
     z: number;
 }
 
+interface TowerStack {
+    /** Always ordered bottom-to-top; index 0 is the current base piece. */
+    pieces: ItemRuntime[];
+    collapsed: boolean;
+}
+
 /**
- * Builds cheap vertical-stack links after level spawning. Only the lowest
- * remaining item in a column may enter dynamic simulation. When it reaches the
- * inner swallow zone, the next item is released domino-style.
+ * Builds ordered vertical towers after level spawning. Towers stay dormant
+ * until their base enters the Hole, then every remaining piece is released at
+ * once with Y-only constrained physics.
  */
 @ccclass('StackController')
 export class StackController extends Component {
@@ -23,8 +29,7 @@ export class StackController extends Component {
 
     private _registry: ItemRegistry | null = null;
     private readonly _entries: StackEntry[] = [];
-    private readonly _below = new Map<ItemRuntime, ItemRuntime>();
-    private readonly _above = new Map<ItemRuntime, ItemRuntime>();
+    private readonly _towerByItem = new Map<ItemRuntime, TowerStack>();
     private readonly _worldPos = new Vec3();
     private _ready = false;
 
@@ -38,8 +43,7 @@ export class StackController extends Component {
 
     public resetStacks(): void {
         this._entries.length = 0;
-        this._below.clear();
-        this._above.clear();
+        this._towerByItem.clear();
         this._ready = false;
     }
 
@@ -74,11 +78,14 @@ export class StackController extends Component {
             }
 
             column.sort((a, b) => a.y - b.y);
-            for (let i = 1; i < column.length; i++) {
-                const lower = column[i - 1].item;
-                const upper = column[i].item;
-                this._below.set(upper, lower);
-                this._above.set(lower, upper);
+            const tower: TowerStack = {
+                pieces: [],
+                collapsed: false,
+            };
+            for (let i = 0; i < column.length; i++) {
+                const piece = column[i].item;
+                tower.pieces.push(piece);
+                this._towerByItem.set(piece, tower);
             }
         });
 
@@ -87,50 +94,52 @@ export class StackController extends Component {
     }
 
     /**
-     * Reject upper tower pieces while their support still exists. A very low
-     * piece directly over the opening may also activate, which handles short,
-     * irregular piles without waking the whole column.
+     * Before collapse, only index 0 (the bottom piece) can activate. Once the
+     * base enters the Hole, onItemEnteredSwallow activates the whole remainder.
      */
-    public canActivate(
-        item: ItemRuntime,
-        holePosition: Vec3,
-        holeRadius: number,
-        holePlaneY: number,
-        directActivationHeight: number,
-    ): boolean {
+    public canActivate(item: ItemRuntime): boolean {
         if (!this._ready) {
             return false;
         }
 
-        const lower = this._below.get(item);
-        if (!lower || lower.isSwallowing || lower.isConsumed) {
+        const tower = this._towerByItem.get(item);
+        if (!tower) {
             return true;
         }
-
-        item.node.getWorldPosition(this._worldPos);
-        if (this._worldPos.y > holePlaneY + directActivationHeight) {
-            return false;
-        }
-
-        const dx = this._worldPos.x - holePosition.x;
-        const dz = this._worldPos.z - holePosition.z;
-        const proximity = Math.max(0.05, holeRadius - item.consumeRadius);
-        return (dx * dx + dz * dz) <= proximity * proximity;
+        return tower.collapsed || tower.pieces[0] === item;
     }
 
-    /** Release exactly one piece above the swallowed base. */
+    /**
+     * Remove the current base, then release every piece above it. Released
+     * bodies stay in ITEM so they collide with the ground if the Hole leaves.
+     */
     public onItemEnteredSwallow(item: ItemRuntime): void {
         if (!this._registry) {
             return;
         }
 
-        const upper = this._above.get(item);
-        if (!upper || !upper.isDormant) {
+        const tower = this._towerByItem.get(item);
+        if (!tower) {
             return;
         }
 
-        if (upper.activateDynamic()) {
-            this._registry.markDynamic(upper);
+        const index = tower.pieces.indexOf(item);
+        if (index < 0) {
+            return;
+        }
+
+        tower.pieces.splice(index, 1);
+        this._towerByItem.delete(item);
+        if (index !== 0 || tower.collapsed) {
+            return;
+        }
+
+        tower.collapsed = true;
+        for (let i = 0; i < tower.pieces.length; i++) {
+            const piece = tower.pieces[i];
+            if (piece.isDormant && piece.activateStackFall()) {
+                this._registry.markDynamic(piece);
+            }
         }
     }
 }
