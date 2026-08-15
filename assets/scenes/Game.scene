@@ -2327,11 +2327,11 @@
     "groundCollider": {
       "__id__": 9
     },
-    "activationRadius": 5.5,
-    "freezeRadius": 8.5,
+    "activationRadius": 2.4,
+    "freezeRadius": 3.2,
     "scanInterval": 0.06,
-    "maxDynamicBodies": 260,
-    "maxActivationsPerScan": 80,
+    "maxDynamicBodies": 180,
+    "maxActivationsPerScan": 60,
     "freezeSpeedThreshold": 0.12,
     "_id": "daBD4uUJBEML/v9VbDumbd"
   },
@@ -2583,6 +2583,8 @@
     "endCard": {
       "__id__": 77
     },
+    "endOnObjectives": false,
+    "endOnTimer": false,
     "_id": "b1SZDW3AtGD5CXQIYAoGw2"
   },
   {

@@ -26,6 +26,12 @@ export class GameFlowController extends Component {
     @property({ type: EndCardController })
     public endCard: EndCardController | null = null;
 
+    @property({ tooltip: 'Disable for no-limit gameplay so objectives never lock movement.' })
+    public endOnObjectives = false;
+
+    @property({ tooltip: 'Disable for no-limit gameplay so timer expiry never locks movement.' })
+    public endOnTimer = false;
+
     private _state: GameState = GameState.Boot;
 
     public get state(): GameState {
@@ -95,14 +101,14 @@ export class GameFlowController extends Component {
     }
 
     private onAllObjectivesCompleted(): void {
-        if (this._state !== GameState.Playing) {
+        if (!this.endOnObjectives || this._state !== GameState.Playing) {
             return;
         }
         this.finishWin();
     }
 
     private onTimerExpired(): void {
-        if (this._state !== GameState.Playing) {
+        if (!this.endOnTimer || this._state !== GameState.Playing) {
             return;
         }
         this.finishLose();

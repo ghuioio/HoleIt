@@ -1,6 +1,7 @@
 import { _decorator, Collider, Component, Node, Vec3 } from 'cc';
 import { ItemRegistry } from '../items/ItemRegistry';
 import { ItemRuntime } from '../items/ItemRuntime';
+import { PhysicsGroup } from './PhysicsGroups';
 
 const { ccclass, property } = _decorator;
 
@@ -16,19 +17,19 @@ export class PhysicsActivationSystem extends Component {
     public groundCollider: Collider | null = null;
 
     @property({ tooltip: 'Dormant items inside this radius become real dynamic physics bodies.' })
-    public activationRadius = 5.5;
+    public activationRadius = 2.4;
 
     @property({ tooltip: 'Settled items farther than this radius are frozen back to cheap dormant state.' })
-    public freezeRadius = 8.5;
+    public freezeRadius = 3.2;
 
     @property({ tooltip: 'How often spatial activation/freeze checks run.' })
     public scanInterval = 0.06;
 
     @property({ tooltip: 'Safety cap for simultaneously simulated bodies.' })
-    public maxDynamicBodies = 260;
+    public maxDynamicBodies = 180;
 
     @property({ tooltip: 'Maximum dormant objects activated in one scan.' })
-    public maxActivationsPerScan = 80;
+    public maxActivationsPerScan = 60;
 
     @property({ tooltip: 'Dynamic item must be slower than this before it can be frozen.' })
     public freezeSpeedThreshold = 0.12;
@@ -38,6 +39,8 @@ export class PhysicsActivationSystem extends Component {
     private readonly _itemPos = new Vec3();
     private readonly _nearby: ItemRuntime[] = [];
     private readonly _dynamic: ItemRuntime[] = [];
+    private readonly _candidateDistance = new Map<ItemRuntime, number>();
+    private readonly _candidateHeight = new Map<ItemRuntime, number>();
 
     protected onLoad(): void {
         if (!this.groundCollider) {
@@ -93,6 +96,7 @@ export class PhysicsActivationSystem extends Component {
 
         this.registry!.queryDormant(this._holePos, this.activationRadius, this._nearby);
         const radiusSq = this.activationRadius * this.activationRadius;
+        this.sortNearbyCandidates(radiusSq);
         let activated = 0;
 
         for (let i = 0; i < this._nearby.length; i++) {
@@ -105,18 +109,46 @@ export class PhysicsActivationSystem extends Component {
                 continue;
             }
 
-            item.node.getWorldPosition(this._itemPos);
-            const dx = this._itemPos.x - this._holePos.x;
-            const dz = this._itemPos.z - this._holePos.z;
-            if ((dx * dx + dz * dz) > radiusSq) {
-                continue;
-            }
-
             if (item.activateDynamic()) {
                 this.registry!.markDynamic(item);
                 activated++;
                 available--;
             }
         }
+    }
+
+    /** Keep the physics budget on the tower under the Hole, starting at its base. */
+    private sortNearbyCandidates(radiusSq: number): void {
+        this._candidateDistance.clear();
+        this._candidateHeight.clear();
+
+        let writeIndex = 0;
+        for (let i = 0; i < this._nearby.length; i++) {
+            const item = this._nearby[i];
+            if (!item.isDormant) {
+                continue;
+            }
+
+            item.node.getWorldPosition(this._itemPos);
+            const dx = this._itemPos.x - this._holePos.x;
+            const dz = this._itemPos.z - this._holePos.z;
+            const distanceSq = dx * dx + dz * dz;
+            if (distanceSq > radiusSq) {
+                continue;
+            }
+
+            this._candidateDistance.set(item, distanceSq);
+            this._candidateHeight.set(item, this._itemPos.y);
+            this._nearby[writeIndex++] = item;
+        }
+        this._nearby.length = writeIndex;
+
+        this._nearby.sort((a, b) => {
+            const distanceDelta = this._candidateDistance.get(a)! - this._candidateDistance.get(b)!;
+            if (Math.abs(distanceDelta) > 0.0001) {
+                return distanceDelta;
+            }
+            return this._candidateHeight.get(a)! - this._candidateHeight.get(b)!;
+        });
     }
 }
