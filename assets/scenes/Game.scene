@@ -2942,8 +2942,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -16.186,
-      "y": 176.431,
+      "x": 0,
+      "y": -80.419,
       "z": 0
     },
     "_lrot": {
@@ -2955,8 +2955,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.5,
+      "y": 0.5,
       "z": 1
     },
     "_layer": 33554432,
@@ -4097,13 +4097,21 @@
       "__id__": 121
     },
     "holePlaneY": 0.03,
-    "captureHeight": 0.45,
+    "outerPadding": 0.42,
+    "outerCaptureHeight": 1.45,
+    "innerDepth": 0.12,
+    "rimScale": 0.76,
+    "rimScaleSpeed": 11,
+    "inwardAcceleration": 32,
+    "downwardAcceleration": 44,
+    "maxPullSpeed": 6.5,
+    "maxDownSpeed": 9,
+    "swallowDuration": 0.15,
     "rimPadding": 0.04,
     "captureForgiveness": 0.1,
-    "pullSpeed": 3.5,
-    "downSpeed": 5.5,
     "killDepth": 1.8,
     "captureScanInterval": 0.025,
+    "maxPriorityActivationsPerScan": 24,
     "_id": "5dybdXFPNFJKx9fqybLnDE"
   },
   {

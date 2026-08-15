@@ -118,7 +118,11 @@ export class PhysicsActivationSystem extends Component {
                 continue;
             }
 
-            if (item.activateDynamic()) {
+            const activated = this._stackController
+                && this._stackController.isCollapsedTowerPiece(item)
+                ? item.activateStackFall()
+                : item.activateDynamic();
+            if (activated) {
                 this.registry!.markDynamic(item);
                 activated++;
                 available--;

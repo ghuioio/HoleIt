@@ -183,6 +183,7 @@ export class ItemRuntime extends Component {
         }
 
         this._body.useGravity = true;
+        this._body.sleepThreshold = 0.35;
         this._body.linearFactor = VERTICAL_LINEAR_FACTOR;
         this._body.angularFactor = LOCKED_ANGULAR_FACTOR;
         this._body.setLinearVelocity(ZERO_VELOCITY);

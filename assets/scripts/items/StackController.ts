@@ -109,6 +109,11 @@ export class StackController extends Component {
         return tower.collapsed || tower.pieces[0] === item;
     }
 
+    public isCollapsedTowerPiece(item: ItemRuntime): boolean {
+        const tower = this._towerByItem.get(item);
+        return !!tower && tower.collapsed;
+    }
+
     /**
      * Remove the current base, then release every piece above it. Released
      * bodies stay in ITEM so they collide with the ground if the Hole leaves.

@@ -70,9 +70,13 @@ export class HoleConsumeSystem extends Component {
     @property({ tooltip: 'How often dynamic items are tested for outer-vortex entry.' })
     public captureScanInterval = 0.025;
 
+    @property({ tooltip: 'Maximum budget-bypass wakes per capture scan to avoid a physics spike.' })
+    public maxPriorityActivationsPerScan = 24;
+
     private _captureTimer = 0;
     private _stackController: StackController | null = null;
     private readonly _dynamic: ItemRuntime[] = [];
+    private readonly _dormantNearby: ItemRuntime[] = [];
     private readonly _vortex: ItemRuntime[] = [];
     private readonly _swallowing: ItemRuntime[] = [];
     private readonly _holePos = new Vec3();
@@ -108,45 +112,101 @@ export class HoleConsumeSystem extends Component {
     }
 
     private captureOuterVortexItems(): void {
-        this.registry!.copyDynamicTo(this._dynamic);
         const holeRadius = this.holeSize!.radius;
         const holeLevel = this.holeSize!.level;
         const shrunkScale = Math.min(1, Math.max(0.5, this.rimScale));
 
-        for (let i = 0; i < this._dynamic.length; i++) {
-            const item = this._dynamic[i];
-            if (!item.isDynamic || item.requiredHoleLevel > holeLevel) {
-                continue;
+        // Critical gameplay path: objects inside the Hole must not be blocked
+        // by the global dynamic-body budget. Query the dormant spatial grid and
+        // directly wake only eligible tower bases that are already in range.
+        const dormantQueryRadius = holeRadius
+            + Math.max(0.05, this.outerPadding)
+            + this.captureForgiveness;
+        this.registry!.queryDormant(this._holePos, dormantQueryRadius, this._dormantNearby);
+        let priorityActivations = 0;
+        for (let i = 0; i < this._dormantNearby.length; i++) {
+            if (priorityActivations >= Math.max(1, this.maxPriorityActivationsPerScan)) {
+                break;
             }
-
-            item.node.getWorldPosition(this._itemPos);
-            if (this._itemPos.y > this.holePlaneY + this.outerCaptureHeight + item.consumeRadius) {
-                continue;
-            }
-
-            // Fit is evaluated at the anti-jam rim scale, matching what is
-            // visually and physically entering the opening.
-            const effectiveRadius = item.consumeRadius * shrunkScale;
-            const innerRadius = holeRadius
-                - effectiveRadius
-                - this.rimPadding
-                + this.captureForgiveness;
-            if (innerRadius <= 0) {
-                continue;
-            }
-
-            const dx = this._itemPos.x - this._holePos.x;
-            const dz = this._itemPos.z - this._holePos.z;
-            const outerRadius = innerRadius + Math.max(0.05, this.outerPadding);
-            if ((dx * dx + dz * dz) > outerRadius * outerRadius) {
-                continue;
-            }
-
-            if (item.beginVortex(shrunkScale, this._zeroFrictionMaterial)) {
-                this._vortex.push(item);
-                gameEvents.emit(GameEvent.ITEM_CONSUME_STARTED, item.id, item);
+            if (this.tryEnterOuterVortex(
+                this._dormantNearby[i],
+                holeRadius,
+                holeLevel,
+                shrunkScale,
+                true,
+            )) {
+                priorityActivations++;
             }
         }
+
+        this.registry!.copyDynamicTo(this._dynamic);
+        for (let i = 0; i < this._dynamic.length; i++) {
+            this.tryEnterOuterVortex(
+                this._dynamic[i],
+                holeRadius,
+                holeLevel,
+                shrunkScale,
+                false,
+            );
+        }
+    }
+
+    private tryEnterOuterVortex(
+        item: ItemRuntime,
+        holeRadius: number,
+        holeLevel: number,
+        shrunkScale: number,
+        allowDormantActivation: boolean,
+    ): boolean {
+        if ((!item.isDynamic && !item.isDormant) || item.requiredHoleLevel > holeLevel) {
+            return false;
+        }
+
+        item.node.getWorldPosition(this._itemPos);
+        if (this._itemPos.y > this.holePlaneY + this.outerCaptureHeight + item.consumeRadius) {
+            return false;
+        }
+
+        // Fit is evaluated at the anti-jam rim scale, matching what is
+        // visually and physically entering the opening.
+        const effectiveRadius = item.consumeRadius * shrunkScale;
+        const innerRadius = holeRadius
+            - effectiveRadius
+            - this.rimPadding
+            + this.captureForgiveness;
+        if (innerRadius <= 0) {
+            return false;
+        }
+
+        const dx = this._itemPos.x - this._holePos.x;
+        const dz = this._itemPos.z - this._holePos.z;
+        const outerRadius = innerRadius + Math.max(0.05, this.outerPadding);
+        if ((dx * dx + dz * dz) > outerRadius * outerRadius) {
+            return false;
+        }
+
+        if (item.isDormant) {
+            if (!allowDormantActivation
+                || !this._stackController
+                || !this._stackController.canActivate(item)) {
+                return false;
+            }
+
+            const activated = this._stackController.isCollapsedTowerPiece(item)
+                ? item.activateStackFall()
+                : item.activateDynamic();
+            if (!activated) {
+                return false;
+            }
+            this.registry!.markDynamic(item);
+        }
+
+        if (item.beginVortex(shrunkScale, this._zeroFrictionMaterial)) {
+            this._vortex.push(item);
+            gameEvents.emit(GameEvent.ITEM_CONSUME_STARTED, item.id, item);
+            return true;
+        }
+        return false;
     }
 
     /** Hot physics loop: all bodies/components and temporary vectors are cached. */
