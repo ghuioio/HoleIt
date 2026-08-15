@@ -1,13 +1,10 @@
-import { _decorator, Canvas, Component, EventTouch, Node, UITransform, Vec2, Vec3 } from 'cc';
+import { _decorator, Canvas, Component, EventTouch, Node, UIOpacity, UITransform, Vec2, Vec3 } from 'cc';
 import { GameEvent, gameEvents } from '../core/GameEvents';
 
 const { ccclass, property } = _decorator;
 
 @ccclass('JoystickInput')
 export class JoystickInput extends Component {
-    @property({ type: Node, tooltip: 'Root to move and show for a dynamic joystick. Leave empty to use this node.' })
-    public visualRoot: Node | null = null;
-
     @property({ type: Node, tooltip: 'Joystick handle child node.' })
     public handle: Node | null = null;
 
@@ -27,6 +24,7 @@ export class JoystickInput extends Component {
     private _touchId = -1;
     private _sentFirstInput = false;
     private _inputNode: Node | null = null;
+    private _visualOpacity: UIOpacity | null = null;
 
     public getDirection(out: Vec2): Vec2 {
         out.set(this._direction.x, this._direction.y);
@@ -53,6 +51,10 @@ export class JoystickInput extends Component {
     }
 
     protected onLoad(): void {
+        // This component's node is the visible joystick center. Moving a parent
+        // wrapper would keep any authored child offset (such as Joystick's
+        // original bottom-left position), so move and fade this node directly.
+        this._visualOpacity = this.node.getComponent(UIOpacity) ?? this.node.addComponent(UIOpacity);
         this.setJoystickVisible(false);
     }
 
@@ -166,8 +168,7 @@ export class JoystickInput extends Component {
             return;
         }
 
-        const root = this.visualRoot ?? this.node;
-        const parentTransform = root.parent?.getComponent(UITransform);
+        const parentTransform = this.node.parent?.getComponent(UITransform);
         if (!parentTransform) {
             return;
         }
@@ -175,11 +176,13 @@ export class JoystickInput extends Component {
         event.getUILocation(this._uiPos);
         this._uiWorld.set(this._uiPos.x, this._uiPos.y, 0);
         parentTransform.convertToNodeSpaceAR(this._uiWorld, this._localPos);
-        root.setPosition(this._localPos);
+        this.node.setPosition(this._localPos);
     }
 
     private setJoystickVisible(visible: boolean): void {
-        const root = this.visualRoot ?? this.node;
-        root.active = this.dynamicJoystick ? visible : true;
+        if (!this._visualOpacity) {
+            this._visualOpacity = this.node.getComponent(UIOpacity) ?? this.node.addComponent(UIOpacity);
+        }
+        this._visualOpacity.opacity = this.dynamicJoystick && !visible ? 0 : 255;
     }
 }
