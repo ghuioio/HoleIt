@@ -34,43 +34,6 @@
       "__unresolved_1": "./mods/fs/0/assets/scripts/items/ItemManager.js",
       "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
-    "./mods/cce/internal/x/prerequisite-imports.js": {
-      "__unresolved_0": "./mods/fs/0/assets/HMAssets/Scripts/decryptContent.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/audio/GameAudioController.js",
-      "__unresolved_2": "./mods/fs/0/assets/scripts/camera/CameraFollow.js",
-      "__unresolved_3": "./mods/fs/0/assets/scripts/catalog/ItemCatalog.js",
-      "__unresolved_4": "./mods/fs/0/assets/scripts/core/GameEvents.js",
-      "__unresolved_6": "./mods/fs/0/assets/scripts/core/GameState.js",
-      "__unresolved_5": "./mods/fs/0/assets/scripts/core/GameFlowController.js",
-      "__unresolved_8": "./mods/fs/0/assets/scripts/data/LevelDataTypes.js",
-      "__unresolved_7": "./mods/fs/0/assets/scripts/data/LevelDataLoader.js",
-      "__unresolved_10": "./mods/fs/0/assets/scripts/data/UnityTransformConverter.js",
-      "__unresolved_11": "./mods/fs/0/assets/scripts/gameplay/ObjectiveManager.js",
-      "__unresolved_9": "./mods/fs/0/assets/scripts/data/SimpleDecrypt.js",
-      "__unresolved_12": "./mods/fs/0/assets/scripts/gameplay/TimerController.js",
-      "__unresolved_13": "./mods/fs/0/assets/scripts/input/JoystickInput.js",
-      "__unresolved_14": "./mods/fs/0/assets/scripts/input/JoystickVisual.js",
-      "__unresolved_15": "./mods/fs/0/assets/scripts/items/ItemRegistry.js",
-      "__unresolved_16": "./mods/fs/0/assets/scripts/items/ItemRuntime.js",
-      "__unresolved_17": "./mods/fs/0/assets/scripts/items/ItemSpawner.js",
-      "__unresolved_18": "./mods/fs/0/assets/scripts/physics/PhysicsActivationSystem.js",
-      "__unresolved_19": "./mods/fs/0/assets/scripts/physics/PhysicsGroups.js",
-      "__unresolved_20": "./mods/fs/0/assets/scripts/player/HoleConsumeSystem.js",
-      "__unresolved_21": "./mods/fs/0/assets/scripts/player/HoleMovement.js",
-      "__unresolved_22": "./mods/fs/0/assets/scripts/player/HoleSizeController.js",
-      "__unresolved_23": "./mods/fs/0/assets/scripts/player/HoleVisual.js",
-      "__unresolved_24": "./mods/fs/0/assets/scripts/spatial/SpatialHashGrid.js",
-      "__unresolved_25": "./mods/fs/0/assets/scripts/ui/CTAButton.js",
-      "__unresolved_27": "./mods/fs/0/assets/scripts/ui/EndCardController.js",
-      "__unresolved_26": "./mods/fs/0/assets/scripts/ui/DebugHUD.js",
-      "__unresolved_28": "./mods/fs/0/assets/scripts/ui/HoleLevelUI.js",
-      "__unresolved_29": "./mods/fs/0/assets/scripts/ui/ObjectiveUI.js",
-      "__unresolved_31": "./mods/fs/0/assets/scripts/ui/TimerUI.js",
-      "__unresolved_30": "./mods/fs/0/assets/scripts/ui/SpawnProgressUI.js",
-      "__unresolved_32": "./mods/fs/0/assets/scripts/ui/TutorialPointerAnimator.js",
-      "__unresolved_33": "./mods/fs/0/assets/scripts/ui/TutorialUI.js",
-      "__unresolved_34": "./mods/fs/0/assets/scripts/vfx/SizeUpVFX.js"
-    },
     "./mods/fs/0/assets/HMAssets/Scripts/decryptContent.js": {
       "cc": "./mods/cce/internal/x/cc.js"
     },
@@ -79,8 +42,8 @@
     },
     "./mods/fs/0/assets/scripts/audio/GameAudioController.js": {
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/catalog/ItemCatalog.js": {
       "cc": "./mods/cce/internal/x/cc.js"
@@ -92,7 +55,6 @@
       "cc": "./mods/cce/internal/x/cc.js"
     },
     "./mods/fs/0/assets/scripts/core/GameFlowController.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
       "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
       "__unresolved_2": "./mods/fs/0/assets/scripts/core/GameState.js",
@@ -100,13 +62,14 @@
       "__unresolved_7": "./mods/fs/0/assets/scripts/input/JoystickInput.js",
       "__unresolved_3": "./mods/fs/0/assets/scripts/player/HoleMovement.js",
       "__unresolved_6": "./mods/fs/0/assets/scripts/ui/EndCardController.js",
-      "__unresolved_5": "./mods/fs/0/assets/scripts/ui/TutorialUI.js"
+      "__unresolved_5": "./mods/fs/0/assets/scripts/ui/TutorialUI.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/data/LevelDataLoader.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
       "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
-      "__unresolved_2": "./mods/fs/0/assets/scripts/data/SimpleDecrypt.js"
+      "__unresolved_2": "./mods/fs/0/assets/scripts/data/SimpleDecrypt.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/data/LevelDataTypes.js": {
       "cc": "./mods/cce/internal/x/cc.js"
@@ -115,81 +78,81 @@
       "cc": "./mods/cce/internal/x/cc.js"
     },
     "./mods/fs/0/assets/scripts/data/UnityTransformConverter.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
-      "cc": "./mods/cce/internal/x/cc.js"
+      "cc": "./mods/cce/internal/x/cc.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/gameplay/TimerController.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/gameplay/ObjectiveManager.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/input/JoystickInput.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/items/ItemRuntime.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/physics/PhysicsGroups.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/physics/PhysicsGroups.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/input/JoystickVisual.js": {
       "cc": "./mods/cce/internal/x/cc.js"
     },
     "./mods/fs/0/assets/scripts/player/HoleConsumeSystem.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
       "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
       "__unresolved_2": "./mods/fs/0/assets/scripts/items/ItemRegistry.js",
-      "__unresolved_3": "./mods/fs/0/assets/scripts/player/HoleSizeController.js"
+      "__unresolved_3": "./mods/fs/0/assets/scripts/player/HoleSizeController.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/player/HoleMovement.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/input/JoystickInput.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/input/JoystickInput.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/items/ItemRegistry.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
       "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
-      "__unresolved_2": "./mods/fs/0/assets/scripts/spatial/SpatialHashGrid.js"
+      "__unresolved_2": "./mods/fs/0/assets/scripts/spatial/SpatialHashGrid.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/physics/PhysicsActivationSystem.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/items/ItemRegistry.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/items/ItemRegistry.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/items/ItemSpawner.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
       "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
       "__unresolved_2": "./mods/fs/0/assets/scripts/catalog/ItemCatalog.js",
       "__unresolved_3": "./mods/fs/0/assets/scripts/data/LevelDataLoader.js",
       "__unresolved_4": "./mods/fs/0/assets/scripts/data/UnityTransformConverter.js",
       "__unresolved_5": "./mods/fs/0/assets/scripts/items/ItemRegistry.js",
-      "__unresolved_6": "./mods/fs/0/assets/scripts/items/ItemRuntime.js"
+      "__unresolved_6": "./mods/fs/0/assets/scripts/items/ItemRuntime.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/physics/PhysicsGroups.js": {
       "cc": "./mods/cce/internal/x/cc.js"
     },
     "./mods/fs/0/assets/scripts/ui/DebugHUD.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/player/HoleVisual.js": {
       "cc": "./mods/cce/internal/x/cc.js"
     },
     "./mods/fs/0/assets/scripts/player/HoleSizeController.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
       "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
-      "__unresolved_2": "./mods/fs/0/assets/scripts/player/HoleVisual.js"
+      "__unresolved_2": "./mods/fs/0/assets/scripts/player/HoleVisual.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/ui/EndCardController.js": {
       "cc": "./mods/cce/internal/x/cc.js"
@@ -198,25 +161,25 @@
       "cc": "./mods/cce/internal/x/cc.js"
     },
     "./mods/fs/0/assets/scripts/ui/ObjectiveUI.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
       "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
-      "__unresolved_2": "./mods/fs/0/assets/scripts/gameplay/ObjectiveManager.js"
+      "__unresolved_2": "./mods/fs/0/assets/scripts/gameplay/ObjectiveManager.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/ui/TimerUI.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/ui/HoleLevelUI.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/ui/SpawnProgressUI.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/ui/TutorialUI.js": {
       "cc": "./mods/cce/internal/x/cc.js"
@@ -225,9 +188,9 @@
       "cc": "./mods/cce/internal/x/cc.js"
     },
     "./mods/fs/0/assets/scripts/vfx/SizeUpVFX.js": {
-      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js",
       "cc": "./mods/cce/internal/x/cc.js",
-      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js"
+      "__unresolved_1": "./mods/fs/0/assets/scripts/core/GameEvents.js",
+      "__unresolved_0": "./mods/cce/internal/code-quality/cr.js"
     },
     "./mods/fs/0/assets/scripts/ui/TutorialPointerAnimator.js": {
       "cc": "./mods/cce/internal/x/cc.js"
@@ -246,6 +209,43 @@
       "__unresolved_10": "cce:/internal/x/cc-fu/tiled-map",
       "__unresolved_11": "cce:/internal/x/cc-fu/tween",
       "__unresolved_12": "cce:/internal/x/cc-fu/ui"
+    },
+    "./mods/cce/internal/x/prerequisite-imports.js": {
+      "__unresolved_0": "./mods/fs/0/assets/HMAssets/Scripts/decryptContent.js",
+      "__unresolved_1": "./mods/fs/0/assets/scripts/audio/GameAudioController.js",
+      "__unresolved_2": "./mods/fs/0/assets/scripts/camera/CameraFollow.js",
+      "__unresolved_4": "./mods/fs/0/assets/scripts/core/GameEvents.js",
+      "__unresolved_3": "./mods/fs/0/assets/scripts/catalog/ItemCatalog.js",
+      "__unresolved_5": "./mods/fs/0/assets/scripts/core/GameFlowController.js",
+      "__unresolved_6": "./mods/fs/0/assets/scripts/core/GameState.js",
+      "__unresolved_7": "./mods/fs/0/assets/scripts/data/LevelDataLoader.js",
+      "__unresolved_8": "./mods/fs/0/assets/scripts/data/LevelDataTypes.js",
+      "__unresolved_9": "./mods/fs/0/assets/scripts/data/SimpleDecrypt.js",
+      "__unresolved_10": "./mods/fs/0/assets/scripts/data/UnityTransformConverter.js",
+      "__unresolved_11": "./mods/fs/0/assets/scripts/gameplay/ObjectiveManager.js",
+      "__unresolved_12": "./mods/fs/0/assets/scripts/gameplay/TimerController.js",
+      "__unresolved_13": "./mods/fs/0/assets/scripts/input/JoystickInput.js",
+      "__unresolved_14": "./mods/fs/0/assets/scripts/input/JoystickVisual.js",
+      "__unresolved_15": "./mods/fs/0/assets/scripts/items/ItemRegistry.js",
+      "__unresolved_17": "./mods/fs/0/assets/scripts/items/ItemSpawner.js",
+      "__unresolved_16": "./mods/fs/0/assets/scripts/items/ItemRuntime.js",
+      "__unresolved_18": "./mods/fs/0/assets/scripts/physics/PhysicsActivationSystem.js",
+      "__unresolved_19": "./mods/fs/0/assets/scripts/physics/PhysicsGroups.js",
+      "__unresolved_20": "./mods/fs/0/assets/scripts/player/HoleConsumeSystem.js",
+      "__unresolved_21": "./mods/fs/0/assets/scripts/player/HoleMovement.js",
+      "__unresolved_22": "./mods/fs/0/assets/scripts/player/HoleSizeController.js",
+      "__unresolved_23": "./mods/fs/0/assets/scripts/player/HoleVisual.js",
+      "__unresolved_24": "./mods/fs/0/assets/scripts/spatial/SpatialHashGrid.js",
+      "__unresolved_25": "./mods/fs/0/assets/scripts/ui/CTAButton.js",
+      "__unresolved_26": "./mods/fs/0/assets/scripts/ui/DebugHUD.js",
+      "__unresolved_27": "./mods/fs/0/assets/scripts/ui/EndCardController.js",
+      "__unresolved_28": "./mods/fs/0/assets/scripts/ui/HoleLevelUI.js",
+      "__unresolved_29": "./mods/fs/0/assets/scripts/ui/ObjectiveUI.js",
+      "__unresolved_31": "./mods/fs/0/assets/scripts/ui/TimerUI.js",
+      "__unresolved_30": "./mods/fs/0/assets/scripts/ui/SpawnProgressUI.js",
+      "__unresolved_32": "./mods/fs/0/assets/scripts/ui/TutorialPointerAnimator.js",
+      "__unresolved_33": "./mods/fs/0/assets/scripts/ui/TutorialUI.js",
+      "__unresolved_34": "./mods/fs/0/assets/scripts/vfx/SizeUpVFX.js"
     }
   }
 }

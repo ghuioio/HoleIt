@@ -1,6 +1,6 @@
 {
   "cce:/internal/x/cc": {
-    "mTimestamp": 7582.678399999626,
+    "mTimestamp": 21704.093800000846,
     "chunkId": "quick-pack:/cce/internal/x/cc.js",
     "imports": [
       {
@@ -389,11 +389,11 @@
     ]
   },
   "cce:/internal/x/prerequisite-imports": {
-    "mTimestamp": 27035.97609999962,
+    "mTimestamp": 35613.6557,
     "chunkId": "quick-pack:/cce/internal/x/prerequisite-imports.js",
     "imports": [
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/HMAssets/Scripts/decryptContent.ts",
+        "value": "file:///D:/HoleIt/assets/HMAssets/Scripts/decryptContent.ts",
         "rewritten": "__unresolved_0",
         "loc": {
           "start": {
@@ -402,483 +402,483 @@
           },
           "end": {
             "line": 5,
-            "column": 106
+            "column": 96
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/audio/GameAudioController.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/audio/GameAudioController.ts",
         "rewritten": "__unresolved_1",
         "loc": {
           "start": {
             "line": 5,
-            "column": 122
+            "column": 112
           },
           "end": {
             "line": 5,
-            "column": 195
+            "column": 175
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/camera/CameraFollow.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/camera/CameraFollow.ts",
         "rewritten": "__unresolved_2",
         "loc": {
           "start": {
             "line": 5,
-            "column": 211
+            "column": 191
           },
           "end": {
             "line": 5,
-            "column": 278
+            "column": 248
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/catalog/ItemCatalog.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/catalog/ItemCatalog.ts",
         "rewritten": "__unresolved_3",
         "loc": {
           "start": {
             "line": 5,
-            "column": 294
+            "column": 264
           },
           "end": {
             "line": 5,
-            "column": 361
+            "column": 321
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/core/GameEvents.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts",
         "rewritten": "__unresolved_4",
         "loc": {
           "start": {
             "line": 5,
-            "column": 377
+            "column": 337
           },
           "end": {
             "line": 5,
-            "column": 440
+            "column": 390
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/core/GameFlowController.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/core/GameFlowController.ts",
         "rewritten": "__unresolved_5",
         "loc": {
           "start": {
             "line": 5,
-            "column": 456
+            "column": 406
           },
           "end": {
             "line": 5,
-            "column": 527
+            "column": 467
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/core/GameState.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/core/GameState.ts",
         "rewritten": "__unresolved_6",
         "loc": {
           "start": {
             "line": 5,
-            "column": 543
+            "column": 483
           },
           "end": {
             "line": 5,
-            "column": 605
+            "column": 535
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/data/LevelDataLoader.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/data/LevelDataLoader.ts",
         "rewritten": "__unresolved_7",
         "loc": {
           "start": {
             "line": 5,
-            "column": 621
+            "column": 551
           },
           "end": {
             "line": 5,
-            "column": 689
+            "column": 609
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/data/LevelDataTypes.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/data/LevelDataTypes.ts",
         "rewritten": "__unresolved_8",
         "loc": {
           "start": {
             "line": 5,
-            "column": 705
+            "column": 625
           },
           "end": {
             "line": 5,
-            "column": 772
+            "column": 682
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/data/SimpleDecrypt.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/data/SimpleDecrypt.ts",
         "rewritten": "__unresolved_9",
         "loc": {
           "start": {
             "line": 5,
-            "column": 788
+            "column": 698
           },
           "end": {
             "line": 5,
-            "column": 854
+            "column": 754
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/data/UnityTransformConverter.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/data/UnityTransformConverter.ts",
         "rewritten": "__unresolved_10",
         "loc": {
           "start": {
             "line": 5,
-            "column": 870
+            "column": 770
           },
           "end": {
             "line": 5,
-            "column": 946
+            "column": 836
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/gameplay/ObjectiveManager.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/gameplay/ObjectiveManager.ts",
         "rewritten": "__unresolved_11",
         "loc": {
           "start": {
             "line": 5,
-            "column": 962
+            "column": 852
           },
           "end": {
             "line": 5,
-            "column": 1035
+            "column": 915
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/gameplay/TimerController.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/gameplay/TimerController.ts",
         "rewritten": "__unresolved_12",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1051
+            "column": 931
           },
           "end": {
             "line": 5,
-            "column": 1123
+            "column": 993
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/input/JoystickInput.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/input/JoystickInput.ts",
         "rewritten": "__unresolved_13",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1139
+            "column": 1009
           },
           "end": {
             "line": 5,
-            "column": 1206
+            "column": 1066
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/input/JoystickVisual.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/input/JoystickVisual.ts",
         "rewritten": "__unresolved_14",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1222
+            "column": 1082
           },
           "end": {
             "line": 5,
-            "column": 1290
+            "column": 1140
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/items/ItemRegistry.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/items/ItemRegistry.ts",
         "rewritten": "__unresolved_15",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1306
+            "column": 1156
           },
           "end": {
             "line": 5,
-            "column": 1372
+            "column": 1212
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/items/ItemRuntime.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/items/ItemRuntime.ts",
         "rewritten": "__unresolved_16",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1388
+            "column": 1228
           },
           "end": {
             "line": 5,
-            "column": 1453
+            "column": 1283
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/items/ItemSpawner.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/items/ItemSpawner.ts",
         "rewritten": "__unresolved_17",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1469
+            "column": 1299
           },
           "end": {
             "line": 5,
-            "column": 1534
+            "column": 1354
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/physics/PhysicsActivationSystem.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/physics/PhysicsActivationSystem.ts",
         "rewritten": "__unresolved_18",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1550
+            "column": 1370
           },
           "end": {
             "line": 5,
-            "column": 1629
+            "column": 1439
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/physics/PhysicsGroups.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/physics/PhysicsGroups.ts",
         "rewritten": "__unresolved_19",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1645
+            "column": 1455
           },
           "end": {
             "line": 5,
-            "column": 1714
+            "column": 1514
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/player/HoleConsumeSystem.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/player/HoleConsumeSystem.ts",
         "rewritten": "__unresolved_20",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1730
+            "column": 1530
           },
           "end": {
             "line": 5,
-            "column": 1802
+            "column": 1592
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/player/HoleMovement.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/player/HoleMovement.ts",
         "rewritten": "__unresolved_21",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1818
+            "column": 1608
           },
           "end": {
             "line": 5,
-            "column": 1885
+            "column": 1665
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/player/HoleSizeController.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/player/HoleSizeController.ts",
         "rewritten": "__unresolved_22",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1901
+            "column": 1681
           },
           "end": {
             "line": 5,
-            "column": 1974
+            "column": 1744
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/player/HoleVisual.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/player/HoleVisual.ts",
         "rewritten": "__unresolved_23",
         "loc": {
           "start": {
             "line": 5,
-            "column": 1990
+            "column": 1760
           },
           "end": {
             "line": 5,
-            "column": 2055
+            "column": 1815
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/spatial/SpatialHashGrid.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/spatial/SpatialHashGrid.ts",
         "rewritten": "__unresolved_24",
         "loc": {
           "start": {
             "line": 5,
-            "column": 2071
+            "column": 1831
           },
           "end": {
             "line": 5,
-            "column": 2142
+            "column": 1892
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/CTAButton.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/ui/CTAButton.ts",
         "rewritten": "__unresolved_25",
         "loc": {
           "start": {
             "line": 5,
-            "column": 2158
+            "column": 1908
           },
           "end": {
             "line": 5,
-            "column": 2218
+            "column": 1958
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/DebugHUD.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/ui/DebugHUD.ts",
         "rewritten": "__unresolved_26",
         "loc": {
           "start": {
             "line": 5,
-            "column": 2234
+            "column": 1974
           },
           "end": {
             "line": 5,
-            "column": 2293
+            "column": 2023
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/EndCardController.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/ui/EndCardController.ts",
         "rewritten": "__unresolved_27",
         "loc": {
           "start": {
             "line": 5,
-            "column": 2309
+            "column": 2039
           },
           "end": {
             "line": 5,
-            "column": 2377
+            "column": 2097
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/HoleLevelUI.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/ui/HoleLevelUI.ts",
         "rewritten": "__unresolved_28",
         "loc": {
           "start": {
             "line": 5,
-            "column": 2393
+            "column": 2113
           },
           "end": {
             "line": 5,
-            "column": 2455
+            "column": 2165
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/ObjectiveUI.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/ui/ObjectiveUI.ts",
         "rewritten": "__unresolved_29",
         "loc": {
           "start": {
             "line": 5,
-            "column": 2471
+            "column": 2181
           },
           "end": {
             "line": 5,
-            "column": 2533
+            "column": 2233
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/SpawnProgressUI.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/ui/SpawnProgressUI.ts",
         "rewritten": "__unresolved_30",
         "loc": {
           "start": {
             "line": 5,
-            "column": 2549
+            "column": 2249
           },
           "end": {
             "line": 5,
-            "column": 2615
+            "column": 2305
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/TimerUI.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/ui/TimerUI.ts",
         "rewritten": "__unresolved_31",
         "loc": {
           "start": {
             "line": 5,
-            "column": 2631
+            "column": 2321
           },
           "end": {
             "line": 5,
-            "column": 2689
+            "column": 2369
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/TutorialPointerAnimator.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/ui/TutorialPointerAnimator.ts",
         "rewritten": "__unresolved_32",
         "loc": {
           "start": {
             "line": 5,
-            "column": 2705
+            "column": 2385
           },
           "end": {
             "line": 5,
-            "column": 2779
+            "column": 2449
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/TutorialUI.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/ui/TutorialUI.ts",
         "rewritten": "__unresolved_33",
         "loc": {
           "start": {
             "line": 5,
-            "column": 2795
+            "column": 2465
           },
           "end": {
             "line": 5,
-            "column": 2856
+            "column": 2516
           }
         }
       },
       {
-        "value": "file:///F:/Code/Fork/HoleIt/assets/scripts/vfx/SizeUpVFX.ts",
+        "value": "file:///D:/HoleIt/assets/scripts/vfx/SizeUpVFX.ts",
         "rewritten": "__unresolved_34",
         "loc": {
           "start": {
             "line": 5,
-            "column": 2872
+            "column": 2532
           },
           "end": {
             "line": 5,
-            "column": 2933
+            "column": 2583
           }
         }
       }
@@ -889,143 +889,143 @@
     "resolvedImports": [
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/HMAssets/Scripts/decryptContent.ts"
+        "url": "file:///D:/HoleIt/assets/HMAssets/Scripts/decryptContent.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/audio/GameAudioController.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/audio/GameAudioController.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/camera/CameraFollow.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/camera/CameraFollow.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/catalog/ItemCatalog.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/catalog/ItemCatalog.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/core/GameEvents.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/core/GameFlowController.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameFlowController.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/core/GameState.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameState.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/data/LevelDataLoader.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/data/LevelDataLoader.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/data/LevelDataTypes.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/data/LevelDataTypes.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/data/SimpleDecrypt.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/data/SimpleDecrypt.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/data/UnityTransformConverter.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/data/UnityTransformConverter.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/gameplay/ObjectiveManager.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/gameplay/ObjectiveManager.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/gameplay/TimerController.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/gameplay/TimerController.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/input/JoystickInput.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/input/JoystickInput.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/input/JoystickVisual.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/input/JoystickVisual.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/items/ItemRegistry.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/items/ItemRegistry.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/items/ItemRuntime.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/items/ItemRuntime.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/items/ItemSpawner.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/items/ItemSpawner.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/physics/PhysicsActivationSystem.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/physics/PhysicsActivationSystem.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/physics/PhysicsGroups.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/physics/PhysicsGroups.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/player/HoleConsumeSystem.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/player/HoleConsumeSystem.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/player/HoleMovement.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/player/HoleMovement.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/player/HoleSizeController.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/player/HoleSizeController.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/player/HoleVisual.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/player/HoleVisual.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/spatial/SpatialHashGrid.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/spatial/SpatialHashGrid.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/CTAButton.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/ui/CTAButton.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/DebugHUD.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/ui/DebugHUD.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/EndCardController.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/ui/EndCardController.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/HoleLevelUI.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/ui/HoleLevelUI.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/ObjectiveUI.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/ui/ObjectiveUI.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/SpawnProgressUI.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/ui/SpawnProgressUI.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/TimerUI.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/ui/TimerUI.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/TutorialPointerAnimator.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/ui/TutorialPointerAnimator.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/ui/TutorialUI.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/ui/TutorialUI.ts"
       },
       {
         "isExternal": false,
-        "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/vfx/SizeUpVFX.ts"
+        "url": "file:///D:/HoleIt/assets/scripts/vfx/SizeUpVFX.ts"
       }
     ]
   },
@@ -1605,7 +1605,7 @@
     ]
   },
   "cce:/internal/code-quality/cr.mjs": {
-    "mTimestamp": 1786626965391,
+    "mTimestamp": 1786698493075,
     "chunkId": "quick-pack:/cce/internal/code-quality/cr.js",
     "imports": [],
     "modLoMetadata": {
@@ -3442,6 +3442,2042 @@
       {
         "isExternal": false,
         "url": "file:///F:/Code/Fork/HoleIt/assets/scripts/core/GameEvents.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/HMAssets/Scripts/decryptContent.ts": {
+    "mTimestamp": {
+      "mtime": 1776867788000,
+      "uuid": "afdb8bd4-6ef0-4096-8b60-5e7fae72e2c5"
+    },
+    "chunkId": "assets/HMAssets/Scripts/decryptContent.js",
+    "imports": [
+      {
+        "value": "cc"
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/audio/GameAudioController.ts": {
+    "mTimestamp": {
+      "mtime": 1786611474000,
+      "uuid": "c0f7aee3-2b93-4b84-b183-b4266ce79281"
+    },
+    "chunkId": "assets/scripts/audio/GameAudioController.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 62
+          },
+          "end": {
+            "line": 1,
+            "column": 66
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/catalog/ItemCatalog.ts": {
+    "mTimestamp": {
+      "mtime": 1786611296000,
+      "uuid": "48eb4527-c6b5-4c31-b21f-17229d367555"
+    },
+    "chunkId": "assets/scripts/catalog/ItemCatalog.js",
+    "imports": [
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 56
+          },
+          "end": {
+            "line": 1,
+            "column": 60
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts": {
+    "mTimestamp": {
+      "mtime": 1786611252000,
+      "uuid": "cb0a069e-0273-487f-a2a6-fff7a6f9d986"
+    },
+    "chunkId": "assets/scripts/core/GameEvents.js",
+    "imports": [
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 28
+          },
+          "end": {
+            "line": 1,
+            "column": 32
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/camera/CameraFollow.ts": {
+    "mTimestamp": {
+      "mtime": 1786611448000,
+      "uuid": "12ca3ed9-c9ee-41a4-9af1-9e3267a1b62d"
+    },
+    "chunkId": "assets/scripts/camera/CameraFollow.js",
+    "imports": [
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 50
+          },
+          "end": {
+            "line": 1,
+            "column": 54
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/data/LevelDataLoader.ts": {
+    "mTimestamp": {
+      "mtime": 1786611281000,
+      "uuid": "915dfb3b-be1f-4a9e-b4bb-d71701473053"
+    },
+    "chunkId": "assets/scripts/data/LevelDataLoader.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 60
+          },
+          "end": {
+            "line": 1,
+            "column": 64
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      },
+      {
+        "value": "./SimpleDecrypt",
+        "rewritten": "__unresolved_2",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 37
+          },
+          "end": {
+            "line": 8,
+            "column": 54
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/data/SimpleDecrypt.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/core/GameState.ts": {
+    "mTimestamp": {
+      "mtime": 1786611252000,
+      "uuid": "d5b85ca9-4bbf-410d-8a0f-2401a547476b"
+    },
+    "chunkId": "assets/scripts/core/GameState.js",
+    "imports": [
+      {
+        "value": "cc"
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/core/GameFlowController.ts": {
+    "mTimestamp": {
+      "mtime": 1786611880000,
+      "uuid": "f10c125c-ef52-4cf9-8245-aeeb0435ca60"
+    },
+    "chunkId": "assets/scripts/core/GameFlowController.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 38
+          },
+          "end": {
+            "line": 1,
+            "column": 42
+          }
+        }
+      },
+      {
+        "value": "./GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 52
+          }
+        }
+      },
+      {
+        "value": "./GameState",
+        "rewritten": "__unresolved_2",
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 26
+          },
+          "end": {
+            "line": 3,
+            "column": 39
+          }
+        }
+      },
+      {
+        "value": "../player/HoleMovement",
+        "rewritten": "__unresolved_3",
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 29
+          },
+          "end": {
+            "line": 4,
+            "column": 53
+          }
+        }
+      },
+      {
+        "value": "../gameplay/TimerController",
+        "rewritten": "__unresolved_4",
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 32
+          },
+          "end": {
+            "line": 5,
+            "column": 61
+          }
+        }
+      },
+      {
+        "value": "../ui/TutorialUI",
+        "rewritten": "__unresolved_5",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 27
+          },
+          "end": {
+            "line": 6,
+            "column": 45
+          }
+        }
+      },
+      {
+        "value": "../ui/EndCardController",
+        "rewritten": "__unresolved_6",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 34
+          },
+          "end": {
+            "line": 7,
+            "column": 59
+          }
+        }
+      },
+      {
+        "value": "../input/JoystickInput",
+        "rewritten": "__unresolved_7",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 30
+          },
+          "end": {
+            "line": 8,
+            "column": 54
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameState.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/player/HoleMovement.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/gameplay/TimerController.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/ui/TutorialUI.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/ui/EndCardController.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/input/JoystickInput.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/data/SimpleDecrypt.ts": {
+    "mTimestamp": {
+      "mtime": 1786611281000,
+      "uuid": "a594bdda-8e9d-4e43-96fd-420a6e062157"
+    },
+    "chunkId": "assets/scripts/data/SimpleDecrypt.js",
+    "imports": [
+      {
+        "value": "cc"
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/data/LevelDataTypes.ts": {
+    "mTimestamp": {
+      "mtime": 1786611281000,
+      "uuid": "10721d3d-d896-4317-883f-dbbd5cc7bb85"
+    },
+    "chunkId": "assets/scripts/data/LevelDataTypes.js",
+    "imports": [
+      {
+        "value": "cc"
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/input/JoystickInput.ts": {
+    "mTimestamp": {
+      "mtime": 1786611387000,
+      "uuid": "d6aa9e64-40f1-440f-aff8-50656200ae36"
+    },
+    "chunkId": "assets/scripts/input/JoystickInput.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 81
+          },
+          "end": {
+            "line": 1,
+            "column": 85
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/input/JoystickVisual.ts": {
+    "mTimestamp": {
+      "mtime": 1786611387000,
+      "uuid": "80d55bae-c91b-4ffc-b845-3d8de3e534ba"
+    },
+    "chunkId": "assets/scripts/input/JoystickVisual.js",
+    "imports": [
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 55
+          },
+          "end": {
+            "line": 1,
+            "column": 59
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/items/ItemRegistry.ts": {
+    "mTimestamp": {
+      "mtime": 1786611543000,
+      "uuid": "d9d98dbb-8705-4899-b3cc-6f51d827943e"
+    },
+    "chunkId": "assets/scripts/items/ItemRegistry.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 44
+          },
+          "end": {
+            "line": 1,
+            "column": 48
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      },
+      {
+        "value": "../spatial/SpatialHashGrid",
+        "rewritten": "__unresolved_2",
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 32
+          },
+          "end": {
+            "line": 3,
+            "column": 60
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/spatial/SpatialHashGrid.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/physics/PhysicsGroups.ts": {
+    "mTimestamp": {
+      "mtime": 1786611325000,
+      "uuid": "d3ded606-18b5-47ca-9084-47410f6df759"
+    },
+    "chunkId": "assets/scripts/physics/PhysicsGroups.js",
+    "imports": [
+      {
+        "value": "cc"
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/physics/PhysicsActivationSystem.ts": {
+    "mTimestamp": {
+      "mtime": 1786611358000,
+      "uuid": "8ece3e73-85a5-4a43-af20-ceab533175e2"
+    },
+    "chunkId": "assets/scripts/physics/PhysicsActivationSystem.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 50
+          },
+          "end": {
+            "line": 1,
+            "column": 54
+          }
+        }
+      },
+      {
+        "value": "../items/ItemRegistry",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 29
+          },
+          "end": {
+            "line": 2,
+            "column": 52
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/items/ItemRegistry.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/items/ItemRuntime.ts": {
+    "mTimestamp": {
+      "mtime": 1786611325000,
+      "uuid": "28eb2006-7eb4-4fc6-8bbc-dafdefa68677"
+    },
+    "chunkId": "assets/scripts/items/ItemRuntime.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 7
+          },
+          "end": {
+            "line": 8,
+            "column": 11
+          }
+        }
+      },
+      {
+        "value": "../physics/PhysicsGroups",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 29
+          },
+          "end": {
+            "line": 9,
+            "column": 55
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/physics/PhysicsGroups.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/items/ItemSpawner.ts": {
+    "mTimestamp": {
+      "mtime": 1786611543000,
+      "uuid": "9999757f-4b21-4707-8282-bcd8bf305521"
+    },
+    "chunkId": "assets/scripts/items/ItemSpawner.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 69
+          },
+          "end": {
+            "line": 1,
+            "column": 73
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      },
+      {
+        "value": "../catalog/ItemCatalog",
+        "rewritten": "__unresolved_2",
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 28
+          },
+          "end": {
+            "line": 3,
+            "column": 52
+          }
+        }
+      },
+      {
+        "value": "../data/LevelDataLoader",
+        "rewritten": "__unresolved_3",
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 32
+          },
+          "end": {
+            "line": 4,
+            "column": 57
+          }
+        }
+      },
+      {
+        "value": "../data/UnityTransformConverter",
+        "rewritten": "__unresolved_4",
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 40
+          },
+          "end": {
+            "line": 6,
+            "column": 73
+          }
+        }
+      },
+      {
+        "value": "./ItemRegistry",
+        "rewritten": "__unresolved_5",
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 29
+          },
+          "end": {
+            "line": 7,
+            "column": 45
+          }
+        }
+      },
+      {
+        "value": "./ItemRuntime",
+        "rewritten": "__unresolved_6",
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 28
+          },
+          "end": {
+            "line": 8,
+            "column": 43
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/catalog/ItemCatalog.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/data/LevelDataLoader.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/data/UnityTransformConverter.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/items/ItemRegistry.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/items/ItemRuntime.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/player/HoleConsumeSystem.ts": {
+    "mTimestamp": {
+      "mtime": 1786611421000,
+      "uuid": "cf084503-eb52-42ca-bf36-3db18657785f"
+    },
+    "chunkId": "assets/scripts/player/HoleConsumeSystem.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 50
+          },
+          "end": {
+            "line": 1,
+            "column": 54
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      },
+      {
+        "value": "../items/ItemRegistry",
+        "rewritten": "__unresolved_2",
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 29
+          },
+          "end": {
+            "line": 3,
+            "column": 52
+          }
+        }
+      },
+      {
+        "value": "./HoleSizeController",
+        "rewritten": "__unresolved_3",
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 35
+          },
+          "end": {
+            "line": 5,
+            "column": 57
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/items/ItemRegistry.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/player/HoleSizeController.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/player/HoleSizeController.ts": {
+    "mTimestamp": {
+      "mtime": 1786611421000,
+      "uuid": "94e82c8d-adc4-43e7-a327-e694eadc73de"
+    },
+    "chunkId": "assets/scripts/player/HoleSizeController.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 58
+          },
+          "end": {
+            "line": 1,
+            "column": 62
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      },
+      {
+        "value": "./HoleVisual",
+        "rewritten": "__unresolved_2",
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 27
+          },
+          "end": {
+            "line": 3,
+            "column": 41
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/player/HoleVisual.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/player/HoleMovement.ts": {
+    "mTimestamp": {
+      "mtime": 1786611387000,
+      "uuid": "cf33f839-b835-440f-810b-ecfbe284c865"
+    },
+    "chunkId": "assets/scripts/player/HoleMovement.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 50
+          },
+          "end": {
+            "line": 1,
+            "column": 54
+          }
+        }
+      },
+      {
+        "value": "../input/JoystickInput",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 30
+          },
+          "end": {
+            "line": 2,
+            "column": 54
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/input/JoystickInput.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/player/HoleVisual.ts": {
+    "mTimestamp": {
+      "mtime": 1786611421000,
+      "uuid": "111ffc55-65f0-49c3-98a0-a1275b3e8333"
+    },
+    "chunkId": "assets/scripts/player/HoleVisual.js",
+    "imports": [
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 50
+          },
+          "end": {
+            "line": 1,
+            "column": 54
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/spatial/SpatialHashGrid.ts": {
+    "mTimestamp": {
+      "mtime": 1786611296000,
+      "uuid": "4fe3a2ea-875d-432d-914b-544d4a4a4d11"
+    },
+    "chunkId": "assets/scripts/spatial/SpatialHashGrid.js",
+    "imports": [
+      {
+        "value": "cc"
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/ui/CTAButton.ts": {
+    "mTimestamp": {
+      "mtime": 1786611543000,
+      "uuid": "92b435a8-1727-4677-937d-b2e6bc308d87"
+    },
+    "chunkId": "assets/scripts/ui/CTAButton.js",
+    "imports": [
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 38
+          },
+          "end": {
+            "line": 1,
+            "column": 42
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/ui/DebugHUD.ts": {
+    "mTimestamp": {
+      "mtime": 1786611502000,
+      "uuid": "6f2f3be2-47dd-4642-ba64-5791466e097d"
+    },
+    "chunkId": "assets/scripts/ui/DebugHUD.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 45
+          },
+          "end": {
+            "line": 1,
+            "column": 49
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/ui/EndCardController.ts": {
+    "mTimestamp": {
+      "mtime": 1786611502000,
+      "uuid": "2735df8b-3b67-4d3a-b41f-4fa180ed098f"
+    },
+    "chunkId": "assets/scripts/ui/EndCardController.js",
+    "imports": [
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 44
+          },
+          "end": {
+            "line": 1,
+            "column": 48
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/ui/HoleLevelUI.ts": {
+    "mTimestamp": {
+      "mtime": 1786611502000,
+      "uuid": "0fa21a79-9f8b-4d16-a8fc-762ea256f33f"
+    },
+    "chunkId": "assets/scripts/ui/HoleLevelUI.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 53
+          },
+          "end": {
+            "line": 1,
+            "column": 57
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/ui/ObjectiveUI.ts": {
+    "mTimestamp": {
+      "mtime": 1786611502000,
+      "uuid": "f7c7cefc-f4b6-41eb-9658-9c2cf960c09c"
+    },
+    "chunkId": "assets/scripts/ui/ObjectiveUI.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 51
+          },
+          "end": {
+            "line": 1,
+            "column": 55
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      },
+      {
+        "value": "../gameplay/ObjectiveManager",
+        "rewritten": "__unresolved_2",
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 33
+          },
+          "end": {
+            "line": 3,
+            "column": 63
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/gameplay/ObjectiveManager.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/ui/SpawnProgressUI.ts": {
+    "mTimestamp": {
+      "mtime": 1786611502000,
+      "uuid": "aac6569a-3eb7-40fa-9409-8ff3bb401098"
+    },
+    "chunkId": "assets/scripts/ui/SpawnProgressUI.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 51
+          },
+          "end": {
+            "line": 1,
+            "column": 55
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/ui/TimerUI.ts": {
+    "mTimestamp": {
+      "mtime": 1786611502000,
+      "uuid": "aff0def1-1585-429f-b22c-55eb6160bab6"
+    },
+    "chunkId": "assets/scripts/ui/TimerUI.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 53
+          },
+          "end": {
+            "line": 1,
+            "column": 57
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/ui/TutorialUI.ts": {
+    "mTimestamp": {
+      "mtime": 1786611502000,
+      "uuid": "370e2729-9172-403b-bf50-4f3fa1c140ce"
+    },
+    "chunkId": "assets/scripts/ui/TutorialUI.js",
+    "imports": [
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 44
+          },
+          "end": {
+            "line": 1,
+            "column": 48
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/gameplay/TimerController.ts": {
+    "mTimestamp": {
+      "mtime": 1786611448000,
+      "uuid": "5faea144-cab4-4432-841a-5e85e083f934"
+    },
+    "chunkId": "assets/scripts/gameplay/TimerController.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 38
+          },
+          "end": {
+            "line": 1,
+            "column": 42
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/gameplay/ObjectiveManager.ts": {
+    "mTimestamp": {
+      "mtime": 1786611448000,
+      "uuid": "038bec63-2022-456f-a38c-48eb69dad0e9"
+    },
+    "chunkId": "assets/scripts/gameplay/ObjectiveManager.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 59
+          },
+          "end": {
+            "line": 1,
+            "column": 63
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/vfx/SizeUpVFX.ts": {
+    "mTimestamp": {
+      "mtime": 1786611474000,
+      "uuid": "7a34d9b7-f39c-4329-a9b7-c3d5b13b909d"
+    },
+    "chunkId": "assets/scripts/vfx/SizeUpVFX.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 59
+          },
+          "end": {
+            "line": 1,
+            "column": 63
+          }
+        }
+      },
+      {
+        "value": "../core/GameEvents",
+        "rewritten": "__unresolved_1",
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 38
+          },
+          "end": {
+            "line": 2,
+            "column": 58
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "file:///D:/HoleIt/assets/scripts/core/GameEvents.ts"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/ui/TutorialPointerAnimator.ts": {
+    "mTimestamp": {
+      "mtime": 1786611502000,
+      "uuid": "947b58ba-8477-4a91-bd34-c40d03e3aafb"
+    },
+    "chunkId": "assets/scripts/ui/TutorialPointerAnimator.js",
+    "imports": [
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 50
+          },
+          "end": {
+            "line": 1,
+            "column": 54
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      }
+    ]
+  },
+  "file:///D:/HoleIt/assets/scripts/data/UnityTransformConverter.ts": {
+    "mTimestamp": {
+      "mtime": 1786611281000,
+      "uuid": "79dc8fbf-169d-4e53-899c-7410666f695d"
+    },
+    "chunkId": "assets/scripts/data/UnityTransformConverter.js",
+    "imports": [
+      {
+        "value": "cce:/internal/code-quality/cr.mjs",
+        "rewritten": "__unresolved_0"
+      },
+      {
+        "value": "cc"
+      },
+      {
+        "value": "cc",
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 50
+          },
+          "end": {
+            "line": 1,
+            "column": 54
+          }
+        }
+      }
+    ],
+    "modLoMetadata": {
+      "type": "esm"
+    },
+    "resolvedImports": [
+      {
+        "isExternal": false,
+        "url": "cce:/internal/code-quality/cr.mjs"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
+      },
+      {
+        "isExternal": false,
+        "url": "cce:/internal/x/cc"
       }
     ]
   }

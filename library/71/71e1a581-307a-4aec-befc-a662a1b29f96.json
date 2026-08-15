@@ -97,9 +97,9 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
+      "x": 2.876,
+      "y": 2.876,
+      "z": 2.876
     },
     "_layer": 1073741824,
     "_euler": {
@@ -182,12 +182,12 @@
     "__prefab": {
       "__id__": 8
     },
-    "_group": 1,
-    "_type": 1,
-    "_mass": 1,
+    "_group": 4,
+    "_type": 4,
+    "_mass": 0.7,
     "_allowSleep": true,
-    "_linearDamping": 0.1,
-    "_angularDamping": 0.1,
+    "_linearDamping": 0.12,
+    "_angularDamping": 0.08,
     "_useGravity": true,
     "_linearFactor": {
       "__type__": "cc.Vec3",
@@ -224,14 +224,14 @@
     "_center": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": 0.425812,
       "z": 0
     },
     "_size": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
+      "x": 0.846642,
+      "y": 0.809043,
+      "z": 0.83633
     },
     "_id": ""
   },
@@ -251,10 +251,10 @@
     "__prefab": {
       "__id__": 12
     },
-    "itemId": "78",
-    "requiredHoleLevel": 1,
+    "itemId": "",
+    "requiredHoleLevel": 3,
     "consumeValue": 1,
-    "consumeRadius": 0.18,
+    "consumeRadius": 0.46,
     "mass": 0.7,
     "linearDamping": 0.12,
     "angularDamping": 0.08,

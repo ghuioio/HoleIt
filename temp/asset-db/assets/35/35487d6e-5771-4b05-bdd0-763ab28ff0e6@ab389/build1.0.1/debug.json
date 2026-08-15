@@ -1,0 +1,81 @@
+[
+    1,
+    [
+        "35487d6e-5771-4b05-bdd0-763ab28ff0e6@a39a5",
+        "1baf0fc9-befa-459c-8bdd-af1a450a0319"
+    ],
+    [
+        "mainTexture",
+        "_effectAsset"
+    ],
+    [
+        [
+            "cc.Material",
+            [
+                "_name",
+                "_states",
+                "_defines",
+                "_props"
+            ],
+            0,
+            12
+        ]
+    ],
+    [
+        [
+            0,
+            0,
+            1,
+            2,
+            3,
+            4
+        ]
+    ],
+    [
+        [
+            0,
+            "Burgers_Cream",
+            [
+                {
+                    "rasterizerState": {},
+                    "blendState": {
+                        "targets": [
+                            {}
+                        ]
+                    },
+                    "depthStencilState": {}
+                }
+            ],
+            [
+                {
+                    "USE_ALBEDO_MAP": true
+                }
+            ],
+            [
+                [
+                    [
+                        {},
+                        "mainTexture",
+                        6,
+                        0
+                    ]
+                ],
+                11
+            ]
+        ]
+    ],
+    0,
+    0,
+    [
+        0,
+        0
+    ],
+    [
+        0,
+        1
+    ],
+    [
+        0,
+        1
+    ]
+]

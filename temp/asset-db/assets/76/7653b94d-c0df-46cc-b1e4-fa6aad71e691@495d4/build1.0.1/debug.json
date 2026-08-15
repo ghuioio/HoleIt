@@ -1,0 +1,88 @@
+[
+    1,
+    [
+        "1baf0fc9-befa-459c-8bdd-af1a450a0319"
+    ],
+    [
+        "_effectAsset"
+    ],
+    [
+        [
+            "cc.Material",
+            [
+                "_name",
+                "_states",
+                "_defines",
+                "_props"
+            ],
+            0,
+            12
+        ]
+    ],
+    [
+        [
+            0,
+            0,
+            1,
+            2,
+            3,
+            4
+        ]
+    ],
+    [
+        [
+            0,
+            "cake_mtl",
+            [
+                {
+                    "rasterizerState": {},
+                    "blendState": {
+                        "targets": [
+                            {
+                                "blend": true,
+                                "blendSrc": 2,
+                                "blendDst": 4,
+                                "blendDstAlpha": 4
+                            }
+                        ]
+                    },
+                    "depthStencilState": {
+                        "depthWrite": false
+                    }
+                }
+            ],
+            [
+                {
+                    "USE_VERTEX_COLOR": true
+                }
+            ],
+            [
+                [
+                    [
+                        {},
+                        "albedoScale",
+                        8,
+                        [
+                            1,
+                            0.5,
+                            0.5,
+                            0.5
+                        ]
+                    ]
+                ],
+                11
+            ]
+        ]
+    ],
+    0,
+    0,
+    [
+        0
+    ],
+    [
+        0
+    ],
+    [
+        0
+    ]
+]
