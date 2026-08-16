@@ -1,4 +1,4 @@
-import { _decorator, Canvas, Component, EventTouch, Node, UIOpacity, UITransform, Vec2, Vec3 } from 'cc';
+import { _decorator, Canvas, Component, EventTouch, Graphics, Node, UIOpacity, UITransform, Vec2, Vec3 } from 'cc';
 import { GameEvent, gameEvents } from '../core/GameEvents';
 
 const { ccclass, property } = _decorator;
@@ -39,6 +39,10 @@ export class JoystickInput extends Component {
         this._inputNode.on(Node.EventType.TOUCH_MOVE, this.onTouchMove, this);
         this._inputNode.on(Node.EventType.TOUCH_END, this.onTouchEnd, this);
         this._inputNode.on(Node.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
+
+        if (this.dynamicJoystick && this._touchId === -1) {
+            this.setJoystickVisible(false);
+        }
     }
 
     protected onDisable(): void {
@@ -55,7 +59,15 @@ export class JoystickInput extends Component {
         // wrapper would keep any authored child offset (such as Joystick's
         // original bottom-left position), so move and fade this node directly.
         this._visualOpacity = this.node.getComponent(UIOpacity) ?? this.node.addComponent(UIOpacity);
-        this.setJoystickVisible(false);
+        if (this.dynamicJoystick) {
+            this.setJoystickVisible(false);
+        }
+    }
+
+    protected start(): void {
+        if (this.dynamicJoystick && this._touchId === -1) {
+            this.setJoystickVisible(false);
+        }
     }
 
     private onTouchStart(event: EventTouch): void {
@@ -144,7 +156,16 @@ export class JoystickInput extends Component {
         gameEvents.emit(GameEvent.FIRST_PLAYER_INPUT);
     }
 
-    private resetJoystick(): void {
+    public setDynamic(enable: boolean): void {
+        this.dynamicJoystick = enable;
+        if (!enable) {
+            this.setJoystickVisible(true);
+        } else if (this._touchId === -1) {
+            this.setJoystickVisible(false);
+        }
+    }
+
+    public resetJoystick(): void {
         this._direction.set(0, 0);
         if (this.handle) {
             this.handle.setPosition(0, 0, 0);
@@ -167,6 +188,7 @@ export class JoystickInput extends Component {
         if (!this.dynamicJoystick) {
             return;
         }
+        
 
         const parentTransform = this.node.parent?.getComponent(UITransform);
         if (!parentTransform) {
@@ -179,10 +201,29 @@ export class JoystickInput extends Component {
         this.node.setPosition(this._localPos);
     }
 
-    private setJoystickVisible(visible: boolean): void {
+    public setJoystickVisible(visible: boolean): void {
+        const show = !this.dynamicJoystick || visible;
+
         if (!this._visualOpacity) {
             this._visualOpacity = this.node.getComponent(UIOpacity) ?? this.node.addComponent(UIOpacity);
         }
-        this._visualOpacity.opacity = this.dynamicJoystick && !visible ? 0 : 255;
+        this._visualOpacity.opacity = show ? 255 : 0;
+
+        // Cocos Creator Graphics ignores UIOpacity, so explicitly toggle Graphics components
+        const graphics = this.getComponentsInChildren(Graphics);
+        for (const g of graphics) {
+            g.enabled = show;
+        }
+
+        const parentGraphics = this.node.parent?.getComponents(Graphics);
+        if (parentGraphics) {
+            for (const g of parentGraphics) {
+                g.enabled = show;
+            }
+        }
+
+        if (this.handle) {
+            this.handle.active = show;
+        }
     }
 }
