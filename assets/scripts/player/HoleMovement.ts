@@ -1,4 +1,5 @@
 import { _decorator, Component, Vec2, Vec3 } from 'cc';
+import { GameEvent, gameEvents } from '../core/GameEvents';
 import { JoystickInput } from '../input/JoystickInput';
 
 const { ccclass, property } = _decorator;
@@ -38,8 +39,26 @@ export class HoleMovement extends Component {
     private readonly _velocity = new Vec3();
     private readonly _position = new Vec3();
 
+    protected onEnable(): void {
+        gameEvents.on(GameEvent.GAME_WON, this.onGameEnd, this);
+        gameEvents.on(GameEvent.GAME_LOST, this.onGameEnd, this);
+        gameEvents.on(GameEvent.TIMER_EXPIRED, this.onGameEnd, this);
+    }
+
+    protected onDisable(): void {
+        gameEvents.off(GameEvent.GAME_WON, this.onGameEnd, this);
+        gameEvents.off(GameEvent.GAME_LOST, this.onGameEnd, this);
+        gameEvents.off(GameEvent.TIMER_EXPIRED, this.onGameEnd, this);
+    }
+
+    public onGameEnd(): void {
+        this.inputEnabled = false;
+        this.stopImmediately();
+    }
+
     public stopImmediately(): void {
         this._velocity.set(0, 0, 0);
+        this._input.set(0, 0);
     }
 
     protected update(deltaTime: number): void {
@@ -47,6 +66,8 @@ export class HoleMovement extends Component {
 
         if (!this.joystick || !this.inputEnabled) {
             this._input.set(0, 0);
+            this.stopImmediately();
+            return;
         } else {
             this.joystick.getDirection(this._input);
         }

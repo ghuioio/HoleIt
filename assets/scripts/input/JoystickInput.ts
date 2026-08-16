@@ -25,13 +25,20 @@ export class JoystickInput extends Component {
     private _sentFirstInput = false;
     private _inputNode: Node | null = null;
     private _visualOpacity: UIOpacity | null = null;
+    private _isGameOver = false;
 
     public getDirection(out: Vec2): Vec2 {
+        if (this._isGameOver || !this.enabled) {
+            out.set(0, 0);
+            return out;
+        }
         out.set(this._direction.x, this._direction.y);
         return out;
     }
 
     protected onEnable(): void {
+        this._isGameOver = false;
+
         // Listen on the Canvas rather than the small joystick graphic, so a drag can
         // begin anywhere on screen while the visual is hidden.
         this._inputNode = this.findInputNode();
@@ -39,6 +46,10 @@ export class JoystickInput extends Component {
         this._inputNode.on(Node.EventType.TOUCH_MOVE, this.onTouchMove, this);
         this._inputNode.on(Node.EventType.TOUCH_END, this.onTouchEnd, this);
         this._inputNode.on(Node.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
+
+        gameEvents.on(GameEvent.GAME_WON, this.onGameOver, this);
+        gameEvents.on(GameEvent.GAME_LOST, this.onGameOver, this);
+        gameEvents.on(GameEvent.TIMER_EXPIRED, this.onGameOver, this);
 
         if (this.dynamicJoystick && this._touchId === -1) {
             this.setJoystickVisible(false);
@@ -51,7 +62,21 @@ export class JoystickInput extends Component {
         this._inputNode?.off(Node.EventType.TOUCH_END, this.onTouchEnd, this);
         this._inputNode?.off(Node.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
         this._inputNode = null;
+
+        gameEvents.off(GameEvent.GAME_WON, this.onGameOver, this);
+        gameEvents.off(GameEvent.GAME_LOST, this.onGameOver, this);
+        gameEvents.off(GameEvent.TIMER_EXPIRED, this.onGameOver, this);
+
         this.resetJoystick();
+    }
+
+    public onGameOver(): void {
+        this._isGameOver = true;
+        this._touchId = -1;
+        this.resetJoystick();
+        if (this.dynamicJoystick) {
+            this.setJoystickVisible(false);
+        }
     }
 
     protected onLoad(): void {
@@ -71,7 +96,7 @@ export class JoystickInput extends Component {
     }
 
     private onTouchStart(event: EventTouch): void {
-        if (this._touchId !== -1) {
+        if (this._isGameOver || !this.enabled || this._touchId !== -1) {
             return;
         }
 
@@ -85,6 +110,10 @@ export class JoystickInput extends Component {
     }
 
     private onTouchMove(event: EventTouch): void {
+        if (this._isGameOver || !this.enabled) {
+            return;
+        }
+
         const id = event.getID();
         const currentId = id === null ? 0 : id;
         if (currentId !== this._touchId) {

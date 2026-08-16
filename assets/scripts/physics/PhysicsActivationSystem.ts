@@ -28,10 +28,10 @@ export class PhysicsActivationSystem extends Component {
     public scanInterval = 0.06;
 
     @property({ tooltip: 'Safety cap for simultaneously simulated bodies.' })
-    public maxDynamicBodies = 64;
+    public maxDynamicBodies = 128;
 
     @property({ tooltip: 'Maximum dormant objects activated in one scan.' })
-    public maxActivationsPerScan = 12;
+    public maxActivationsPerScan = 24;
 
     @property({ tooltip: 'Dormant meshes farther than this from the Hole are not submitted for rendering.' })
     public renderRadius = 4.5;
@@ -87,7 +87,9 @@ export class PhysicsActivationSystem extends Component {
         this.hole!.getWorldPosition(this._holePos);
         this.updateRenderVisibility();
         if (!this._stackController) {
-            this._stackController = this.getComponent(StackController);
+            this._stackController = this.getComponent(StackController)
+                || (this.registry ? this.registry.getComponent(StackController) : null)
+                || (this.registry ? this.registry.node.getComponent(StackController) : null);
         }
         if (!this._holeSize) {
             this._holeSize = this.hole!.getComponent(HoleSizeController);

@@ -269,6 +269,7 @@ export class ItemRuntime extends Component {
         }
 
         this._body.useGravity = true;
+        this._body.allowSleep = false;
         this._body.sleepThreshold = 0.35;
         this._body.linearFactor = VERTICAL_LINEAR_FACTOR;
         this._body.angularFactor = LOCKED_ANGULAR_FACTOR;
@@ -276,6 +277,13 @@ export class ItemRuntime extends Component {
         this._body.wakeUp();
         this._stackConstrained = true;
         return true;
+    }
+
+    /** Awaken the physics body if it has fallen asleep. */
+    public wakeUp(): void {
+        if (this._body && this._body.enabled) {
+            this._body.wakeUp();
+        }
     }
 
     /**
@@ -300,6 +308,7 @@ export class ItemRuntime extends Component {
         this._body.enabled = true;
         this._body.type = ERigidBodyType.DYNAMIC;
         this._body.useGravity = true;
+        this._body.allowSleep = false;
         this._body.linearDamping = Math.max(this.linearDamping, 0.35);
         this._body.angularDamping = Math.max(this.angularDamping, 0.8);
         this._vortexMaterial = zeroFrictionMaterial;
@@ -366,6 +375,7 @@ export class ItemRuntime extends Component {
         this._stackConstrained = false;
         this.node.setScale(this._baseScale);
         this.restoreColliderMaterials();
+        this._body.allowSleep = true;
         this._body.linearDamping = Math.max(this.linearDamping, 0.65);
         this._body.angularDamping = Math.max(this.angularDamping, 0.7);
         this._body.linearFactor = FULL_LINEAR_FACTOR;
@@ -383,6 +393,7 @@ export class ItemRuntime extends Component {
         }
 
         this._stackConstrained = false;
+        this._body.allowSleep = true;
         this._body.linearDamping = Math.max(this.linearDamping, 0.45);
         this._body.angularDamping = Math.max(this.angularDamping, 0.35);
         this._body.linearFactor = FULL_LINEAR_FACTOR;

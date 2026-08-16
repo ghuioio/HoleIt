@@ -34,7 +34,7 @@ export class HoleConsumeSystem extends Component {
     public outerRadiusMultiplier = 1.3;
 
     @property({ tooltip: 'Objects above this height are not captured by the vortex.' })
-    public outerCaptureHeight = 1.45;
+    public outerCaptureHeight = 8.0;
 
     @property({ tooltip: 'Inner swallow zone starts this far below the visible surface.' })
     public innerDepth = 0.12;
@@ -82,7 +82,7 @@ export class HoleConsumeSystem extends Component {
     public captureScanInterval = 0.025;
 
     @property({ tooltip: 'Maximum budget-bypass wakes per capture scan to avoid a physics spike.' })
-    public maxPriorityActivationsPerScan = 8;
+    public maxPriorityActivationsPerScan = 24;
 
     private _captureTimer = 0;
     private _stackController: StackController | null = null;

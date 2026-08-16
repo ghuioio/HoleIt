@@ -84,33 +84,65 @@ export class StackController extends Component {
     }
 
     public finalizeStacks(): void {
-        const columns = new Map<string, StackEntry[]>();
         const tolerance = Math.max(0.005, this.columnTolerance);
+        const tolSq = tolerance * tolerance;
+        const cellSize = tolerance * 2;
+        const grid = new Map<string, Array<{ centerX: number; centerZ: number; entries: StackEntry[] }>>();
+        const columnClusters: Array<{ entries: StackEntry[] }> = [];
 
         for (let i = 0; i < this._entries.length; i++) {
             const entry = this._entries[i];
-            const key = `${Math.round(entry.x / tolerance)}|${Math.round(entry.z / tolerance)}`;
-            let column = columns.get(key);
-            if (!column) {
-                column = [];
-                columns.set(key, column);
+            const cx = Math.floor(entry.x / cellSize);
+            const cz = Math.floor(entry.z / cellSize);
+            let matchedCluster: { centerX: number; centerZ: number; entries: StackEntry[] } | null = null;
+
+            for (let dx = -1; dx <= 1 && !matchedCluster; dx++) {
+                for (let dz = -1; dz <= 1 && !matchedCluster; dz++) {
+                    const cell = grid.get(`${cx + dx}:${cz + dz}`);
+                    if (!cell) {
+                        continue;
+                    }
+                    for (let c = 0; c < cell.length; c++) {
+                        const cluster = cell[c];
+                        const diffX = entry.x - cluster.centerX;
+                        const diffZ = entry.z - cluster.centerZ;
+                        if (diffX * diffX + diffZ * diffZ <= tolSq) {
+                            matchedCluster = cluster;
+                            break;
+                        }
+                    }
+                }
             }
-            column.push(entry);
+
+            if (!matchedCluster) {
+                matchedCluster = { centerX: entry.x, centerZ: entry.z, entries: [] };
+                columnClusters.push(matchedCluster);
+                const key = `${cx}:${cz}`;
+                let cell = grid.get(key);
+                if (!cell) {
+                    cell = [];
+                    grid.set(key, cell);
+                }
+                cell.push(matchedCluster);
+            }
+
+            matchedCluster.entries.push(entry);
         }
 
-        columns.forEach((column) => {
+        for (let i = 0; i < columnClusters.length; i++) {
+            const column = columnClusters[i].entries;
             if (column.length < 2) {
-                return;
+                continue;
             }
 
             column.sort((a, b) => a.y - b.y);
             const tower: TowerStack = { pieces: [], collapsed: false };
-            for (let i = 0; i < column.length; i++) {
-                const piece = column[i].item;
+            for (let j = 0; j < column.length; j++) {
+                const piece = column[j].item;
                 tower.pieces.push(piece);
                 this._towerByItem.set(piece, tower);
             }
-        });
+        }
 
         this._ready = true;
         this._entries.length = 0;
@@ -122,7 +154,25 @@ export class StackController extends Component {
             return false;
         }
         const tower = this._towerByItem.get(item);
-        return !tower || tower.collapsed || tower.pieces[0] === item;
+        if (!tower || tower.collapsed) {
+            return true;
+        }
+
+        // Clean up any consumed/inactive pieces at the base
+        while (tower.pieces.length > 0 && (tower.pieces[0].isConsumed || !tower.pieces[0].node.active)) {
+            const first = tower.pieces.shift()!;
+            this._towerByItem.delete(first);
+        }
+        if (tower.pieces.length === 0) {
+            return true;
+        }
+
+        // If the bottom piece is already dynamic/vortex, allow cascade
+        if (tower.pieces[0].isDynamic || tower.pieces[0].isVortex) {
+            return true;
+        }
+
+        return tower.pieces[0] === item;
     }
 
     public isCollapsedTowerPiece(item: ItemRuntime): boolean {
@@ -136,7 +186,11 @@ export class StackController extends Component {
 
         this.configureItem(item);
         const tower = this._towerByItem.get(item);
-        return tower?.collapsed ? item.activateStackFall() : item.activateDynamic();
+        if (!tower) {
+            return item.activateDynamic();
+        }
+
+        return tower.collapsed ? item.activateStackFall() : item.activateDynamic();
     }
 
     /**
@@ -154,24 +208,21 @@ export class StackController extends Component {
         }
 
         const index = tower.pieces.indexOf(item);
-        if (index < 0) {
-            return;
+        if (index >= 0) {
+            tower.pieces.splice(index, 1);
         }
-
-        tower.pieces.splice(index, 1);
         this._towerByItem.delete(item);
-
-        // Only removing stack[0] starts the vertical cascade.
-        if (index !== 0 || tower.collapsed) {
-            return;
-        }
 
         tower.collapsed = true;
         for (let i = 0; i < tower.pieces.length; i++) {
             const piece = tower.pieces[i];
             this.configureItem(piece);
-            if (piece.isDormant && piece.activateStackFall()) {
-                this._registry.markDynamic(piece);
+            if (piece.isDormant) {
+                if (piece.activateStackFall()) {
+                    this._registry.markDynamic(piece);
+                }
+            } else if (piece.isDynamic) {
+                piece.wakeUp();
             }
         }
     }

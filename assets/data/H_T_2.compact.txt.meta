@@ -1,10 +1,9 @@
 {
   "ver": "1.0.1",
-  "importer": "ttf-font",
+  "importer": "text",
   "imported": true,
-  "uuid": "270c5e39-9a87-4d45-9899-90bc67ae8616",
+  "uuid": "776a1956-299c-45fd-95ee-50c57e12249e",
   "files": [
-    "UrbaneRounded-Bold.ttf",
     ".json"
   ],
   "subMetas": {},
