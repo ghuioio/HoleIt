@@ -4,16 +4,17 @@ import {
     Component,
     ERigidBodyType,
     MeshRenderer,
+    Node,
     PhysicsMaterial,
     RigidBody,
     Vec3,
 } from 'cc';
+import { HoleSizeController } from '../player/HoleSizeController';
 import { PhysicsGroup } from '../physics/PhysicsGroups';
 
 const { ccclass, property } = _decorator;
 const FULL_LINEAR_FACTOR = new Vec3(1, 1, 1);
 const VERTICAL_LINEAR_FACTOR = new Vec3(0, 1, 0);
-const SETTLING_LINEAR_FACTOR = new Vec3(0.18, 1, 0.18);
 const LOCKED_ANGULAR_FACTOR = new Vec3(0, 0, 0);
 const ZERO_VELOCITY = new Vec3(0, 0, 0);
 
@@ -66,6 +67,10 @@ export class ItemRuntime extends Component {
     private _groundRecoveryApplied = false;
     private _stackConstrained = false;
     private _vortexMaterial: PhysicsMaterial | null = null;
+    private _hole: Node | null = null;
+    private _holeSize: HoleSizeController | null = null;
+    private _groundY = 0.075;
+    private _groundSafetyOffset = 0.01;
     private _swallowElapsed = 0;
     private _swallowDuration = 0.15;
     private _baseScaleCaptured = false;
@@ -75,6 +80,7 @@ export class ItemRuntime extends Component {
     private readonly _velocity = new Vec3();
     private readonly _force = new Vec3();
     private readonly _worldPosition = new Vec3();
+    private readonly _holePosition = new Vec3();
 
     public get state(): ItemRuntimeState {
         return this._state;
@@ -124,6 +130,59 @@ export class ItemRuntime extends Component {
     protected onLoad(): void {
         this.cacheComponents();
         this.captureBaseScale();
+    }
+
+    /**
+     * Supplies the moving-hole context used by the per-body ground safety
+     * check. This keeps recovery local to active bodies instead of scanning
+     * every spawned item from a central system.
+     */
+    public configureGroundFallback(
+        hole: Node,
+        holeSize: HoleSizeController,
+        groundY: number,
+        safetyOffset: number,
+    ): void {
+        this._hole = hole;
+        this._holeSize = holeSize;
+        this._groundY = groundY;
+        this._groundSafetyOffset = Math.max(0, safetyOffset);
+    }
+
+    protected update(): void {
+        if (!this._body || !this._body.enabled || !this._hole || !this._holeSize
+            || (this._state !== ItemRuntimeState.Dynamic
+                && this._state !== ItemRuntimeState.Vortex)) {
+            return;
+        }
+
+        this.node.getWorldPosition(this._worldPosition);
+        this._hole.getWorldPosition(this._holePosition);
+        const dx = this._worldPosition.x - this._holePosition.x;
+        const dz = this._worldPosition.z - this._holePosition.z;
+        const radius = Math.max(0.01, this._holeSize.radius);
+        const isOverHole = dx * dx + dz * dz <= radius * radius;
+
+        // Only vortex pieces may ignore the ground, and only while their
+        // center is actually inside the animated hole radius.
+        if (this._state === ItemRuntimeState.Vortex) {
+            this.setGroundCollisionIgnored(isOverHole);
+        }
+        if (isOverHole) {
+            return;
+        }
+
+        // The hole moved away: restore solid-ground physics immediately and
+        // release the Pez-column X/Z lock so the piece can tumble naturally.
+        if (this._stackConstrained) {
+            this.releaseStackConstraints();
+        }
+
+        const minimumCenterY = this.getGroundMinimumCenterY(
+            this._groundY,
+            this._groundSafetyOffset,
+        );
+        this.ensureAboveGround(minimumCenterY);
     }
 
     public initialize(spawnId: string, spawnIndex: number, poolKey = ''): void {
@@ -237,7 +296,7 @@ export class ItemRuntime extends Component {
         }
 
         this._state = ItemRuntimeState.Vortex;
-        this._rimScale = Math.min(1, Math.max(0.5, rimScale));
+        this._rimScale = Math.min(0.8, Math.max(0.7, rimScale));
         this._body.enabled = true;
         this._body.type = ERigidBodyType.DYNAMIC;
         this._body.useGravity = true;
@@ -256,8 +315,8 @@ export class ItemRuntime extends Component {
             const collider = this._colliders[i];
             collider.enabled = true;
             collider.setGroup(PhysicsGroup.ITEM);
+            collider.sharedMaterial = zeroFrictionMaterial;
         }
-        this.restoreColliderMaterials();
         this._body.wakeUp();
         return true;
     }
@@ -306,6 +365,7 @@ export class ItemRuntime extends Component {
         this._vortexMaterial = null;
         this._stackConstrained = false;
         this.node.setScale(this._baseScale);
+        this.restoreColliderMaterials();
         this._body.linearDamping = Math.max(this.linearDamping, 0.65);
         this._body.angularDamping = Math.max(this.angularDamping, 0.7);
         this._body.linearFactor = FULL_LINEAR_FACTOR;
@@ -323,13 +383,11 @@ export class ItemRuntime extends Component {
         }
 
         this._stackConstrained = false;
-        // Let landed pieces form a compact pile without the solver launching
-        // the whole column sideways as overlapping bodies settle.
-        this._body.linearDamping = Math.max(this.linearDamping, 0.72);
-        this._body.angularDamping = Math.max(this.angularDamping, 0.78);
-        this._body.linearFactor = SETTLING_LINEAR_FACTOR;
+        this._body.linearDamping = Math.max(this.linearDamping, 0.45);
+        this._body.angularDamping = Math.max(this.angularDamping, 0.35);
+        this._body.linearFactor = FULL_LINEAR_FACTOR;
         this._body.angularFactor = FULL_LINEAR_FACTOR;
-        this.dampenHorizontalVelocity(0.08);
+        this.dampenHorizontalVelocity(0.2);
         this._body.wakeUp();
     }
 
@@ -368,7 +426,8 @@ export class ItemRuntime extends Component {
 
     /** Last-resort recovery for a body that crossed the ground before regrouping. */
     public ensureAboveGround(minimumCenterY: number): void {
-        if (this._state !== ItemRuntimeState.Dynamic || !this._body) {
+        if ((this._state !== ItemRuntimeState.Dynamic
+            && this._state !== ItemRuntimeState.Vortex) || !this._body) {
             return;
         }
 

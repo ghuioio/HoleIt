@@ -9,8 +9,7 @@ const { ccclass, property } = _decorator;
 
 /**
  * Two-stage Cocos equivalent of a Hole.io vacuum:
- *  1. Outer vortex commits fitting objects, removes blocking collisions,
- *     shrinks them slightly, and applies inward/downward acceleration.
+ *  1. Outer vortex attracts fitting objects and shrinks them at the rim.
  *  2. Inner zone disables physics immediately, animates scale to zero, then
  *     recycles the item through ItemRegistry/ItemPool.
  */
@@ -30,6 +29,9 @@ export class HoleConsumeSystem extends Component {
 
     @property({ tooltip: 'Outer vortex extends this far beyond the valid inner opening.' })
     public outerPadding = 0.18;
+
+    @property({ tooltip: 'Outer suction radius as a multiple of the current hole radius (1.2-1.4).' })
+    public outerRadiusMultiplier = 1.3;
 
     @property({ tooltip: 'Objects above this height are not captured by the vortex.' })
     public outerCaptureHeight = 1.45;
@@ -107,12 +109,9 @@ export class HoleConsumeSystem extends Component {
         this.hole.getWorldPosition(this._holePos);
         if (!this._stackController) {
             this._stackController = this.registry.node.getComponent(StackController);
-        }
-
-        if (this._stackController) {
-            this._stackController.updateFallingPieces(
-                this._holePos,
-                this.holeSize.radius,
+            this._stackController?.configureGroundFallback(
+                this.hole,
+                this.holeSize,
                 this.groundY,
                 this.groundSafetyOffset,
             );
@@ -132,14 +131,13 @@ export class HoleConsumeSystem extends Component {
     private captureOuterVortexItems(): void {
         const holeRadius = this.holeSize!.radius;
         const holeLevel = this.holeSize!.level;
-        const shrunkScale = Math.min(1, Math.max(0.5, this.rimScale));
+        const shrunkScale = Math.min(0.8, Math.max(0.7, this.rimScale));
 
         // Critical gameplay path: objects inside the Hole must not be blocked
         // by the global dynamic-body budget. Query the dormant spatial grid and
         // directly wake only eligible tower bases that are already in range.
         const dormantQueryRadius = holeRadius
-            + Math.max(0.05, this.outerPadding)
-            + this.captureForgiveness;
+            * Math.min(1.4, Math.max(1.2, this.outerRadiusMultiplier));
         this.registry!.queryDormant(this._holePos, dormantQueryRadius, this._dormantNearby);
         let priorityActivations = 0;
         for (let i = 0; i < this._dormantNearby.length; i++) {
@@ -198,7 +196,7 @@ export class HoleConsumeSystem extends Component {
 
         const dx = this._itemPos.x - this._holePos.x;
         const dz = this._itemPos.z - this._holePos.z;
-        const outerRadius = innerRadius + Math.max(0.05, this.outerPadding);
+        const outerRadius = this.getOuterRadius(holeRadius, innerRadius);
         if ((dx * dx + dz * dz) > outerRadius * outerRadius) {
             return false;
         }
@@ -216,6 +214,13 @@ export class HoleConsumeSystem extends Component {
             }
             this.registry!.markDynamic(item);
         }
+
+        item.configureGroundFallback(
+            this.hole!,
+            this.holeSize!,
+            this.groundY,
+            this.groundSafetyOffset,
+        );
 
         if (item.beginVortex(shrunkScale, this._zeroFrictionMaterial)) {
             this._vortex.push(item);
@@ -260,7 +265,7 @@ export class HoleConsumeSystem extends Component {
 
     private updateVortexItems(dt: number): void {
         const holeRadius = this.holeSize!.radius;
-        const shrunkScale = Math.min(1, Math.max(0.5, this.rimScale));
+        const shrunkScale = Math.min(0.8, Math.max(0.7, this.rimScale));
 
         for (let i = this._vortex.length - 1; i >= 0; i--) {
             const item = this._vortex[i];
@@ -282,7 +287,7 @@ export class HoleConsumeSystem extends Component {
             const distanceSq = dx * dx + dz * dz;
             const insideHoleRadius = distanceSq <= holeRadius * holeRadius;
             const insideOpening = distanceSq <= innerRadius * innerRadius;
-            const outerRadius = innerRadius + Math.max(0.05, this.outerPadding);
+            const outerRadius = this.getOuterRadius(holeRadius, innerRadius);
             const exitedOuterVortex = distanceSq
                 > (outerRadius + this.vortexExitPadding) * (outerRadius + this.vortexExitPadding);
             const minimumCenterY = item.getGroundMinimumCenterY(
@@ -290,8 +295,6 @@ export class HoleConsumeSystem extends Component {
                 this.groundSafetyOffset,
             );
 
-            // Per-piece ground ignore: reversible every frame as the Hole moves.
-            item.setGroundCollisionIgnored(insideHoleRadius);
             if (!insideHoleRadius
                 && (exitedOuterVortex || this._itemPos.y <= minimumCenterY)) {
                 item.exitVortexToGround(minimumCenterY);
@@ -334,10 +337,18 @@ export class HoleConsumeSystem extends Component {
 
             const id = item.id;
             const value = item.consumeValue;
+            // Notify progression before pooling deactivates the item.
+            this.holeSize!.recordItemEaten(value);
             this.registry!.markConsumed(item);
-            this.holeSize!.addXp(value);
             gameEvents.emit(GameEvent.ITEM_CONSUMED, id, value, item);
             this._swallowing.splice(i, 1);
         }
+    }
+
+    private getOuterRadius(holeRadius: number, innerRadius: number): number {
+        const minRadius = holeRadius
+            * Math.min(1.4, Math.max(1.2, this.outerRadiusMultiplier));
+        const paddedRadius = innerRadius + Math.max(0.05, this.outerPadding);
+        return Math.min(holeRadius * 1.4, Math.max(minRadius, paddedRadius));
     }
 }

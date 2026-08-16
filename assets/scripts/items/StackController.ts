@@ -1,4 +1,5 @@
-import { _decorator, Component, Vec3 } from 'cc';
+import { _decorator, Component, Node, Vec3 } from 'cc';
+import { HoleSizeController } from '../player/HoleSizeController';
 import { ItemRegistry } from './ItemRegistry';
 import { ItemRuntime } from './ItemRuntime';
 
@@ -12,32 +13,30 @@ interface StackEntry {
 }
 
 interface TowerStack {
-    /** Always ordered bottom-to-top; index 0 is the current base piece. */
+    /** Always sorted bottom-to-top. */
     pieces: ItemRuntime[];
     collapsed: boolean;
-    /** Pieces admitted to the rolling physics window for this tower. */
-    released: Set<ItemRuntime>;
 }
 
 /**
- * Builds ordered vertical towers after level spawning. Towers stay dormant
- * until their base enters the Hole, then a bounded rolling window is released
- * with Y-only constrained physics.
+ * Builds vertical columns and starts a Pez-dispenser-style cascade when a
+ * column's bottom item is swallowed. Ground fallback is owned by ItemRuntime,
+ * so this class only manages ordering and activation.
  */
 @ccclass('StackController')
 export class StackController extends Component {
     @property({ tooltip: 'World-space X/Z tolerance used to identify one vertical column.' })
     public columnTolerance = 0.035;
 
-    @property({ tooltip: 'Maximum live/settled collapse pieces retained per tower at once.' })
-    public maxReleasedPiecesPerTower = 24;
-
     private _registry: ItemRegistry | null = null;
+    private _hole: Node | null = null;
+    private _holeSize: HoleSizeController | null = null;
+    private _groundY = 0.075;
+    private _groundSafetyOffset = 0.01;
     private readonly _entries: StackEntry[] = [];
+    private readonly _allItems: ItemRuntime[] = [];
     private readonly _towerByItem = new Map<ItemRuntime, TowerStack>();
-    private readonly _fallingPieces: ItemRuntime[] = [];
     private readonly _worldPos = new Vec3();
-    private _claimedTower: TowerStack | null = null;
     private _ready = false;
 
     public get isReady(): boolean {
@@ -48,22 +47,40 @@ export class StackController extends Component {
         this._registry = registry;
     }
 
+    /** Supplies the scene references used by every activated ItemRuntime. */
+    public configureGroundFallback(
+        hole: Node,
+        holeSize: HoleSizeController,
+        groundY: number,
+        groundSafetyOffset: number,
+    ): void {
+        this._hole = hole;
+        this._holeSize = holeSize;
+        this._groundY = groundY;
+        this._groundSafetyOffset = groundSafetyOffset;
+
+        for (let i = 0; i < this._allItems.length; i++) {
+            this.configureItem(this._allItems[i]);
+        }
+    }
+
     public resetStacks(): void {
         this._entries.length = 0;
+        this._allItems.length = 0;
         this._towerByItem.clear();
-        this._fallingPieces.length = 0;
-        this._claimedTower = null;
         this._ready = false;
     }
 
     public register(item: ItemRuntime): void {
         item.node.getWorldPosition(this._worldPos);
+        this._allItems.push(item);
         this._entries.push({
             item,
             x: this._worldPos.x,
             y: this._worldPos.y,
             z: this._worldPos.z,
         });
+        this.configureItem(item);
     }
 
     public finalizeStacks(): void {
@@ -87,11 +104,7 @@ export class StackController extends Component {
             }
 
             column.sort((a, b) => a.y - b.y);
-            const tower: TowerStack = {
-                pieces: [],
-                collapsed: false,
-                released: new Set<ItemRuntime>(),
-            };
+            const tower: TowerStack = { pieces: [], collapsed: false };
             for (let i = 0; i < column.length; i++) {
                 const piece = column[i].item;
                 tower.pieces.push(piece);
@@ -103,116 +116,32 @@ export class StackController extends Component {
         this._entries.length = 0;
     }
 
-    /**
-     * Before collapse, only index 0 (the bottom piece) can activate. After
-     * collapse, only pieces admitted to the rolling window may activate.
-     */
+    /** Only the bottom item may wake before its column has collapsed. */
     public canActivate(item: ItemRuntime): boolean {
         if (!this._ready) {
             return false;
         }
-
         const tower = this._towerByItem.get(item);
-        if (!tower) {
-            return true;
-        }
-        if (tower.collapsed) {
-            return tower.released.has(item);
-        }
-        return (!this._claimedTower || this._claimedTower === tower)
-            && tower.pieces[0] === item;
+        return !tower || tower.collapsed || tower.pieces[0] === item;
     }
 
     public isCollapsedTowerPiece(item: ItemRuntime): boolean {
-        const tower = this._towerByItem.get(item);
-        return !!tower && tower.collapsed && tower.released.has(item);
+        return !!this._towerByItem.get(item)?.collapsed;
     }
 
-    /** Activate an item while preserving collapsed-tower tracking. */
     public activateItem(item: ItemRuntime): boolean {
+        if (!this.canActivate(item)) {
+            return false;
+        }
+
+        this.configureItem(item);
         const tower = this._towerByItem.get(item);
-        let claimedNow = false;
-        if (tower && !tower.collapsed) {
-            if ((this._claimedTower && this._claimedTower !== tower)
-                || tower.pieces[0] !== item) {
-                return false;
-            }
-            if (!this._claimedTower) {
-                this._claimedTower = tower;
-                claimedNow = true;
-            }
-        }
-
-        const collapsedPiece = this.isCollapsedTowerPiece(item);
-        const activated = collapsedPiece
-            ? item.activateStackFall()
-            : item.activateDynamic();
-        if (!activated && claimedNow) {
-            this._claimedTower = null;
-        }
-        if (activated && collapsedPiece) {
-            this.trackFallingPiece(item);
-        }
-        return activated;
+        return tower?.collapsed ? item.activateStackFall() : item.activateDynamic();
     }
 
     /**
-     * Cocos update-loop equivalent of Unity FixedUpdate ground protection.
-     * Only released tower pieces are visited, avoiding work on thousands of
-     * dormant items. Once the Hole is no longer below a piece, constraints are
-     * released and the real collider height is used for the hard floor clamp.
-     */
-    public updateFallingPieces(
-        holePosition: Vec3,
-        holeRadius: number,
-        groundSurfaceY: number,
-        safetyOffset: number,
-    ): void {
-        const radiusSq = holeRadius * holeRadius;
-
-        for (let i = this._fallingPieces.length - 1; i >= 0; i--) {
-            const piece = this._fallingPieces[i];
-            if (!piece.node.active || piece.isConsumed || piece.isSwallowing) {
-                this._fallingPieces.splice(i, 1);
-                continue;
-            }
-            if (piece.isVortex) {
-                // HoleConsumeSystem owns reversible ground-ignore while a
-                // piece is committed to the vortex.
-                continue;
-            }
-            if (!piece.isDynamic) {
-                this._fallingPieces.splice(i, 1);
-                continue;
-            }
-
-            piece.node.getWorldPosition(this._worldPos);
-            const dx = this._worldPos.x - holePosition.x;
-            const dz = this._worldPos.z - holePosition.z;
-            const isDirectlyOverHole = dx * dx + dz * dz <= radiusSq;
-            if (isDirectlyOverHole) {
-                continue;
-            }
-
-            const minimumCenterY = piece.getGroundMinimumCenterY(
-                groundSurfaceY,
-                safetyOffset,
-            );
-            // Keep airborne pieces aligned with their source column. Unlock a
-            // small amount of horizontal settling only after they land.
-            if (this._worldPos.y > minimumCenterY + 0.04) {
-                continue;
-            }
-            piece.ensureAboveGround(minimumCenterY);
-            piece.releaseStackConstraints();
-        }
-
-        this.updateTowerClaim(holePosition, holeRadius);
-    }
-
-    /**
-     * Remove an entering piece and advance the tower's rolling release window.
-     * Released bodies stay in ITEM so they collide with the solid ground.
+     * The inner threshold has already disabled the consumed base's collider.
+     * Activate every remaining piece with gravity and locked X/Z motion.
      */
     public onItemEnteredSwallow(item: ItemRuntime): void {
         if (!this._registry) {
@@ -230,102 +159,43 @@ export class StackController extends Component {
         }
 
         tower.pieces.splice(index, 1);
-        tower.released.delete(item);
         this._towerByItem.delete(item);
-        this.untrackFallingPiece(item);
-        if (!tower.collapsed && index !== 0) {
+
+        // Only removing stack[0] starts the vertical cascade.
+        if (index !== 0 || tower.collapsed) {
             return;
         }
 
-        if (!tower.collapsed) {
-            tower.collapsed = true;
-        }
-        this.refillReleasedPieces(tower);
-        if (tower.pieces.length === 0 && this._claimedTower === tower) {
-            this._claimedTower = null;
-        }
-    }
-
-    /**
-     * A collapsed tower advances through a small rolling window instead of
-     * enabling hundreds of rigid bodies in the same frame. Every swallowed
-     * piece opens one slot for the next-highest dormant piece.
-     */
-    private refillReleasedPieces(tower: TowerStack): void {
-        const limit = Math.max(1, this.maxReleasedPiecesPerTower);
-        let releasedCount = tower.released.size;
-
+        tower.collapsed = true;
         for (let i = 0; i < tower.pieces.length; i++) {
-            if (releasedCount >= limit) {
-                break;
-            }
-
             const piece = tower.pieces[i];
-            if (tower.released.has(piece) || !piece.isDormant) {
-                continue;
-            }
-
-            if (piece.activateStackFall()) {
+            this.configureItem(piece);
+            if (piece.isDormant && piece.activateStackFall()) {
                 this._registry.markDynamic(piece);
-                tower.released.add(piece);
-                this.trackFallingPiece(piece);
-                releasedCount++;
             }
         }
     }
 
-    /** Allow a different tower once the Hole has clearly left this collapse. */
-    private updateTowerClaim(holePosition: Vec3, holeRadius: number): void {
-        const tower = this._claimedTower;
-        if (!tower) {
+    /** Backward-compatible configuration entry point for older scene code. */
+    public updateFallingPieces(
+        _holePosition: Vec3,
+        _holeRadius: number,
+        groundY: number,
+        groundSafetyOffset: number,
+    ): void {
+        this._groundY = groundY;
+        this._groundSafetyOffset = groundSafetyOffset;
+    }
+
+    private configureItem(item: ItemRuntime): void {
+        if (!this._hole || !this._holeSize) {
             return;
         }
-
-        if (!tower.collapsed) {
-            const base = tower.pieces[0];
-            if (!base || !base.node.active || base.isConsumed) {
-                this._claimedTower = null;
-                return;
-            }
-            if (base.isVortex) {
-                return;
-            }
-            base.node.getWorldPosition(this._worldPos);
-            const dx = this._worldPos.x - holePosition.x;
-            const dz = this._worldPos.z - holePosition.z;
-            const releaseRadius = holeRadius + 0.45;
-            if (dx * dx + dz * dz > releaseRadius * releaseRadius) {
-                this._claimedTower = null;
-            }
-            return;
-        }
-
-        const releaseRadius = holeRadius + 0.3;
-        const releaseRadiusSq = releaseRadius * releaseRadius;
-        for (const piece of tower.released) {
-            if (!piece.node.active || piece.isConsumed) {
-                continue;
-            }
-            piece.node.getWorldPosition(this._worldPos);
-            const dx = this._worldPos.x - holePosition.x;
-            const dz = this._worldPos.z - holePosition.z;
-            if (dx * dx + dz * dz <= releaseRadiusSq) {
-                return;
-            }
-        }
-        this._claimedTower = null;
-    }
-
-    private trackFallingPiece(item: ItemRuntime): void {
-        if (this._fallingPieces.indexOf(item) < 0) {
-            this._fallingPieces.push(item);
-        }
-    }
-
-    private untrackFallingPiece(item: ItemRuntime): void {
-        const index = this._fallingPieces.indexOf(item);
-        if (index >= 0) {
-            this._fallingPieces.splice(index, 1);
-        }
+        item.configureGroundFallback(
+            this._hole,
+            this._holeSize,
+            this._groundY,
+            this._groundSafetyOffset,
+        );
     }
 }

@@ -4,6 +4,7 @@ import { HoleVisual } from './HoleVisual';
 
 const { ccclass, property } = _decorator;
 
+/** Item-count progression with a radius shared by visuals and gameplay. */
 @ccclass('HoleSizeController')
 export class HoleSizeController extends Component {
     @property({ type: HoleVisual })
@@ -12,74 +13,130 @@ export class HoleSizeController extends Component {
     @property({ type: [CCFloat], tooltip: 'Hole radius for Lv1, Lv2, ...' })
     public levelRadii: number[] = [0.32, 0.4, 0.5, 0.62];
 
-    @property({ type: [CCInteger], tooltip: 'XP required to advance FROM each level. Last entry is ignored.' })
+    @property({
+        type: [CCInteger],
+        tooltip: 'Items required to advance FROM each level. Last entry is ignored.',
+    })
     public xpToNextLevel: number[] = [25, 45, 70];
 
+    @property({ tooltip: 'Seconds used to ease the visual and gameplay radius to its new size.' })
+    public growthDuration = 0.25;
+
     private _levelIndex = 0;
-    private _xpInLevel = 0;
+    private _itemsInLevel = 0;
+    private _totalItemsEaten = 0;
+    private _currentRadius = 1;
+    private _growthFrom = 1;
+    private _growthTo = 1;
+    private _growthElapsed = 0;
+    private _isGrowing = false;
 
     public get level(): number {
         return this._levelIndex + 1;
     }
 
+    /** Animated radius used by suction, ingestion, and ground fallback. */
     public get radius(): number {
-        if (this.levelRadii.length === 0) {
-            return 1;
-        }
-        return this.levelRadii[Math.min(this._levelIndex, this.levelRadii.length - 1)];
+        return this._currentRadius;
+    }
+
+    public get totalItemsEaten(): number {
+        return this._totalItemsEaten;
     }
 
     public get progress01(): number {
         if (this._levelIndex >= this.levelRadii.length - 1) {
             return 1;
         }
-        const required = this.getRequiredXp();
-        return required <= 0 ? 1 : Math.min(1, this._xpInLevel / required);
+        const required = this.getRequiredItems();
+        return required <= 0 ? 1 : Math.min(1, this._itemsInLevel / required);
     }
 
     protected start(): void {
-        this.applyLevelVisual();
+        this._currentRadius = this.getLevelRadius(this._levelIndex);
+        this._growthFrom = this._currentRadius;
+        this._growthTo = this._currentRadius;
+        this.applyRadius();
         this.emitProgress();
     }
 
-    public addXp(amount: number): void {
-        if (amount <= 0 || this.levelRadii.length === 0) {
+    protected update(dt: number): void {
+        if (!this._isGrowing) {
             return;
         }
 
-        this._xpInLevel += amount;
-        let leveledUp = false;
+        this._growthElapsed += Math.max(0, dt);
+        const duration = Math.max(0.01, this.growthDuration);
+        const t = Math.min(1, this._growthElapsed / duration);
+        const inverse = 1 - t;
+        const easeOutCubic = 1 - inverse * inverse * inverse;
+        this._currentRadius = this._growthFrom
+            + (this._growthTo - this._growthFrom) * easeOutCubic;
+        this.applyRadius();
+        this.emitProgress();
+
+        if (t >= 1) {
+            this._currentRadius = this._growthTo;
+            this._isGrowing = false;
+            this.applyRadius();
+        }
+    }
+
+    /** Called exactly once for each item that finishes the inner swallow stage. */
+    public recordItemEaten(_consumeValue = 1): void {
+        if (this.levelRadii.length === 0) {
+            return;
+        }
+
+        this._totalItemsEaten++;
+        this._itemsInLevel++;
 
         while (this._levelIndex < this.levelRadii.length - 1) {
-            const required = this.getRequiredXp();
-            if (required <= 0 || this._xpInLevel < required) {
+            const required = this.getRequiredItems();
+            if (required <= 0 || this._itemsInLevel < required) {
                 break;
             }
 
-            this._xpInLevel -= required;
+            this._itemsInLevel -= required;
             this._levelIndex++;
-            leveledUp = true;
-            this.applyLevelVisual();
-            gameEvents.emit(GameEvent.HOLE_LEVEL_UP, this.level, this.radius);
+            this.beginGrowth(this.getLevelRadius(this._levelIndex));
+            gameEvents.emit(GameEvent.HOLE_LEVEL_UP, this.level, this._growthTo);
         }
 
-        if (leveledUp && this._levelIndex >= this.levelRadii.length - 1) {
-            this._xpInLevel = 0;
+        if (this._levelIndex >= this.levelRadii.length - 1) {
+            this._itemsInLevel = 0;
         }
         this.emitProgress();
     }
 
-    private getRequiredXp(): number {
+    /** Backward-compatible API for existing callers. Progress is item-count based. */
+    public addXp(consumeValue: number): void {
+        this.recordItemEaten(consumeValue);
+    }
+
+    private beginGrowth(targetRadius: number): void {
+        this._growthFrom = this._currentRadius;
+        this._growthTo = Math.max(0.01, targetRadius);
+        this._growthElapsed = 0;
+        this._isGrowing = true;
+    }
+
+    private getRequiredItems(): number {
         if (this._levelIndex >= this.xpToNextLevel.length) {
             return 0;
         }
-        return Math.max(0, this.xpToNextLevel[this._levelIndex]);
+        return Math.max(0, Math.floor(this.xpToNextLevel[this._levelIndex]));
     }
 
-    private applyLevelVisual(): void {
-        if (this.visual) {
-            this.visual.setRadius(this.radius);
+    private getLevelRadius(index: number): number {
+        if (this.levelRadii.length === 0) {
+            return 1;
         }
+        return Math.max(0.01, this.levelRadii[Math.min(index, this.levelRadii.length - 1)]);
+    }
+
+    private applyRadius(): void {
+        this.visual?.setRadius(this._currentRadius);
     }
 
     private emitProgress(): void {
@@ -87,7 +144,7 @@ export class HoleSizeController extends Component {
             GameEvent.HOLE_PROGRESS_CHANGED,
             this.level,
             this.progress01,
-            this.radius,
+            this._currentRadius,
         );
     }
 }
