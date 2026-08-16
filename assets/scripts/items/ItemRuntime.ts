@@ -13,7 +13,7 @@ import { PhysicsGroup } from '../physics/PhysicsGroups';
 const { ccclass, property } = _decorator;
 const FULL_LINEAR_FACTOR = new Vec3(1, 1, 1);
 const VERTICAL_LINEAR_FACTOR = new Vec3(0, 1, 0);
-const SETTLING_LINEAR_FACTOR = new Vec3(0.05, 1, 0.05);
+const SETTLING_LINEAR_FACTOR = new Vec3(0.18, 1, 0.18);
 const LOCKED_ANGULAR_FACTOR = new Vec3(0, 0, 0);
 const ZERO_VELOCITY = new Vec3(0, 0, 0);
 
@@ -256,10 +256,8 @@ export class ItemRuntime extends Component {
             const collider = this._colliders[i];
             collider.enabled = true;
             collider.setGroup(PhysicsGroup.ITEM);
-            // Remove ground friction while the piece is being centered over
-            // the rim. Collision remains enabled until it reaches the opening.
-            collider.sharedMaterial = zeroFrictionMaterial;
         }
+        this.restoreColliderMaterials();
         this._body.wakeUp();
         return true;
     }
@@ -308,10 +306,9 @@ export class ItemRuntime extends Component {
         this._vortexMaterial = null;
         this._stackConstrained = false;
         this.node.setScale(this._baseScale);
-        this.restoreColliderMaterials();
         this._body.linearDamping = Math.max(this.linearDamping, 0.65);
         this._body.angularDamping = Math.max(this.angularDamping, 0.7);
-        this._body.linearFactor = SETTLING_LINEAR_FACTOR;
+        this._body.linearFactor = FULL_LINEAR_FACTOR;
         this._body.angularFactor = FULL_LINEAR_FACTOR;
         this.dampenHorizontalVelocity(0.12);
         this.ensureAboveGround(minimumCenterY);
@@ -344,28 +341,6 @@ export class ItemRuntime extends Component {
         this._velocity.x *= multiplier;
         this._velocity.z *= multiplier;
         this._body.setLinearVelocity(this._velocity);
-    }
-
-    /** Keep a missed tower piece inside a compact pile around its source column. */
-    public constrainToPile(centerX: number, centerZ: number, radius: number): void {
-        if (!this._body || radius <= 0) {
-            return;
-        }
-
-        this.node.getWorldPosition(this._worldPosition);
-        const dx = this._worldPosition.x - centerX;
-        const dz = this._worldPosition.z - centerZ;
-        const distanceSq = dx * dx + dz * dz;
-        const radiusSq = radius * radius;
-        if (distanceSq > radiusSq && distanceSq > 0.000001) {
-            const scale = radius / Math.sqrt(distanceSq);
-            this._worldPosition.x = centerX + dx * scale;
-            this._worldPosition.z = centerZ + dz * scale;
-            this.node.setWorldPosition(this._worldPosition);
-        }
-        if (this._body.enabled) {
-            this.dampenHorizontalVelocity(0.05);
-        }
     }
 
     /**

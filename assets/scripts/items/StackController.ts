@@ -17,8 +17,6 @@ interface TowerStack {
     collapsed: boolean;
     /** Pieces admitted to the rolling physics window for this tower. */
     released: Set<ItemRuntime>;
-    anchorX: number;
-    anchorZ: number;
 }
 
 /**
@@ -33,9 +31,6 @@ export class StackController extends Component {
 
     @property({ tooltip: 'Maximum live/settled collapse pieces retained per tower at once.' })
     public maxReleasedPiecesPerTower = 24;
-
-    @property({ tooltip: 'Maximum horizontal distance for missed pieces from their original tower.' })
-    public settledPileRadius = 0.48;
 
     private _registry: ItemRegistry | null = null;
     private readonly _entries: StackEntry[] = [];
@@ -96,8 +91,6 @@ export class StackController extends Component {
                 pieces: [],
                 collapsed: false,
                 released: new Set<ItemRuntime>(),
-                anchorX: column[0].x,
-                anchorZ: column[0].z,
             };
             for (let i = 0; i < column.length; i++) {
                 const piece = column[i].item;
@@ -189,17 +182,6 @@ export class StackController extends Component {
                 continue;
             }
             if (!piece.isDynamic) {
-                const tower = this._towerByItem.get(piece);
-                if (tower) {
-                    piece.constrainToPile(
-                        tower.anchorX,
-                        tower.anchorZ,
-                        Math.max(0.1, this.settledPileRadius),
-                    );
-                    if (tower.released.delete(piece)) {
-                        this.refillReleasedPieces(tower);
-                    }
-                }
                 this._fallingPieces.splice(i, 1);
                 continue;
             }
@@ -222,21 +204,7 @@ export class StackController extends Component {
                 continue;
             }
             piece.ensureAboveGround(minimumCenterY);
-            const tower = this._towerByItem.get(piece);
-            if (tower) {
-                piece.constrainToPile(
-                    tower.anchorX,
-                    tower.anchorZ,
-                    Math.max(0.1, this.settledPileRadius),
-                );
-            }
             piece.releaseStackConstraints();
-
-            // Landed misses no longer consume rolling-window slots. Releasing
-            // the next pieces prevents the upper tower hanging in the air.
-            if (tower && tower.released.delete(piece)) {
-                this.refillReleasedPieces(tower);
-            }
         }
 
         this.updateTowerClaim(holePosition, holeRadius);

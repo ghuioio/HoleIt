@@ -185,10 +185,11 @@ export class HoleConsumeSystem extends Component {
             return false;
         }
 
-        // requiredHoleLevel owns size eligibility. Once eligible, use the
-        // piece center against the visible opening so a piece visibly over
-        // the black hole cannot remain supported by the ground.
+        // Fit is evaluated at the anti-jam rim scale, matching what is
+        // visually and physically entering the opening.
+        const effectiveRadius = item.consumeRadius * shrunkScale;
         const innerRadius = holeRadius
+            - effectiveRadius
             - this.rimPadding
             + this.captureForgiveness;
         if (innerRadius <= 0) {
@@ -259,6 +260,7 @@ export class HoleConsumeSystem extends Component {
 
     private updateVortexItems(dt: number): void {
         const holeRadius = this.holeSize!.radius;
+        const shrunkScale = Math.min(1, Math.max(0.5, this.rimScale));
 
         for (let i = this._vortex.length - 1; i >= 0; i--) {
             const item = this._vortex[i];
@@ -270,9 +272,10 @@ export class HoleConsumeSystem extends Component {
             item.tickIngestionVisual(dt, this.rimScaleSpeed);
             item.node.getWorldPosition(this._itemPos);
 
+            const effectiveRadius = item.consumeRadius * shrunkScale;
             const innerRadius = Math.max(
                 0.04,
-                holeRadius - this.rimPadding + this.captureForgiveness,
+                holeRadius - effectiveRadius - this.rimPadding + this.captureForgiveness,
             );
             const dx = this._itemPos.x - this._holePos.x;
             const dz = this._itemPos.z - this._holePos.z;
