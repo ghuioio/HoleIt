@@ -29,7 +29,7 @@ export class HoleConsumeSystem extends Component {
     public holePlaneY = 0.03;
 
     @property({ tooltip: 'Outer vortex extends this far beyond the valid inner opening.' })
-    public outerPadding = 0.42;
+    public outerPadding = 0.18;
 
     @property({ tooltip: 'Objects above this height are not captured by the vortex.' })
     public outerCaptureHeight = 1.45;
@@ -53,13 +53,13 @@ export class HoleConsumeSystem extends Component {
     public rimScaleSpeed = 11;
 
     @property({ tooltip: 'Acceleration pulling objects horizontally toward the hole center.' })
-    public inwardAcceleration = 32;
+    public inwardAcceleration = 18;
 
     @property({ tooltip: 'Extra downward acceleration inside the outer vortex.' })
-    public downwardAcceleration = 44;
+    public downwardAcceleration = 36;
 
     @property({ tooltip: 'Maximum horizontal speed while being vacuumed.' })
-    public maxPullSpeed = 6.5;
+    public maxPullSpeed = 4;
 
     @property({ tooltip: 'Maximum downward speed while being vacuumed.' })
     public maxDownSpeed = 9;
@@ -71,7 +71,7 @@ export class HoleConsumeSystem extends Component {
     public rimPadding = 0.035;
 
     @property({ tooltip: 'Small fit allowance that makes valid captures responsive.' })
-    public captureForgiveness = 0.1;
+    public captureForgiveness = 0.02;
 
     @property({ tooltip: 'Emergency depth that recycles an item even if the moving hole outruns it.' })
     public killDepth = 1.8;
@@ -80,7 +80,7 @@ export class HoleConsumeSystem extends Component {
     public captureScanInterval = 0.025;
 
     @property({ tooltip: 'Maximum budget-bypass wakes per capture scan to avoid a physics spike.' })
-    public maxPriorityActivationsPerScan = 24;
+    public maxPriorityActivationsPerScan = 8;
 
     private _captureTimer = 0;
     private _stackController: StackController | null = null;
@@ -185,11 +185,10 @@ export class HoleConsumeSystem extends Component {
             return false;
         }
 
-        // Fit is evaluated at the anti-jam rim scale, matching what is
-        // visually and physically entering the opening.
-        const effectiveRadius = item.consumeRadius * shrunkScale;
+        // requiredHoleLevel owns size eligibility. Once eligible, use the
+        // piece center against the visible opening so a piece visibly over
+        // the black hole cannot remain supported by the ground.
         const innerRadius = holeRadius
-            - effectiveRadius
             - this.rimPadding
             + this.captureForgiveness;
         if (innerRadius <= 0) {
@@ -260,7 +259,6 @@ export class HoleConsumeSystem extends Component {
 
     private updateVortexItems(dt: number): void {
         const holeRadius = this.holeSize!.radius;
-        const shrunkScale = Math.min(1, Math.max(0.5, this.rimScale));
 
         for (let i = this._vortex.length - 1; i >= 0; i--) {
             const item = this._vortex[i];
@@ -272,10 +270,9 @@ export class HoleConsumeSystem extends Component {
             item.tickIngestionVisual(dt, this.rimScaleSpeed);
             item.node.getWorldPosition(this._itemPos);
 
-            const effectiveRadius = item.consumeRadius * shrunkScale;
             const innerRadius = Math.max(
                 0.04,
-                holeRadius - effectiveRadius - this.rimPadding + this.captureForgiveness,
+                holeRadius - this.rimPadding + this.captureForgiveness,
             );
             const dx = this._itemPos.x - this._holePos.x;
             const dz = this._itemPos.z - this._holePos.z;

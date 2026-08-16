@@ -9,13 +9,13 @@ export class HoleMovement extends Component {
     public joystick: JoystickInput | null = null;
 
     @property({ tooltip: 'Maximum Hole speed in world units/second.' })
-    public moveSpeed = 6.5;
+    public moveSpeed = 3.2;
 
     @property({ tooltip: 'Acceleration while the joystick is held.' })
-    public acceleration = 24;
+    public acceleration = 11;
 
     @property({ tooltip: 'Deceleration after releasing the joystick.' })
-    public deceleration = 30;
+    public deceleration = 16;
 
     @property({ tooltip: 'Enable when joystick-up visually moves the Hole down-screen.' })
     public invertZ = true;

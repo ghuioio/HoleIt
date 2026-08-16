@@ -19,19 +19,25 @@ export class PhysicsActivationSystem extends Component {
     public groundCollider: Collider | null = null;
 
     @property({ tooltip: 'Dormant items inside this radius become real dynamic physics bodies.' })
-    public activationRadius = 2.4;
+    public activationRadius = 0.9;
 
     @property({ tooltip: 'Settled items farther than this radius are frozen back to cheap dormant state.' })
-    public freezeRadius = 3.2;
+    public freezeRadius = 1.5;
 
     @property({ tooltip: 'How often spatial activation/freeze checks run.' })
     public scanInterval = 0.06;
 
     @property({ tooltip: 'Safety cap for simultaneously simulated bodies.' })
-    public maxDynamicBodies = 180;
+    public maxDynamicBodies = 64;
 
     @property({ tooltip: 'Maximum dormant objects activated in one scan.' })
-    public maxActivationsPerScan = 60;
+    public maxActivationsPerScan = 12;
+
+    @property({ tooltip: 'Dormant meshes farther than this from the Hole are not submitted for rendering.' })
+    public renderRadius = 4.5;
+
+    @property({ tooltip: 'Extra hide distance that prevents renderers flickering at the visibility edge.' })
+    public renderHysteresis = 0.75;
 
     @property({ tooltip: 'Dynamic item must be slower than this before it can be frozen.' })
     public freezeSpeedThreshold = 0.12;
@@ -44,6 +50,9 @@ export class PhysicsActivationSystem extends Component {
     private readonly _itemPos = new Vec3();
     private readonly _nearby: ItemRuntime[] = [];
     private readonly _dynamic: ItemRuntime[] = [];
+    private readonly _renderCandidates: ItemRuntime[] = [];
+    private _visibleDormant = new Set<ItemRuntime>();
+    private _nextVisibleDormant = new Set<ItemRuntime>();
     private readonly _candidateDistance = new Map<ItemRuntime, number>();
     private readonly _candidateHeight = new Map<ItemRuntime, number>();
     private _stackController: StackController | null = null;
@@ -76,6 +85,7 @@ export class PhysicsActivationSystem extends Component {
 
     private scan(): void {
         this.hole!.getWorldPosition(this._holePos);
+        this.updateRenderVisibility();
         if (!this._stackController) {
             this._stackController = this.getComponent(StackController);
         }
@@ -104,11 +114,11 @@ export class PhysicsActivationSystem extends Component {
                     this._groundSurfaceY,
                     this.groundSafetyOffset,
                 );
-                if (distanceSq > holeRadiusSq || this._itemPos.y <= minimumCenterY) {
-                    item.releaseStackConstraints();
-                }
-                if (distanceSq > holeRadiusSq && this._itemPos.y <= minimumCenterY) {
+                const landedOutsideHole = distanceSq > holeRadiusSq
+                    && this._itemPos.y <= minimumCenterY + 0.04;
+                if (landedOutsideHole) {
                     item.ensureAboveGround(minimumCenterY);
+                    item.releaseStackConstraints();
                 }
             }
 
@@ -147,15 +157,60 @@ export class PhysicsActivationSystem extends Component {
                 continue;
             }
 
-            const activated = this._stackController
+            const didActivate = this._stackController
                 ? this._stackController.activateItem(item)
                 : item.activateDynamic();
-            if (activated) {
+            if (didActivate) {
                 this.registry!.markDynamic(item);
                 activated++;
                 available--;
             }
         }
+    }
+
+    /**
+     * The compact level used to fit almost entirely inside the camera. Query
+     * the existing spatial hash so only the Hole's local neighborhood draws.
+     */
+    private updateRenderVisibility(): void {
+        const showRadius = Math.max(this.activationRadius, this.renderRadius);
+        const hideRadius = showRadius + Math.max(0, this.renderHysteresis);
+        const showRadiusSq = showRadius * showRadius;
+        const hideRadiusSq = hideRadius * hideRadius;
+
+        this.registry!.queryDormant(this._holePos, hideRadius, this._renderCandidates);
+        this._nextVisibleDormant.clear();
+
+        for (let i = 0; i < this._renderCandidates.length; i++) {
+            const item = this._renderCandidates[i];
+            if (!item.isDormant || !item.node.active) {
+                continue;
+            }
+
+            item.node.getWorldPosition(this._itemPos);
+            const dx = this._itemPos.x - this._holePos.x;
+            const dz = this._itemPos.z - this._holePos.z;
+            const distanceSq = dx * dx + dz * dz;
+            const limitSq = this._visibleDormant.has(item) ? hideRadiusSq : showRadiusSq;
+            if (distanceSq > limitSq) {
+                continue;
+            }
+
+            if (!this._visibleDormant.has(item)) {
+                item.setRenderVisible(true);
+            }
+            this._nextVisibleDormant.add(item);
+        }
+
+        this._visibleDormant.forEach((item) => {
+            if (!this._nextVisibleDormant.has(item) && item.isDormant) {
+                item.setRenderVisible(false);
+            }
+        });
+
+        const previous = this._visibleDormant;
+        this._visibleDormant = this._nextVisibleDormant;
+        this._nextVisibleDormant = previous;
     }
 
     /** Keep the physics budget on the tower under the Hole, starting at its base. */

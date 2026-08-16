@@ -15,23 +15,34 @@ interface TowerStack {
     /** Always ordered bottom-to-top; index 0 is the current base piece. */
     pieces: ItemRuntime[];
     collapsed: boolean;
+    /** Pieces admitted to the rolling physics window for this tower. */
+    released: Set<ItemRuntime>;
+    anchorX: number;
+    anchorZ: number;
 }
 
 /**
  * Builds ordered vertical towers after level spawning. Towers stay dormant
- * until their base enters the Hole, then every remaining piece is released at
- * once with Y-only constrained physics.
+ * until their base enters the Hole, then a bounded rolling window is released
+ * with Y-only constrained physics.
  */
 @ccclass('StackController')
 export class StackController extends Component {
     @property({ tooltip: 'World-space X/Z tolerance used to identify one vertical column.' })
     public columnTolerance = 0.035;
 
+    @property({ tooltip: 'Maximum live/settled collapse pieces retained per tower at once.' })
+    public maxReleasedPiecesPerTower = 24;
+
+    @property({ tooltip: 'Maximum horizontal distance for missed pieces from their original tower.' })
+    public settledPileRadius = 0.48;
+
     private _registry: ItemRegistry | null = null;
     private readonly _entries: StackEntry[] = [];
     private readonly _towerByItem = new Map<ItemRuntime, TowerStack>();
     private readonly _fallingPieces: ItemRuntime[] = [];
     private readonly _worldPos = new Vec3();
+    private _claimedTower: TowerStack | null = null;
     private _ready = false;
 
     public get isReady(): boolean {
@@ -46,6 +57,7 @@ export class StackController extends Component {
         this._entries.length = 0;
         this._towerByItem.clear();
         this._fallingPieces.length = 0;
+        this._claimedTower = null;
         this._ready = false;
     }
 
@@ -83,6 +95,9 @@ export class StackController extends Component {
             const tower: TowerStack = {
                 pieces: [],
                 collapsed: false,
+                released: new Set<ItemRuntime>(),
+                anchorX: column[0].x,
+                anchorZ: column[0].z,
             };
             for (let i = 0; i < column.length; i++) {
                 const piece = column[i].item;
@@ -96,8 +111,8 @@ export class StackController extends Component {
     }
 
     /**
-     * Before collapse, only index 0 (the bottom piece) can activate. Once the
-     * base enters the Hole, onItemEnteredSwallow activates the whole remainder.
+     * Before collapse, only index 0 (the bottom piece) can activate. After
+     * collapse, only pieces admitted to the rolling window may activate.
      */
     public canActivate(item: ItemRuntime): boolean {
         if (!this._ready) {
@@ -108,20 +123,40 @@ export class StackController extends Component {
         if (!tower) {
             return true;
         }
-        return tower.collapsed || tower.pieces[0] === item;
+        if (tower.collapsed) {
+            return tower.released.has(item);
+        }
+        return (!this._claimedTower || this._claimedTower === tower)
+            && tower.pieces[0] === item;
     }
 
     public isCollapsedTowerPiece(item: ItemRuntime): boolean {
         const tower = this._towerByItem.get(item);
-        return !!tower && tower.collapsed;
+        return !!tower && tower.collapsed && tower.released.has(item);
     }
 
     /** Activate an item while preserving collapsed-tower tracking. */
     public activateItem(item: ItemRuntime): boolean {
+        const tower = this._towerByItem.get(item);
+        let claimedNow = false;
+        if (tower && !tower.collapsed) {
+            if ((this._claimedTower && this._claimedTower !== tower)
+                || tower.pieces[0] !== item) {
+                return false;
+            }
+            if (!this._claimedTower) {
+                this._claimedTower = tower;
+                claimedNow = true;
+            }
+        }
+
         const collapsedPiece = this.isCollapsedTowerPiece(item);
         const activated = collapsedPiece
             ? item.activateStackFall()
             : item.activateDynamic();
+        if (!activated && claimedNow) {
+            this._claimedTower = null;
+        }
         if (activated && collapsedPiece) {
             this.trackFallingPiece(item);
         }
@@ -154,6 +189,17 @@ export class StackController extends Component {
                 continue;
             }
             if (!piece.isDynamic) {
+                const tower = this._towerByItem.get(piece);
+                if (tower) {
+                    piece.constrainToPile(
+                        tower.anchorX,
+                        tower.anchorZ,
+                        Math.max(0.1, this.settledPileRadius),
+                    );
+                    if (tower.released.delete(piece)) {
+                        this.refillReleasedPieces(tower);
+                    }
+                }
                 this._fallingPieces.splice(i, 1);
                 continue;
             }
@@ -166,20 +212,39 @@ export class StackController extends Component {
                 continue;
             }
 
-            // Outside the opening, normal ground collision is already active.
-            // Unlock X/Z and rotation immediately so the piece can form a pile.
-            piece.releaseStackConstraints();
             const minimumCenterY = piece.getGroundMinimumCenterY(
                 groundSurfaceY,
                 safetyOffset,
             );
+            // Keep airborne pieces aligned with their source column. Unlock a
+            // small amount of horizontal settling only after they land.
+            if (this._worldPos.y > minimumCenterY + 0.04) {
+                continue;
+            }
             piece.ensureAboveGround(minimumCenterY);
+            const tower = this._towerByItem.get(piece);
+            if (tower) {
+                piece.constrainToPile(
+                    tower.anchorX,
+                    tower.anchorZ,
+                    Math.max(0.1, this.settledPileRadius),
+                );
+            }
+            piece.releaseStackConstraints();
+
+            // Landed misses no longer consume rolling-window slots. Releasing
+            // the next pieces prevents the upper tower hanging in the air.
+            if (tower && tower.released.delete(piece)) {
+                this.refillReleasedPieces(tower);
+            }
         }
+
+        this.updateTowerClaim(holePosition, holeRadius);
     }
 
     /**
-     * Remove the current base, then release every piece above it. Released
-     * bodies stay in ITEM so they collide with the ground if the Hole leaves.
+     * Remove an entering piece and advance the tower's rolling release window.
+     * Released bodies stay in ITEM so they collide with the solid ground.
      */
     public onItemEnteredSwallow(item: ItemRuntime): void {
         if (!this._registry) {
@@ -197,20 +262,90 @@ export class StackController extends Component {
         }
 
         tower.pieces.splice(index, 1);
+        tower.released.delete(item);
         this._towerByItem.delete(item);
         this.untrackFallingPiece(item);
-        if (index !== 0 || tower.collapsed) {
+        if (!tower.collapsed && index !== 0) {
             return;
         }
 
-        tower.collapsed = true;
+        if (!tower.collapsed) {
+            tower.collapsed = true;
+        }
+        this.refillReleasedPieces(tower);
+        if (tower.pieces.length === 0 && this._claimedTower === tower) {
+            this._claimedTower = null;
+        }
+    }
+
+    /**
+     * A collapsed tower advances through a small rolling window instead of
+     * enabling hundreds of rigid bodies in the same frame. Every swallowed
+     * piece opens one slot for the next-highest dormant piece.
+     */
+    private refillReleasedPieces(tower: TowerStack): void {
+        const limit = Math.max(1, this.maxReleasedPiecesPerTower);
+        let releasedCount = tower.released.size;
+
         for (let i = 0; i < tower.pieces.length; i++) {
+            if (releasedCount >= limit) {
+                break;
+            }
+
             const piece = tower.pieces[i];
-            if (piece.isDormant && piece.activateStackFall()) {
+            if (tower.released.has(piece) || !piece.isDormant) {
+                continue;
+            }
+
+            if (piece.activateStackFall()) {
                 this._registry.markDynamic(piece);
+                tower.released.add(piece);
                 this.trackFallingPiece(piece);
+                releasedCount++;
             }
         }
+    }
+
+    /** Allow a different tower once the Hole has clearly left this collapse. */
+    private updateTowerClaim(holePosition: Vec3, holeRadius: number): void {
+        const tower = this._claimedTower;
+        if (!tower) {
+            return;
+        }
+
+        if (!tower.collapsed) {
+            const base = tower.pieces[0];
+            if (!base || !base.node.active || base.isConsumed) {
+                this._claimedTower = null;
+                return;
+            }
+            if (base.isVortex) {
+                return;
+            }
+            base.node.getWorldPosition(this._worldPos);
+            const dx = this._worldPos.x - holePosition.x;
+            const dz = this._worldPos.z - holePosition.z;
+            const releaseRadius = holeRadius + 0.45;
+            if (dx * dx + dz * dz > releaseRadius * releaseRadius) {
+                this._claimedTower = null;
+            }
+            return;
+        }
+
+        const releaseRadius = holeRadius + 0.3;
+        const releaseRadiusSq = releaseRadius * releaseRadius;
+        for (const piece of tower.released) {
+            if (!piece.node.active || piece.isConsumed) {
+                continue;
+            }
+            piece.node.getWorldPosition(this._worldPos);
+            const dx = this._worldPos.x - holePosition.x;
+            const dz = this._worldPos.z - holePosition.z;
+            if (dx * dx + dz * dz <= releaseRadiusSq) {
+                return;
+            }
+        }
+        this._claimedTower = null;
     }
 
     private trackFallingPiece(item: ItemRuntime): void {

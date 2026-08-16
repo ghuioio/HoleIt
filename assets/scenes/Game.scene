@@ -690,9 +690,9 @@
     "joystick": {
       "__id__": 23
     },
-    "moveSpeed": 6.5,
-    "acceleration": 24,
-    "deceleration": 30,
+    "moveSpeed": 3.2,
+    "acceleration": 11,
+    "deceleration": 16,
     "invertZ": true,
     "minX": -8,
     "maxX": 8,
@@ -2389,11 +2389,13 @@
     "groundCollider": {
       "__id__": 9
     },
-    "activationRadius": 2.4,
-    "freezeRadius": 3.2,
+    "activationRadius": 0.9,
+    "freezeRadius": 1.5,
     "scanInterval": 0.06,
-    "maxDynamicBodies": 180,
-    "maxActivationsPerScan": 60,
+    "maxDynamicBodies": 64,
+    "maxActivationsPerScan": 12,
+    "renderRadius": 4.5,
+    "renderHysteresis": 0.75,
     "freezeSpeedThreshold": 0.12,
     "_id": "daBD4uUJBEML/v9VbDumbd"
   },
@@ -4120,10 +4122,10 @@
       "__id__": 121
     },
     "levelRadii": [
-      0.75,
-      0.95,
-      1.2,
-      1.5
+      0.32,
+      0.4,
+      0.5,
+      0.62
     ],
     "xpToNextLevel": [
       25,
@@ -4151,21 +4153,21 @@
       "__id__": 122
     },
     "holePlaneY": 0.03,
-    "outerPadding": 0.42,
+    "outerPadding": 0.18,
     "outerCaptureHeight": 1.45,
     "innerDepth": 0.12,
     "rimScale": 0.76,
     "rimScaleSpeed": 11,
-    "inwardAcceleration": 32,
-    "downwardAcceleration": 44,
-    "maxPullSpeed": 6.5,
+    "inwardAcceleration": 18,
+    "downwardAcceleration": 36,
+    "maxPullSpeed": 4,
     "maxDownSpeed": 9,
     "swallowDuration": 0.15,
     "rimPadding": 0.04,
-    "captureForgiveness": 0.1,
+    "captureForgiveness": 0.02,
     "killDepth": 1.8,
     "captureScanInterval": 0.025,
-    "maxPriorityActivationsPerScan": 24,
+    "maxPriorityActivationsPerScan": 8,
     "_id": "5dybdXFPNFJKx9fqybLnDE"
   },
   {
@@ -4188,9 +4190,9 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -10,
-      "y": 10,
-      "z": 10
+      "x": 0,
+      "y": 6.23,
+      "z": 1.2
     },
     "_lrot": {
       "__type__": "cc.Quat",
@@ -4225,11 +4227,11 @@
     "__prefab": null,
     "_projection": 1,
     "_priority": 0,
-    "_fov": 60,
+    "_fov": 38,
     "_fovAxis": 1,
     "_orthoHeight": 10,
     "_near": 1,
-    "_far": 1000,
+    "_far": 80,
     "_color": {
       "__type__": "cc.Color",
       "r": 51,
@@ -4270,8 +4272,8 @@
     "offset": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 12,
-      "z": 8.5
+      "y": 6.2,
+      "z": 4.2
     },
     "followSharpness": 7,
     "lookHeight": 0.25,
@@ -4350,7 +4352,7 @@
   {
     "__type__": "cc.ShadowsInfo",
     "_type": 0,
-    "_enabled": true,
+    "_enabled": false,
     "_normal": {
       "__type__": "cc.Vec3",
       "x": 0,

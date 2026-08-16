@@ -10,7 +10,7 @@ export class HoleSizeController extends Component {
     public visual: HoleVisual | null = null;
 
     @property({ type: [CCFloat], tooltip: 'Hole radius for Lv1, Lv2, ...' })
-    public levelRadii: number[] = [0.75, 0.95, 1.2, 1.5];
+    public levelRadii: number[] = [0.32, 0.4, 0.5, 0.62];
 
     @property({ type: [CCInteger], tooltip: 'XP required to advance FROM each level. Last entry is ignored.' })
     public xpToNextLevel: number[] = [25, 45, 70];

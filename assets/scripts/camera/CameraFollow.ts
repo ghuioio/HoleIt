@@ -8,7 +8,7 @@ export class CameraFollow extends Component {
     public target: Node | null = null;
 
     @property({ type: Vec3, tooltip: 'Camera offset from Hole.' })
-    public offset = new Vec3(0, 12, 8.5);
+    public offset = new Vec3(0, 6.2, 4.2);
 
     @property({ tooltip: 'Higher = snappier follow.' })
     public followSharpness = 7;

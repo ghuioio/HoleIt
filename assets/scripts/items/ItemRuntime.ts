@@ -3,6 +3,7 @@ import {
     Collider,
     Component,
     ERigidBodyType,
+    MeshRenderer,
     PhysicsMaterial,
     RigidBody,
     Vec3,
@@ -12,6 +13,7 @@ import { PhysicsGroup } from '../physics/PhysicsGroups';
 const { ccclass, property } = _decorator;
 const FULL_LINEAR_FACTOR = new Vec3(1, 1, 1);
 const VERTICAL_LINEAR_FACTOR = new Vec3(0, 1, 0);
+const SETTLING_LINEAR_FACTOR = new Vec3(0.05, 1, 0.05);
 const LOCKED_ANGULAR_FACTOR = new Vec3(0, 0, 0);
 const ZERO_VELOCITY = new Vec3(0, 0, 0);
 
@@ -53,6 +55,7 @@ export class ItemRuntime extends Component {
 
     private _body: RigidBody | null = null;
     private _colliders: Collider[] = [];
+    private _renderers: MeshRenderer[] = [];
     private _originalMaterials: Array<PhysicsMaterial | null> = [];
     private _state: ItemRuntimeState = ItemRuntimeState.Dormant;
     private _spawnId = '';
@@ -125,6 +128,7 @@ export class ItemRuntime extends Component {
 
     public initialize(spawnId: string, spawnIndex: number, poolKey = ''): void {
         this.cacheComponents();
+        this.cacheRenderers();
         this.captureBaseScale();
 
         this._spawnId = spawnId;
@@ -141,9 +145,12 @@ export class ItemRuntime extends Component {
         this.node.setScale(this._baseScale);
         this.restoreColliderMaterials();
         this.setDormantPhysics();
+        // PhysicsActivationSystem reveals only camera-nearby dormant items.
+        // Starting hidden prevents the full level from drawing during spawn.
+        this.setRenderVisible(false);
     }
 
-    /** Dormant stack items render normally but cost no rigid-body simulation. */
+    /** Dormant items cost no rigid-body simulation; visibility is managed separately. */
     public setDormant(): void {
         if (this._state === ItemRuntimeState.Consumed
             || this._state === ItemRuntimeState.Swallowing
@@ -165,6 +172,8 @@ export class ItemRuntime extends Component {
         if (!this._body || this._colliders.length === 0) {
             return false;
         }
+
+        this.setRenderVisible(true);
 
         for (let i = 0; i < this._colliders.length; i++) {
             this._colliders[i].enabled = true;
@@ -247,8 +256,10 @@ export class ItemRuntime extends Component {
             const collider = this._colliders[i];
             collider.enabled = true;
             collider.setGroup(PhysicsGroup.ITEM);
+            // Remove ground friction while the piece is being centered over
+            // the rim. Collision remains enabled until it reaches the opening.
+            collider.sharedMaterial = zeroFrictionMaterial;
         }
-        this.restoreColliderMaterials();
         this._body.wakeUp();
         return true;
     }
@@ -297,15 +308,17 @@ export class ItemRuntime extends Component {
         this._vortexMaterial = null;
         this._stackConstrained = false;
         this.node.setScale(this._baseScale);
-        this._body.linearDamping = this.linearDamping;
-        this._body.angularDamping = this.angularDamping;
-        this._body.linearFactor = FULL_LINEAR_FACTOR;
+        this.restoreColliderMaterials();
+        this._body.linearDamping = Math.max(this.linearDamping, 0.65);
+        this._body.angularDamping = Math.max(this.angularDamping, 0.7);
+        this._body.linearFactor = SETTLING_LINEAR_FACTOR;
         this._body.angularFactor = FULL_LINEAR_FACTOR;
+        this.dampenHorizontalVelocity(0.12);
         this.ensureAboveGround(minimumCenterY);
         this._body.wakeUp();
     }
 
-    /** Unlock a collapsed piece so it can scatter and roll on solid ground. */
+    /** Let a landed collapsed piece settle locally on the solid ground. */
     public releaseStackConstraints(): void {
         if (this._state !== ItemRuntimeState.Dynamic || !this._body
             || !this._stackConstrained) {
@@ -313,9 +326,46 @@ export class ItemRuntime extends Component {
         }
 
         this._stackConstrained = false;
-        this._body.linearFactor = FULL_LINEAR_FACTOR;
+        // Let landed pieces form a compact pile without the solver launching
+        // the whole column sideways as overlapping bodies settle.
+        this._body.linearDamping = Math.max(this.linearDamping, 0.72);
+        this._body.angularDamping = Math.max(this.angularDamping, 0.78);
+        this._body.linearFactor = SETTLING_LINEAR_FACTOR;
         this._body.angularFactor = FULL_LINEAR_FACTOR;
+        this.dampenHorizontalVelocity(0.08);
         this._body.wakeUp();
+    }
+
+    private dampenHorizontalVelocity(multiplier: number): void {
+        if (!this._body) {
+            return;
+        }
+        this._body.getLinearVelocity(this._velocity);
+        this._velocity.x *= multiplier;
+        this._velocity.z *= multiplier;
+        this._body.setLinearVelocity(this._velocity);
+    }
+
+    /** Keep a missed tower piece inside a compact pile around its source column. */
+    public constrainToPile(centerX: number, centerZ: number, radius: number): void {
+        if (!this._body || radius <= 0) {
+            return;
+        }
+
+        this.node.getWorldPosition(this._worldPosition);
+        const dx = this._worldPosition.x - centerX;
+        const dz = this._worldPosition.z - centerZ;
+        const distanceSq = dx * dx + dz * dz;
+        const radiusSq = radius * radius;
+        if (distanceSq > radiusSq && distanceSq > 0.000001) {
+            const scale = radius / Math.sqrt(distanceSq);
+            this._worldPosition.x = centerX + dx * scale;
+            this._worldPosition.z = centerZ + dz * scale;
+            this.node.setWorldPosition(this._worldPosition);
+        }
+        if (this._body.enabled) {
+            this.dampenHorizontalVelocity(0.05);
+        }
     }
 
     /**
@@ -484,6 +534,16 @@ export class ItemRuntime extends Component {
         return out;
     }
 
+    /** Toggle visuals without removing the item from gameplay or spatial data. */
+    public setRenderVisible(visible: boolean): void {
+        this.cacheRenderers();
+        for (let i = 0; i < this._renderers.length; i++) {
+            if (this._renderers[i].enabled !== visible) {
+                this._renderers[i].enabled = visible;
+            }
+        }
+    }
+
     public markConsumed(): void {
         if (this._state === ItemRuntimeState.Consumed) {
             return;
@@ -522,6 +582,12 @@ export class ItemRuntime extends Component {
             for (let i = 0; i < this._colliders.length; i++) {
                 this._originalMaterials[i] = this._colliders[i].sharedMaterial;
             }
+        }
+    }
+
+    private cacheRenderers(): void {
+        if (this._renderers.length === 0) {
+            this._renderers = this.node.getComponentsInChildren(MeshRenderer);
         }
     }
 
