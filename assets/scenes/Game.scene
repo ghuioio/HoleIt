@@ -270,13 +270,13 @@
     "_center": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": -0.925,
       "z": 0
     },
     "_size": {
       "__type__": "cc.Vec3",
       "x": 24,
-      "y": 0.15,
+      "y": 2,
       "z": 24
     },
     "_id": "e14NmdkJ5Lp4yR3THwX7yn"

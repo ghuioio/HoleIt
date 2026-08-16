@@ -100,7 +100,10 @@ export class PhysicsActivationSystem extends Component {
 
             if (this._stackController
                 && this._stackController.isCollapsedTowerPiece(item)) {
-                const minimumCenterY = this._groundSurfaceY + this.groundSafetyOffset;
+                const minimumCenterY = item.getGroundMinimumCenterY(
+                    this._groundSurfaceY,
+                    this.groundSafetyOffset,
+                );
                 if (distanceSq > holeRadiusSq || this._itemPos.y <= minimumCenterY) {
                     item.releaseStackConstraints();
                 }
@@ -145,8 +148,7 @@ export class PhysicsActivationSystem extends Component {
             }
 
             const activated = this._stackController
-                && this._stackController.isCollapsedTowerPiece(item)
-                ? item.activateStackFall()
+                ? this._stackController.activateItem(item)
                 : item.activateDynamic();
             if (activated) {
                 this.registry!.markDynamic(item);

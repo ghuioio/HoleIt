@@ -109,6 +109,15 @@ export class HoleConsumeSystem extends Component {
             this._stackController = this.registry.node.getComponent(StackController);
         }
 
+        if (this._stackController) {
+            this._stackController.updateFallingPieces(
+                this._holePos,
+                this.holeSize.radius,
+                this.groundY,
+                this.groundSafetyOffset,
+            );
+        }
+
         this._captureTimer -= dt;
         if (this._captureTimer <= 0) {
             this._captureTimer = Math.max(0.01, this.captureScanInterval);
@@ -201,9 +210,7 @@ export class HoleConsumeSystem extends Component {
                 return false;
             }
 
-            const activated = this._stackController.isCollapsedTowerPiece(item)
-                ? item.activateStackFall()
-                : item.activateDynamic();
+            const activated = this._stackController.activateItem(item);
             if (!activated) {
                 return false;
             }
@@ -278,7 +285,10 @@ export class HoleConsumeSystem extends Component {
             const outerRadius = innerRadius + Math.max(0.05, this.outerPadding);
             const exitedOuterVortex = distanceSq
                 > (outerRadius + this.vortexExitPadding) * (outerRadius + this.vortexExitPadding);
-            const minimumCenterY = this.groundY + this.groundSafetyOffset;
+            const minimumCenterY = item.getGroundMinimumCenterY(
+                this.groundY,
+                this.groundSafetyOffset,
+            );
 
             // Per-piece ground ignore: reversible every frame as the Hole moves.
             item.setGroundCollisionIgnored(insideHoleRadius);

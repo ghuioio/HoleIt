@@ -109,7 +109,7 @@
       "w": 0
     },
     "_bakeable": false,
-    "_castShadow": false,
+    "_castShadow": true,
     "_receiveShadow": false,
     "_recieveShadow": false,
     "_lightmapSize": 64

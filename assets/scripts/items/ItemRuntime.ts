@@ -175,6 +175,9 @@ export class ItemRuntime extends Component {
         this._body.type = ERigidBodyType.DYNAMIC;
         this._body.mass = Math.max(0.01, this.mass);
         this._body.useGravity = true;
+        // Cannon/PhysX CCD prevents fast cascade pieces tunnelling through the
+        // ground between simulation steps.
+        this._body.useCCD = true;
         this._body.allowSleep = true;
         this._body.linearDamping = this.linearDamping;
         this._body.angularDamping = this.angularDamping;
@@ -263,6 +266,12 @@ export class ItemRuntime extends Component {
         this._groundIgnored = ignore;
         const group = ignore ? PhysicsGroup.FALLING_ITEM : PhysicsGroup.ITEM;
         this._body.setGroup(group);
+        // Cocos 3.4 Cannon CCD raycasts with the shape's original filter rather
+        // than the runtime body group. Leaving CCD enabled over the opening
+        // therefore still detects the ground and pins every item on the rim.
+        // Disable it only for the short, ground-ignored part of the vortex;
+        // restore it immediately when the Hole moves away.
+        this._body.useCCD = !ignore;
         this._body.linearFactor = FULL_LINEAR_FACTOR;
         this._body.angularFactor = FULL_LINEAR_FACTOR;
 
@@ -309,6 +318,29 @@ export class ItemRuntime extends Component {
         this._body.wakeUp();
     }
 
+    /**
+     * Computes the item-center Y that places the lowest enabled collider just
+     * above the ground. worldBounds supports both BoxCollider and
+     * SphereCollider and also accounts for prefab scale/collider center.
+     */
+    public getGroundMinimumCenterY(groundSurfaceY: number, safetyOffset: number): number {
+        this.node.getWorldPosition(this._worldPosition);
+        let centerClearance = Math.max(0.01, this.consumeRadius);
+
+        for (let i = 0; i < this._colliders.length; i++) {
+            const collider = this._colliders[i];
+            if (!collider.enabled) {
+                continue;
+            }
+
+            const bounds = collider.worldBounds;
+            const colliderBottom = bounds.center.y - bounds.halfExtents.y;
+            centerClearance = Math.max(centerClearance, this._worldPosition.y - colliderBottom);
+        }
+
+        return groundSurfaceY + centerClearance + Math.max(0, safetyOffset);
+    }
+
     /** Last-resort recovery for a body that crossed the ground before regrouping. */
     public ensureAboveGround(minimumCenterY: number): void {
         if (this._state !== ItemRuntimeState.Dynamic || !this._body) {
@@ -316,10 +348,13 @@ export class ItemRuntime extends Component {
         }
 
         this.node.getWorldPosition(this._worldPosition);
-        if (this._worldPosition.y > minimumCenterY || this._groundRecoveryApplied) {
+        if (this._worldPosition.y >= minimumCenterY) {
+            this._groundRecoveryApplied = false;
             return;
         }
 
+        // This is intentionally repeatable. A solver step may push a body
+        // below the surface again, so a one-shot recovery flag is unsafe.
         this._groundRecoveryApplied = true;
         this._worldPosition.y = minimumCenterY;
         this.node.setWorldPosition(this._worldPosition);

@@ -30,6 +30,7 @@ export class StackController extends Component {
     private _registry: ItemRegistry | null = null;
     private readonly _entries: StackEntry[] = [];
     private readonly _towerByItem = new Map<ItemRuntime, TowerStack>();
+    private readonly _fallingPieces: ItemRuntime[] = [];
     private readonly _worldPos = new Vec3();
     private _ready = false;
 
@@ -44,6 +45,7 @@ export class StackController extends Component {
     public resetStacks(): void {
         this._entries.length = 0;
         this._towerByItem.clear();
+        this._fallingPieces.length = 0;
         this._ready = false;
     }
 
@@ -114,6 +116,67 @@ export class StackController extends Component {
         return !!tower && tower.collapsed;
     }
 
+    /** Activate an item while preserving collapsed-tower tracking. */
+    public activateItem(item: ItemRuntime): boolean {
+        const collapsedPiece = this.isCollapsedTowerPiece(item);
+        const activated = collapsedPiece
+            ? item.activateStackFall()
+            : item.activateDynamic();
+        if (activated && collapsedPiece) {
+            this.trackFallingPiece(item);
+        }
+        return activated;
+    }
+
+    /**
+     * Cocos update-loop equivalent of Unity FixedUpdate ground protection.
+     * Only released tower pieces are visited, avoiding work on thousands of
+     * dormant items. Once the Hole is no longer below a piece, constraints are
+     * released and the real collider height is used for the hard floor clamp.
+     */
+    public updateFallingPieces(
+        holePosition: Vec3,
+        holeRadius: number,
+        groundSurfaceY: number,
+        safetyOffset: number,
+    ): void {
+        const radiusSq = holeRadius * holeRadius;
+
+        for (let i = this._fallingPieces.length - 1; i >= 0; i--) {
+            const piece = this._fallingPieces[i];
+            if (!piece.node.active || piece.isConsumed || piece.isSwallowing) {
+                this._fallingPieces.splice(i, 1);
+                continue;
+            }
+            if (piece.isVortex) {
+                // HoleConsumeSystem owns reversible ground-ignore while a
+                // piece is committed to the vortex.
+                continue;
+            }
+            if (!piece.isDynamic) {
+                this._fallingPieces.splice(i, 1);
+                continue;
+            }
+
+            piece.node.getWorldPosition(this._worldPos);
+            const dx = this._worldPos.x - holePosition.x;
+            const dz = this._worldPos.z - holePosition.z;
+            const isDirectlyOverHole = dx * dx + dz * dz <= radiusSq;
+            if (isDirectlyOverHole) {
+                continue;
+            }
+
+            // Outside the opening, normal ground collision is already active.
+            // Unlock X/Z and rotation immediately so the piece can form a pile.
+            piece.releaseStackConstraints();
+            const minimumCenterY = piece.getGroundMinimumCenterY(
+                groundSurfaceY,
+                safetyOffset,
+            );
+            piece.ensureAboveGround(minimumCenterY);
+        }
+    }
+
     /**
      * Remove the current base, then release every piece above it. Released
      * bodies stay in ITEM so they collide with the ground if the Hole leaves.
@@ -135,6 +198,7 @@ export class StackController extends Component {
 
         tower.pieces.splice(index, 1);
         this._towerByItem.delete(item);
+        this.untrackFallingPiece(item);
         if (index !== 0 || tower.collapsed) {
             return;
         }
@@ -144,7 +208,21 @@ export class StackController extends Component {
             const piece = tower.pieces[i];
             if (piece.isDormant && piece.activateStackFall()) {
                 this._registry.markDynamic(piece);
+                this.trackFallingPiece(piece);
             }
+        }
+    }
+
+    private trackFallingPiece(item: ItemRuntime): void {
+        if (this._fallingPieces.indexOf(item) < 0) {
+            this._fallingPieces.push(item);
+        }
+    }
+
+    private untrackFallingPiece(item: ItemRuntime): void {
+        const index = this._fallingPieces.indexOf(item);
+        if (index >= 0) {
+            this._fallingPieces.splice(index, 1);
         }
     }
 }
